@@ -1,0 +1,7 @@
+<map id="tvm::relay::TensorValueNode" name="tvm::relay::TensorValueNode">
+<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1ValueNode.html" title="The base container type of Relay values. " alt="" coords="5,669,269,746"/>
+<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,375,269,452"/>
+<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="168,132,301,253"/>
+<area shape="rect" id="node7" href="$classtvm_1_1runtime_1_1NDArray.html" title="Managed NDArray. The array is backed by reference counted blocks. " alt="" coords="294,573,461,841"/>
+<area shape="rect" id="node8" href="$classtvm_1_1runtime_1_1NDArray_1_1Container.html" title="Reference counted Container object used to back NDArray. " alt="" coords="294,316,461,511"/>
+</map>

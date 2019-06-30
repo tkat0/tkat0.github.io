@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tvm.relay.base &mdash; tvm 0.6.dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/tvm_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="tvm.relay.build_module" href="build_module.html" />
+    <link rel="prev" title="tvm.relay.backend" href="backend.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/tvm-logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6.dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vta/index.html">VTA: Deep Learning Accelerator Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deploy/index.html">Deploy and Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute/index.html">Contribute to TVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../langref/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../tvm.html">tvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intrin.html">tvm.intrin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tensor.html">tvm.tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedule.html">tvm.schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../target.html">tvm.target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build.html">tvm.build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module.html">tvm.module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error.html">tvm.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ndarray.html">tvm.ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container.html">tvm.container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function.html">tvm.Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autotvm.html">tvm.autotvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph_runtime.html">tvm.contrib.graph_runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rpc.html">tvm.rpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge.html">Framework Bridge APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contrib.html">Additional Contrib APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev.html">Developer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../topi.html">TOPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vta/index.html">VTA API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nnvm/index.html">NNVM API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid.html">tvm.hybrid</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Relay API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backend.html">tvm.relay.backend</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tvm.relay.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_module.html">tvm.relay.build_module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expr.html">tvm.relay.expr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frontend.html">tvm.relay.frontend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">tvm.relay.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ir_pass.html">tvm.relay.ir_pass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module.html">tvm.relay.module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html">tvm.relay.nn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="op.html">tvm.relay.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scope_builder.html">tvm.relay.scope_builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ty.html">tvm.relay.ty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">tvm.relay.vision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_links.html">Links to API References</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Design and Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nnvm_top.html">NNVM Core Tensor Operators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">tvm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Python API</a> &raquo;</li>
+        
+          <li><a href="index.html">Relay API</a> &raquo;</li>
+        
+      <li>tvm.relay.base</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/python/relay/base.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tvm.relay.base">
+<span id="tvm-relay-base"></span><h1>tvm.relay.base<a class="headerlink" href="#module-tvm.relay.base" title="Permalink to this headline">¶</a></h1>
+<p>The base node types for the Relay language.</p>
+<dl class="function">
+<dt id="tvm.relay.base.register_relay_node">
+<code class="descclassname">tvm.relay.base.</code><code class="descname">register_relay_node</code><span class="sig-paren">(</span><em>type_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.base.register_relay_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a Relay node type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>cls</em>) – The type key of the node.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.relay.base.register_relay_attr_node">
+<code class="descclassname">tvm.relay.base.</code><code class="descname">register_relay_attr_node</code><span class="sig-paren">(</span><em>type_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.base.register_relay_attr_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a Relay attribute node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>cls</em>) – The type key of the node.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.base.RelayNode">
+<em class="property">class </em><code class="descclassname">tvm.relay.base.</code><code class="descname">RelayNode</code><a class="headerlink" href="#tvm.relay.base.RelayNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class of all Relay nodes.</p>
+<dl class="method">
+<dt id="tvm.relay.base.RelayNode.astext">
+<code class="descname">astext</code><span class="sig-paren">(</span><em>show_meta_data=True</em>, <em>annotate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.base.RelayNode.astext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the text format of the expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>show_meta_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to include meta data section in the text
+if there is meta data.</li>
+<li><strong>annotate</strong> (<em>Optional</em><em>[</em><em>relay.Expr-&gt;str</em><em>]</em>) – Optional annotate function to provide additional
+information in the comment block.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The meta data section is necessary to fully parse the text format.
+However, it can contain dumps that are big (e.g constant weights),
+so it can be helpful to skip printing the meta data section.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>text</strong> – The text format of the expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.base.Span">
+<em class="property">class </em><code class="descclassname">tvm.relay.base.</code><code class="descname">Span</code><span class="sig-paren">(</span><em>source</em>, <em>lineno</em>, <em>col_offset</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.base.Span" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies a location in a source program.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.base.SourceName">
+<em class="property">class </em><code class="descclassname">tvm.relay.base.</code><code class="descname">SourceName</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.base.SourceName" title="Permalink to this definition">¶</a></dt>
+<dd><p>A identifier for a source location</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.base.Id">
+<em class="property">class </em><code class="descclassname">tvm.relay.base.</code><code class="descname">Id</code><a class="headerlink" href="#tvm.relay.base.Id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique identifier(name) used in Var.
+Guaranteed to be stable across all passes.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="build_module.html" class="btn btn-neutral float-right" title="tvm.relay.build_module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="backend.html" class="btn btn-neutral float-left" title="tvm.relay.backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, tvm developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75982049-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

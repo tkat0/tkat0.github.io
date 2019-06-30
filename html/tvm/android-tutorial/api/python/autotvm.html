@@ -1,0 +1,2790 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tvm.autotvm &mdash; tvm 0.6.dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/tvm_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="tvm.contrib.graph_runtime" href="graph_runtime.html" />
+    <link rel="prev" title="tvm.Function" href="function.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/tvm-logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6.dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vta/index.html">VTA: Deep Learning Accelerator Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploy/index.html">Deploy and Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute/index.html">Contribute to TVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../langref/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tvm.html">tvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrin.html">tvm.intrin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor.html">tvm.tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedule.html">tvm.schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="target.html">tvm.target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">tvm.build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module.html">tvm.module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">tvm.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndarray.html">tvm.ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html">tvm.container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">tvm.Function</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tvm.autotvm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-tvm.autotvm.measure.measure">tvm.autotvm.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tvm.autotvm.tuner">tvm.autotvm.tuner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tvm.autotvm.task">tvm.autotvm.task</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tvm.autotvm.record">tvm.autotvm.record</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graph_runtime.html">tvm.contrib.graph_runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc.html">tvm.rpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html">Framework Bridge APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contrib.html">Additional Contrib APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev.html">Developer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topi.html">TOPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vta/index.html">VTA API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nnvm/index.html">NNVM API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hybrid.html">tvm.hybrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relay/index.html">Relay API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_links.html">Links to API References</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Design and Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nnvm_top.html">NNVM Core Tensor Operators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">tvm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python API</a> &raquo;</li>
+        
+      <li>tvm.autotvm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/python/autotvm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tvm.autotvm">
+<span id="tvm-autotvm"></span><h1>tvm.autotvm<a class="headerlink" href="#module-tvm.autotvm" title="Permalink to this headline">¶</a></h1>
+<p>The auto-tuning module of tvm</p>
+<p>This module includes:</p>
+<ul class="simple">
+<li>Tuning space definition API</li>
+<li>Efficient auto-tuners</li>
+<li>Tuning result and database support</li>
+<li>Distributed measurement to scale up tuning</li>
+</ul>
+<div class="section" id="module-tvm.autotvm.measure.measure">
+<span id="tvm-autotvm-measure"></span><h2>tvm.autotvm.measure<a class="headerlink" href="#module-tvm.autotvm.measure.measure" title="Permalink to this headline">¶</a></h2>
+<p>User facing API for specifying how to measure the generated code</p>
+<dl class="class">
+<dt id="tvm.autotvm.measure.MeasureInput">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.measure.</code><code class="descname">MeasureInput</code><a class="headerlink" href="#tvm.autotvm.measure.MeasureInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores all the necessary inputs for a measurement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>tvm.target.Target</em></a>) – The target device</li>
+<li><strong>task</strong> (<a class="reference internal" href="#tvm.autotvm.task.task.Task" title="tvm.autotvm.task.task.Task"><em>task.Task</em></a>) – Task function</li>
+<li><strong>config</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity"><em>ConfigEntity</em></a>) – Specific configuration.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.measure.MeasureResult">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.measure.</code><code class="descname">MeasureResult</code><a class="headerlink" href="#tvm.autotvm.measure.MeasureResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores all the results of a measurement</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>costs</strong> (<em>Array of float</em><em> or </em><em>Array of Exception</em>) – If no error occurs during measurement, it is an array of measured running times.
+If an error occurs during measurement, it is an array of the exception objections.</li>
+<li><strong>error_no</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Denote error type, defined by MeasureErrorNo</li>
+<li><strong>all_cost</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – All cost of this measure, including rpc, compilation, test runs</li>
+<li><strong>timestamp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The absolute time stamp when we finish measurement.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.measure.measure_option">
+<code class="descclassname">tvm.autotvm.measure.</code><code class="descname">measure_option</code><span class="sig-paren">(</span><em>builder</em>, <em>runner</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.measure.measure_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set options for measure. To measure a config, we will build it and run it.
+So we have to set options for these two steps.
+They have their own options on timeout, parallel, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>builder</strong> (<em>Builder</em>) – Specify how to build programs</li>
+<li><strong>runner</strong> (<em>Runner</em>) – Specify how to run programs</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p># example setting for using local devices
+&gt;&gt;&gt; measure_option = autotvm.measure_option(
+&gt;&gt;&gt;     builder=autotvm.LocalBuilder(),      # use all local cpu cores for compilation
+&gt;&gt;&gt;     runner=autotvm.LocalRunner(          # measure them sequentially
+&gt;&gt;&gt;         number=10,
+&gt;&gt;&gt;         timeout=5)
+&gt;&gt;&gt; )</p>
+<p># example setting for using remote devices
+&gt;&gt;&gt; measure_option = autotvm.measure_option(
+&gt;&gt;&gt;    builder=autotvm.LocalBuilder(),  # use all local cpu cores for compilation
+&gt;&gt;&gt;    runner=autotvm.RPCRunner(
+&gt;&gt;&gt;        ‘rasp3b’, ‘locahost’, 9190, # device key, host and port of the rpc tracker
+&gt;&gt;&gt;        number=4,
+&gt;&gt;&gt;        timeout=4) # timeout of a run on the device. RPC request waiting time is excluded.
+&gt;&gt;&gt;)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make measurement results accurate, you should pick the correct value for the argument
+<cite>number</cite> and <cite>repeat</cite> in Runner(). Some devices need a certain minimum running time to
+“warm up,” such as GPUs that need time to reach a performance power state.
+Using <cite>min_repeat_ms</cite> can dynamically adjusts <cite>number</cite>, so it is recommended.
+The typical value for NVIDIA GPU is 150 ms.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.measure.create_measure_batch">
+<code class="descclassname">tvm.autotvm.measure.</code><code class="descname">create_measure_batch</code><span class="sig-paren">(</span><em>task</em>, <em>option</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.measure.create_measure_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a standard measure_batch function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>task</strong> (<em>tvm.autotvm.task.Task</em>) – The tuning task</li>
+<li><strong>option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – The option for measuring generated code.
+You should use the return value of function <a class="reference internal" href="#tvm.autotvm.measure.measure_option" title="tvm.autotvm.measure.measure_option"><code class="xref any py py-func docutils literal notranslate"><span class="pre">measure_option</span></code></a> for this argument.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>measure_batch</strong> – a callback function to measure a batch of configs</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">callable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.measure.measure_methods.LocalBuilder">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.measure.measure_methods.</code><code class="descname">LocalBuilder</code><span class="sig-paren">(</span><em>timeout=10</em>, <em>n_parallel=None</em>, <em>build_func='default'</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.measure.measure_methods.LocalBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run compilation on local machine</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The timeout of a compilation</li>
+<li><strong>n_parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of tasks run in parallel. “None” will use all cpu cores</li>
+<li><strong>build_func</strong> (<em>callable</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – If is ‘default’, use default build function
+If is ‘ndk’, use function for android ndk
+If is callable, use it as custom build function, expect lib_format field.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.measure.measure_methods.RPCRunner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.measure.measure_methods.</code><code class="descname">RPCRunner</code><span class="sig-paren">(</span><em>key</em>, <em>host</em>, <em>port</em>, <em>priority=1</em>, <em>timeout=10</em>, <em>n_parallel=None</em>, <em>number=4</em>, <em>repeat=3</em>, <em>min_repeat_ms=0</em>, <em>cooldown_interval=0.1</em>, <em>check_correctness=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.measure.measure_methods.RPCRunner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run generated code on remove devices.
+This function will ask a RPC Tracker to get device for measurement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The timeout of a compilation</li>
+<li><strong>n_parallel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of tasks run in parallel. “None” will use all cpu cores</li>
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The key of the device registered in the tracker</li>
+<li><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The host address of RPC Tracker</li>
+<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The port of RPC Tracker</li>
+<li><strong>number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of times to run the generated code for taking average.
+We call these runs as one <cite>repeat</cite> of measurement.</li>
+<li><strong>repeat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The number of times to repeat the measurement.
+In total, the generated code will be run (1 + number x repeat) times,
+where the first “1” is warm up and will be discarded.
+The returned result contains <cite>repeat</cite> costs,
+each of which is an average of <cite>number</cite> costs.</li>
+<li><strong>min_repeat_ms</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The minimum duration of one <cite>repeat</cite> in milliseconds.
+By default, one <cite>repeat</cite> contains <cite>number</cite> runs. If this parameter is set,
+the parameters <cite>number</cite> will be dynamically adjusted to meet the
+minimum duration requirement of one <cite>repeat</cite>.
+i.e., When the run time of one <cite>repeat</cite> falls below this time, the <cite>number</cite> parameter
+will be automatically increased.</li>
+<li><strong>cooldown_interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The cool down interval between two measurements.</li>
+<li><strong>check_correctness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether check correctness after measurement. This will use llvm cpu target to
+call your template and get the reference output.
+This can work for TOPI templates, but may not work for your custom template.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.measure.measure_methods.LocalRunner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.measure.measure_methods.</code><code class="descname">LocalRunner</code><span class="sig-paren">(</span><em>timeout=10</em>, <em>number=4</em>, <em>repeat=3</em>, <em>min_repeat_ms=0</em>, <em>cooldown_interval=0.1</em>, <em>check_correctness=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.measure.measure_methods.LocalRunner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run generated code on local devices.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The timeout of a compilation</li>
+<li><strong>number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of times to run the generated code for taking average.
+We call these runs as one <cite>repeat</cite> of measurement.</li>
+<li><strong>repeat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The number of times to repeat the measurement.
+In total, the generated code will be run (1 + number x repeat) times,
+where the first one is warm up and will be discarded.
+The returned result contains <cite>repeat</cite> costs,
+each of which is an average of <cite>number</cite> costs.</li>
+<li><strong>min_repeat_ms</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The minimum duration of one <cite>repeat</cite> in milliseconds.
+By default, one <cite>repeat</cite> contains <cite>number</cite> runs. If this parameter is set,
+the parameters <cite>number</cite> will be dynamically adjusted to meet the
+minimum duration requirement of one <cite>repeat</cite>.
+i.e., When the run time of one <cite>repeat</cite> falls below this time, the <cite>number</cite> parameter
+will be automatically increased.</li>
+<li><strong>cooldown_interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The cool down interval between two measurements.</li>
+<li><strong>check_correctness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether check correctness after measurement. This will use llvm cpu target to
+call your template and get the reference output.
+This can work for TOPI templates, but may not work for your custom template.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is a “fake” local mode. We start a silent rpc tracker and rpc server
+for the user. In this way we reuse timeout/isolation mechanism in RPC infrastructure.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tvm.autotvm.tuner">
+<span id="tvm-autotvm-tuner"></span><h2>tvm.autotvm.tuner<a class="headerlink" href="#module-tvm.autotvm.tuner" title="Permalink to this headline">¶</a></h2>
+<p>A tuner takes a task as input. It proposes some promising <a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ConfigEntity</span></code></a>
+in the <a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ConfigSpace</span></code></a> and measure them on the real hardware. Then it
+proposed the next batch of <a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ConfigEntity</span></code></a> according to the measure results.
+This tuning loop is repeated.</p>
+<dl class="class">
+<dt id="tvm.autotvm.tuner.Tuner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.tuner.</code><code class="descname">Tuner</code><span class="sig-paren">(</span><em>task</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for tuners</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>task</strong> (<em>autotvm.task.Task</em>) – Tuning Task</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.tuner.Tuner.has_next">
+<code class="descname">has_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner.has_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether has next untried config in the space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>has_next</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.Tuner.load_history">
+<code class="descname">load_history</code><span class="sig-paren">(</span><em>data_set</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner.load_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>load history data for transfer learning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_set</strong> (<em>Array of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>) </em><em>pair</em>) – Previous tuning records</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.Tuner.next_batch">
+<code class="descname">next_batch</code><span class="sig-paren">(</span><em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner.next_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the next batch of configs to be measure on real hardware</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of the batch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a batch of configs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.Tuner.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset the status of tuner</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.Tuner.tune">
+<code class="descname">tune</code><span class="sig-paren">(</span><em>n_trial</em>, <em>measure_option</em>, <em>early_stopping=None</em>, <em>callbacks=()</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner.tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin tuning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_trial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Maximum number of configs to try (measure on real hardware)</li>
+<li><strong>measure_option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – The options for how to measure generated code.
+You should use the return value ot autotvm.measure_option for this argument.</li>
+<li><strong>early_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Early stop the tuning when not finding better configs in this number of trials</li>
+<li><strong>callbacks</strong> (<em>List of callable</em>) – A list of callback functions. The signature of callback function is
+(Tuner, List of MeasureInput, List of MeasureResult)
+with no return value. These callback functions will be called on
+every measurement pair. See autotvm/tuner/callback.py for some examples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.Tuner.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>inputs</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.Tuner.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters of the tuner according to measurement results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>Array of autotvm.measure.MeasureInput</em>) – The input for measurement</li>
+<li><strong>results</strong> (<em>Array of autotvm.measure.MeasureResult</em>) – result for measurement</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.tuner.RandomTuner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.tuner.</code><code class="descname">RandomTuner</code><span class="sig-paren">(</span><em>task</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enumerate the search space in a random order</p>
+<dl class="method">
+<dt id="tvm.autotvm.tuner.RandomTuner.has_next">
+<code class="descname">has_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner.has_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether has next untried config in the space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>has_next</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.RandomTuner.load_history">
+<code class="descname">load_history</code><span class="sig-paren">(</span><em>data_set</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner.load_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>load history data for transfer learning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_set</strong> (<em>Array of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>) </em><em>pair</em>) – Previous tuning records</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.RandomTuner.next_batch">
+<code class="descname">next_batch</code><span class="sig-paren">(</span><em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner.next_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the next batch of configs to be measure on real hardware</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of the batch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a batch of configs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.RandomTuner.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset the status of tuner</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.RandomTuner.tune">
+<code class="descname">tune</code><span class="sig-paren">(</span><em>n_trial</em>, <em>measure_option</em>, <em>early_stopping=None</em>, <em>callbacks=()</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner.tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin tuning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_trial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Maximum number of configs to try (measure on real hardware)</li>
+<li><strong>measure_option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – The options for how to measure generated code.
+You should use the return value ot autotvm.measure_option for this argument.</li>
+<li><strong>early_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Early stop the tuning when not finding better configs in this number of trials</li>
+<li><strong>callbacks</strong> (<em>List of callable</em>) – A list of callback functions. The signature of callback function is
+(Tuner, List of MeasureInput, List of MeasureResult)
+with no return value. These callback functions will be called on
+every measurement pair. See autotvm/tuner/callback.py for some examples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.RandomTuner.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>inputs</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.RandomTuner.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters of the tuner according to measurement results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>Array of autotvm.measure.MeasureInput</em>) – The input for measurement</li>
+<li><strong>results</strong> (<em>Array of autotvm.measure.MeasureResult</em>) – result for measurement</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.tuner.GridSearchTuner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.tuner.</code><code class="descname">GridSearchTuner</code><span class="sig-paren">(</span><em>task</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enumerate the search space in a grid search order</p>
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GridSearchTuner.has_next">
+<code class="descname">has_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner.has_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether has next untried config in the space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>has_next</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GridSearchTuner.load_history">
+<code class="descname">load_history</code><span class="sig-paren">(</span><em>data_set</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner.load_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>load history data for transfer learning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_set</strong> (<em>Array of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>) </em><em>pair</em>) – Previous tuning records</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GridSearchTuner.next_batch">
+<code class="descname">next_batch</code><span class="sig-paren">(</span><em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner.next_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the next batch of configs to be measure on real hardware</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of the batch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a batch of configs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GridSearchTuner.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset the status of tuner</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GridSearchTuner.tune">
+<code class="descname">tune</code><span class="sig-paren">(</span><em>n_trial</em>, <em>measure_option</em>, <em>early_stopping=None</em>, <em>callbacks=()</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner.tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin tuning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_trial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Maximum number of configs to try (measure on real hardware)</li>
+<li><strong>measure_option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – The options for how to measure generated code.
+You should use the return value ot autotvm.measure_option for this argument.</li>
+<li><strong>early_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Early stop the tuning when not finding better configs in this number of trials</li>
+<li><strong>callbacks</strong> (<em>List of callable</em>) – A list of callback functions. The signature of callback function is
+(Tuner, List of MeasureInput, List of MeasureResult)
+with no return value. These callback functions will be called on
+every measurement pair. See autotvm/tuner/callback.py for some examples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GridSearchTuner.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>inputs</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GridSearchTuner.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters of the tuner according to measurement results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>Array of autotvm.measure.MeasureInput</em>) – The input for measurement</li>
+<li><strong>results</strong> (<em>Array of autotvm.measure.MeasureResult</em>) – result for measurement</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.tuner.GATuner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.tuner.</code><code class="descname">GATuner</code><span class="sig-paren">(</span><em>task</em>, <em>pop_size=100</em>, <em>elite_num=3</em>, <em>mutation_prob=0.1</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tuner with genetic algorithm.
+This tuner does not have a cost model so it always run measurement on real machines.
+This tuner expands the <code class="code docutils literal notranslate"><span class="pre">ConfigEntity</span></code> as gene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pop_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of genes in one generation</li>
+<li><strong>elite_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of elite to keep</li>
+<li><strong>mutation_prob</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – probability of mutation of a knob in a gene</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GATuner.has_next">
+<code class="descname">has_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner.has_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether has next untried config in the space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>has_next</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GATuner.load_history">
+<code class="descname">load_history</code><span class="sig-paren">(</span><em>data_set</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner.load_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>load history data for transfer learning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_set</strong> (<em>Array of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>) </em><em>pair</em>) – Previous tuning records</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GATuner.next_batch">
+<code class="descname">next_batch</code><span class="sig-paren">(</span><em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner.next_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the next batch of configs to be measure on real hardware</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of the batch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a batch of configs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GATuner.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset the status of tuner</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GATuner.tune">
+<code class="descname">tune</code><span class="sig-paren">(</span><em>n_trial</em>, <em>measure_option</em>, <em>early_stopping=None</em>, <em>callbacks=()</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner.tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin tuning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_trial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Maximum number of configs to try (measure on real hardware)</li>
+<li><strong>measure_option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – The options for how to measure generated code.
+You should use the return value ot autotvm.measure_option for this argument.</li>
+<li><strong>early_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Early stop the tuning when not finding better configs in this number of trials</li>
+<li><strong>callbacks</strong> (<em>List of callable</em>) – A list of callback functions. The signature of callback function is
+(Tuner, List of MeasureInput, List of MeasureResult)
+with no return value. These callback functions will be called on
+every measurement pair. See autotvm/tuner/callback.py for some examples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.GATuner.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>inputs</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.GATuner.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters of the tuner according to measurement results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>Array of autotvm.measure.MeasureInput</em>) – The input for measurement</li>
+<li><strong>results</strong> (<em>Array of autotvm.measure.MeasureResult</em>) – result for measurement</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.tuner.XGBTuner">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.tuner.</code><code class="descname">XGBTuner</code><span class="sig-paren">(</span><em>task</em>, <em>plan_size=64</em>, <em>feature_type='itervar'</em>, <em>loss_type='rank'</em>, <em>num_threads=None</em>, <em>optimizer='sa'</em>, <em>diversity_filter_ratio=None</em>, <em>log_interval=50</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tuner that uses xgboost as cost model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>task</strong> (<a class="reference internal" href="#tvm.autotvm.task.task.Task" title="tvm.autotvm.task.task.Task"><em>Task</em></a>) – The tuning task</li>
+<li><strong>plan_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of a plan. After <cite>plan_size</cite> trials, the tuner will refit a new cost model
+and do planing for the next <cite>plan_size</cite> trials.</li>
+<li><strong>feature_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – <p>If is ‘itervar’, use features extracted from IterVar (loop variable).
+If is ‘knob’, use flatten ConfigEntity directly.
+If is ‘curve’, use sampled curve feature (relation feature).</p>
+<p>Note on choosing feature type:
+For single task tuning, ‘itervar’ and ‘knob’ are good.</p>
+<blockquote>
+<div>’itervar’ is more accurate but ‘knob’ is much faster.
+There are some constraints on ‘itervar’, if you meet
+problems with feature extraction when using ‘itervar’,
+you can swith to ‘knob’.</div></blockquote>
+<dl class="docutils">
+<dt>For cross-shape tuning (e.g. many convolutions with different shapes),</dt>
+<dd>’itervar’ and ‘curve’ has better transferability,
+‘knob’ is faster.</dd>
+</dl>
+<p>For cross-device or cross-operator tuning, you can use ‘curve’ only.</p>
+</li>
+<li><strong>loss_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – <dl class="docutils">
+<dt>If is ‘reg’, use regression loss to train cost model.</dt>
+<dd>The cost model predicts the normalized flops.</dd>
+<dt>If is ‘rank’, use pairwise rank loss to train cost model.</dt>
+<dd>The cost model predicts relative rank score.</dd>
+</dl>
+</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The number of threads.  optimizer: str or ModelOptimizer, optional
+If is ‘sa’, use a default simulated annealing optimizer.
+Otherwise it should be a ModelOptimizer object.</li>
+<li><strong>diversity_filter_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – If is not None, the tuner will first select
+top-(plan_size * diversity_filter_ratio) candidates according to the cost model
+and then pick batch_size of them according to the diversity metric.</li>
+<li><strong>log_interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The verbose level.
+If is 0, output nothing.
+Otherwise, output debug information every <cite>verbose</cite> iterations.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.tuner.XGBTuner.has_next">
+<code class="descname">has_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner.has_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether has next untried config in the space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>has_next</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.XGBTuner.load_history">
+<code class="descname">load_history</code><span class="sig-paren">(</span><em>data_set</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner.load_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>load history data for transfer learning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_set</strong> (<em>Array of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>) </em><em>pair</em>) – Previous tuning records</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.XGBTuner.next_batch">
+<code class="descname">next_batch</code><span class="sig-paren">(</span><em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner.next_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the next batch of configs to be measure on real hardware</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of the batch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a batch of configs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.XGBTuner.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset the status of tuner</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.XGBTuner.tune">
+<code class="descname">tune</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner.tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin tuning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_trial</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Maximum number of configs to try (measure on real hardware)</li>
+<li><strong>measure_option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – The options for how to measure generated code.
+You should use the return value ot autotvm.measure_option for this argument.</li>
+<li><strong>early_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Early stop the tuning when not finding better configs in this number of trials</li>
+<li><strong>callbacks</strong> (<em>List of callable</em>) – A list of callback functions. The signature of callback function is
+(Tuner, List of MeasureInput, List of MeasureResult)
+with no return value. These callback functions will be called on
+every measurement pair. See autotvm/tuner/callback.py for some examples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.XGBTuner.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>inputs</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.XGBTuner.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters of the tuner according to measurement results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inputs</strong> (<em>Array of autotvm.measure.MeasureInput</em>) – The input for measurement</li>
+<li><strong>results</strong> (<em>Array of autotvm.measure.MeasureResult</em>) – result for measurement</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tvm.autotvm.tuner.callback"></span><p>Namespace of callback utilities of AutoTVM</p>
+<dl class="class">
+<dt id="tvm.autotvm.tuner.callback.Monitor">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.tuner.callback.</code><code class="descname">Monitor</code><a class="headerlink" href="#tvm.autotvm.tuner.callback.Monitor" title="Permalink to this definition">¶</a></dt>
+<dd><p>A monitor to collect statistic during tuning</p>
+<dl class="method">
+<dt id="tvm.autotvm.tuner.callback.Monitor.trial_scores">
+<code class="descname">trial_scores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.callback.Monitor.trial_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>get scores (currently is flops) of all trials</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.tuner.callback.Monitor.trial_timestamps">
+<code class="descname">trial_timestamps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.callback.Monitor.trial_timestamps" title="Permalink to this definition">¶</a></dt>
+<dd><p>get wall clock time stamp of all trials</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.tuner.callback.log_to_database">
+<code class="descclassname">tvm.autotvm.tuner.callback.</code><code class="descname">log_to_database</code><span class="sig-paren">(</span><em>db</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.callback.log_to_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the tuning records to a database object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>db</strong> (<em>Database</em>) – The database</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.tuner.callback.log_to_file">
+<code class="descclassname">tvm.autotvm.tuner.callback.</code><code class="descname">log_to_file</code><span class="sig-paren">(</span><em>file_out</em>, <em>protocol='json'</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.callback.log_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log the tuning records into file.
+The rows of the log are stored in the format of autotvm.record.encode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_out</strong> (<em>File</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The file to log to.</li>
+<li><strong>protocol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The log protocol. Can be ‘json’ or ‘pickle’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>callback</strong> – Callback function to do the logging.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">callable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.tuner.callback.progress_bar">
+<code class="descclassname">tvm.autotvm.tuner.callback.</code><code class="descname">progress_bar</code><span class="sig-paren">(</span><em>total</em>, <em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.tuner.callback.progress_bar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display progress bar for tuning</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>total</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The total number of trials</li>
+<li><strong>prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The prefix of output message</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tvm.autotvm.task">
+<span id="tvm-autotvm-task"></span><h2>tvm.autotvm.task<a class="headerlink" href="#module-tvm.autotvm.task" title="Permalink to this headline">¶</a></h2>
+<p>Task is a tunable composition of template functions.</p>
+<p>Tuner takes a tunable task and optimizes the joint configuration
+space of all the template functions in the task.
+This module defines the task data structure, as well as a collection(zoo)
+of typical tasks of interest.</p>
+<span class="target" id="module-tvm.autotvm.task.task"></span><p>Definition of task function.</p>
+<p>Task can be constructed from tuple of func, args, and kwargs.
+func is a state-less function, or a string that
+registers the standard task.</p>
+<dl class="exception">
+<dt id="tvm.autotvm.task.task.FlopCalculationError">
+<em class="property">exception </em><code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">FlopCalculationError</code><a class="headerlink" href="#tvm.autotvm.task.task.FlopCalculationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error happens when estimating FLOP for a compute op</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.task.Task">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">Task</code><span class="sig-paren">(</span><em>name</em>, <em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.Task" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Tunable Task</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the task.</li>
+<li><strong>args</strong> (<a class="reference internal" href="relay/expr.html#tvm.relay.expr.Tuple" title="tvm.relay.expr.Tuple"><em>Tuple</em></a>) – Positional argument of func</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.task.task.Task.instantiate">
+<code class="descname">instantiate</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.Task.instantiate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate this task function (template) with a config.
+Returns corresponding schedule.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<em>template.ConfigEntity</em>) – parameter config for this template</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>sch</strong> (<em>tvm.schedule.Schedule</em>) – The tvm schedule</li>
+<li><strong>arg_bufs</strong> (<em>Array of tvm.tensor.Tensor</em>) – The input/output buffers</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.task.args_to_workload">
+<code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">args_to_workload</code><span class="sig-paren">(</span><em>x</em>, <em>topi_compute_func=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.args_to_workload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert argument list to hashable workload tuple.
+This function will convert list to tuple, tvm node to python value and
+flatten tvm.tensor.Tensor to a tuple</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>primitive hashable types</em><em> or </em><a class="reference internal" href="tensor.html#tvm.tensor.Tensor" title="tvm.tensor.Tensor"><em>tensor.Tensor</em></a>) – The original value</li>
+<li><strong>topi_compute_func</strong> (<em>topi compute function</em>) – The function name will be added as first element of the workload tuple</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> – The hashable value</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">hashable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.task.compute_flop">
+<code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">compute_flop</code><span class="sig-paren">(</span><em>sch</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.compute_flop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate number of FLOP (floating number operations) of the compute ops in a schedule</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sch</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.Schedule" title="tvm.schedule.Schedule"><em>tvm.schedule.Schedule</em></a>) – schedule</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>flop</strong> – number of FLOP in this schedule</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.task.create">
+<code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">create</code><span class="sig-paren">(</span><em>func_name</em>, <em>args</em>, <em>target</em>, <em>target_host=None</em>, <em>template_key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a tuning task and initialize its search space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>callable</em>) – The task function</li>
+<li><strong>args</strong> (<em>List</em>) – Positional arguments</li>
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The compilation target</li>
+<li><strong>target_host</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a><em>, </em><em>optional</em>) – The compilation target for host side</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tsk</strong> – a task object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tvm.autotvm.task.task.Task" title="tvm.autotvm.task.task.Task">Task</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.task.get_config">
+<code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">get_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.get_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current config object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>cfg</strong> – The current config</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace">ConfigSpace</a> or <a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity">ConfigEntity</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.task.register">
+<code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">register</code><span class="sig-paren">(</span><em>name</em>, <em>func=None</em>, <em>override=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a task function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name to identify the task.</li>
+<li><strong>func</strong> (<em>callable</em>) – The function to be registered.</li>
+<li><strong>override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether override existing registration.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>func</strong> – The registered function</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">callable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.task.template">
+<code class="descclassname">tvm.autotvm.task.task.</code><code class="descname">template</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.task.template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a function as a tunable schedule template</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>func</strong> (<em>callable</em>) – A callable template function.
+Its argument should be hashable values.
+Its return value should be a Tuple(Schedule, Array of Tensor)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>func</strong> – The decorated function</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">callable</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>The following code is a tunable template for a blocked matrix multiplication</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@autotvm.template</span>
+<span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">placeholder</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">placeholder</span><span class="p">((</span><span class="n">L</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">reduce_axis</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">compute</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="n">tvm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="n">k</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">create_schedule</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">op</span><span class="p">)</span>
+
+    <span class="c1"># schedule</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">C</span><span class="p">]</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">axis</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">C</span><span class="p">]</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">reduce_axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1">##### define space begin #####</span>
+    <span class="n">cfg</span> <span class="o">=</span> <span class="n">autotvm</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">define_split</span><span class="p">(</span><span class="s2">&quot;tile_y&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">num_outputs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">define_split</span><span class="p">(</span><span class="s2">&quot;tile_x&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">num_outputs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1">##### define space end #####</span>
+
+    <span class="c1"># schedule according to config</span>
+    <span class="n">yo</span><span class="p">,</span> <span class="n">yi</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;tile_y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">xo</span><span class="p">,</span> <span class="n">xi</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;tile_x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="n">s</span><span class="p">[</span><span class="n">C</span><span class="p">]</span><span class="o">.</span><span class="n">reorder</span><span class="p">(</span><span class="n">yo</span><span class="p">,</span> <span class="n">xo</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="module-tvm.autotvm.task.space"></span><p>Template configuration space.</p>
+<p>Each template function can be parametrized by a ConfigSpace.
+The space is declared when we invoke the template function with ConfigSpace.
+During evaluation, we pass in a ConfigEntity, which contains a specific
+entity in the space. This entity contains deterministic parameters.</p>
+<dl class="class">
+<dt id="tvm.autotvm.task.space.AnnotateEntity">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">AnnotateEntity</code><span class="sig-paren">(</span><em>anns</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.AnnotateEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>An annotation operation with detailed parameters that can apply to axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>anns</strong> (<em>Array of string</em>) – The annotations of axes</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.task.space.AnnotateEntity.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sch</em>, <em>op</em>, <em>axes</em>, <em>axis_lens=None</em>, <em>max_unroll=None</em>, <em>vec_size=None</em>, <em>cfg=None</em>, <em>source=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.AnnotateEntity.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply annotation to an array of axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sch</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.Schedule" title="tvm.schedule.Schedule"><em>tvm.schedule.Schedule</em></a>) – The tvm schedule</li>
+<li><strong>op</strong> (<a class="reference internal" href="tensor.html#tvm.tensor.Operation" title="tvm.tensor.Operation"><em>tvm.tensor.Operation</em></a>) – The stage to be applied</li>
+<li><strong>axes</strong> (<em>Array of tvm.schedule.IterVar</em>) – axis to split</li>
+<li><strong>axis_lens</strong> (<em>Array of int</em><em>, </em><em>optional</em>) – the length of axes</li>
+<li><strong>max_unroll</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – maximum unroll step</li>
+<li><strong>vec_size</strong> (<em>Array of int</em><em>, </em><em>optional</em>) – valid vector lanes for vectorization</li>
+<li><strong>cfg</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity"><em>ConfigEntity</em></a><em>, </em><em>optional</em>) – cfg for recording error</li>
+<li><strong>source</strong> (<em>Array of Array tensor</em><em>, </em><em>optional</em>) – source tensor for attaching cache</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>axes</strong> – The transformed axes</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of tvm.schedule.IterVar</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.AnnotateSpace">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">AnnotateSpace</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.AnnotateSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parameter space for annotating an array of axes</p>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.AnnotateSpace.get_num_output">
+<em class="property">static </em><code class="descname">get_num_output</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.AnnotateSpace.get_num_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of output axes after this transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>n</strong> – number of output axes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.Axis">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">Axis</code><span class="sig-paren">(</span><em>space</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.Axis" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="tvm.autotvm.task.space.Axis.index">
+<code class="descname">index</code><a class="headerlink" href="#tvm.autotvm.task.space.Axis.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tvm.autotvm.task.space.Axis.space">
+<code class="descname">space</code><a class="headerlink" href="#tvm.autotvm.task.space.Axis.space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.ConfigEntity">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">ConfigEntity</code><span class="sig-paren">(</span><em>index</em>, <em>code_hash</em>, <em>template_key</em>, <em>entity_map</em>, <em>constraints</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>A configuration with detailed parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – index of this config in space</li>
+<li><strong>code_hash</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – hash of schedule code</li>
+<li><strong>template_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The specific template key</li>
+<li><strong>entity_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – map name to transform entity</li>
+<li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of constraints</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.ConfigEntity.from_json_dict">
+<em class="property">static </em><code class="descname">from_json_dict</code><span class="sig-paren">(</span><em>json_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigEntity.from_json_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a ConfigEntity from json serializable dictionary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>json_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Json serializable dictionary. This should be the return value
+of <a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity.to_json_dict" title="tvm.autotvm.task.space.ConfigEntity.to_json_dict"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">to_json_dict</span></code></a>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>config</strong> – The corresponding config object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity">ConfigEntity</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigEntity.get_flatten_feature">
+<code class="descname">get_flatten_feature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigEntity.get_flatten_feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>flatten entities to a numerical one-dimensional feature vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>fea</strong> – one dimensional float32 array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigEntity.get_other_option">
+<code class="descname">get_other_option</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigEntity.get_other_option" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>other_option</strong> – other tunable parameters (tunable parameters defined by <cite>cfg.define_knob</cite>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigEntity.to_json_dict">
+<code class="descname">to_json_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigEntity.to_json_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert to a json serializable dictionary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>json_dict</strong> – a json serializable dictionary</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.ConfigSpace">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">ConfigSpace</code><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configuration space of a schedule. Pass it as config in template to
+collect transformation space and build transform graph of axes</p>
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.add_flop">
+<code class="descname">add_flop</code><span class="sig-paren">(</span><em>flop</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.add_flop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add float operation statistics for this tuning task</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>flop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – number of float operations</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.ConfigSpace.axis">
+<em class="property">static </em><code class="descname">axis</code><span class="sig-paren">(</span><em>var</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>get a virtual axis (axis placeholder)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference internal" href="schedule.html#tvm.schedule.IterVar" title="tvm.schedule.IterVar"><em>tvm.schedule.IterVar</em></a>) – <p>If is int, return an axis whose length is the provided argument.
+If is IterVar, return an axis whose length is extracted from the</p>
+<blockquote>
+<div>IterVar’s extent domain.</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.define_annotate">
+<code class="descname">define_annotate</code><span class="sig-paren">(</span><em>name</em>, <em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.define_annotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a new tunable knob which annotates a list of axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name to index the entity of this space</li>
+<li><strong>axes</strong> (<em>Array of tvm.schedule.IterVar</em>) – axes to annotate</li>
+<li><strong>policy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name of policy
+If is ‘unroll’, unroll the axes.
+If is ‘try_unroll’, try to unroll the axes.
+If is ‘try_unroll_vec’, try to unroll or vectorize the axes.
+If is ‘bind_gpu’, bind the first few axes to gpu threads.
+If is ‘locate_cache’, choose n axes to attach shared/local cache.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – extra arguments for policy</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.define_knob">
+<code class="descname">define_knob</code><span class="sig-paren">(</span><em>name</em>, <em>candidate</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.define_knob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a tunable knob with a list of candidates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name key of that option</li>
+<li><strong>candidate</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – list of candidates</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.define_reorder">
+<code class="descname">define_reorder</code><span class="sig-paren">(</span><em>name</em>, <em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.define_reorder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a new tunable knob which reorders a list of axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name to index the entity of this space</li>
+<li><strong>axes</strong> (<em>Array of tvm.schedule.IterVar</em>) – axes to reorder</li>
+<li><strong>policy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name of policy
+If is ‘identity’, do an identity permutation.
+If is ‘all’, try all permutations.
+If is ‘interval_all’, try all permutations of an interval of axes.
+If is ‘candidate’, try listed candidate.
+If is ‘interleave’, interleave chains of spatial axes and chains of reduction axes.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – extra arguments for policy</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.define_split">
+<code class="descname">define_split</code><span class="sig-paren">(</span><em>name</em>, <em>axis</em>, <em>policy='all'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.define_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a new tunable knob which splits an axis into a list of axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name to index the entity of this space</li>
+<li><strong>axis</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.IterVar" title="tvm.schedule.IterVar"><em>tvm.schedule.IterVar</em></a>) – axis to split</li>
+<li><strong>policy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name of policy.
+If is ‘all’, the tuner will try all divisible factors.
+If is ‘candidate’, try listed candidate.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – extra arguments for policy
+see examples below for how to use filter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># use custom candidates</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span><span class="o">.</span><span class="n">define_split</span><span class="p">(</span><span class="s1">&#39;tile_x&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="s1">&#39;candidate&#39;</span><span class="p">,</span> <span class="n">candidate</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># use a filter that only accepts the split scheme whose inner most tile is less then 4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span><span class="o">.</span><span class="n">define_split</span><span class="p">(</span><span class="s1">&#39;tile_y&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a config entity with detailed parameters from this space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – index in the space</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.raise_error">
+<code class="descname">raise_error</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.raise_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>register error in config
+Using this to actively detect error when scheudling.
+Otherwise these error will occur during runtime, which
+will cost more time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.ConfigSpace.reduce_axis">
+<em class="property">static </em><code class="descname">reduce_axis</code><span class="sig-paren">(</span><em>var</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.reduce_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>get a virtual axis (axis placeholder)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference internal" href="schedule.html#tvm.schedule.IterVar" title="tvm.schedule.IterVar"><em>tvm.schedule.IterVar</em></a>) – <p>If is int, return an axis whose length is the provided argument.
+If is IterVar, return an axis whose length is extracted from the</p>
+<blockquote>
+<div>IterVar’s extent domain.</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ConfigSpace.valid">
+<code class="descname">valid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ConfigSpace.valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the config meets all the constraints
+Note: This check should be called after instantiation of task,</p>
+<blockquote>
+<div>because the ConfigEntity/ConfigSpace collects errors during instantiation</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>valid</strong> – whether the config meets all the constraints</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.FallbackConfigEntity">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">FallbackConfigEntity</code><a class="headerlink" href="#tvm.autotvm.task.space.FallbackConfigEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The config entity created to support fallback</p>
+<dl class="method">
+<dt id="tvm.autotvm.task.space.FallbackConfigEntity.fallback_split">
+<code class="descname">fallback_split</code><span class="sig-paren">(</span><em>name</em>, <em>constraints</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.FallbackConfigEntity.fallback_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fallback a split knob</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name of the knob</li>
+<li><strong>constraints</strong> (<em>List of int</em>) – The maximum tile size for every dimension. Value <cite>-1</cite> means no constraint.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>If you use cfg.define_split(‘tile_0’, 128, num_outputs=3),
+Then cfg.fallback_split(‘tile_0’, [-1, 8, 4]) will give you cfg[‘tile_0’].size = [4, 8, 4]</p>
+<p>If you use cfg.define_split(‘tile_0’, 49, num_outputs=3),
+Then cfg.fallback_split(‘tile_0’, [-1, 8, 4]) will give you cfg[‘tile_0’].size = [7, 7, 1]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.space.FallbackConfigEntity.fallback_with_reference_log">
+<code class="descname">fallback_with_reference_log</code><span class="sig-paren">(</span><em>ref_log</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.FallbackConfigEntity.fallback_with_reference_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>A data driven fallback mechanism.
+We use tuned parameters from TopHub as reference data.
+For an unseen shape, we find the most similar tuned one from TopHub and
+mimic its parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ref_log</strong> (<em>List of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>)</em>) – The reference log</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="tvm.autotvm.task.space.InstantiationError">
+<em class="property">exception </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">InstantiationError</code><a class="headerlink" href="#tvm.autotvm.task.space.InstantiationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actively detected error in instantiating a template with a config,
+raised by cfg.raise_error
+e.g. too many unrolling, too many threads in a block</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.OtherOptionEntity">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">OtherOptionEntity</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.OtherOptionEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parameter entity for general option, with a detailed value</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.OtherOptionSpace">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">OtherOptionSpace</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.OtherOptionSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parameter space for general option</p>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.OtherOptionSpace.get_num_output">
+<em class="property">static </em><code class="descname">get_num_output</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.OtherOptionSpace.get_num_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of output axes after this transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>n</strong> – number of output axes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.ReorderEntity">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">ReorderEntity</code><span class="sig-paren">(</span><em>perm</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ReorderEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>A reorder operation with detailed parameters that can apply to axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>perm</strong> (<em>Array of int</em>) – define the permutation</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.task.space.ReorderEntity.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sch</em>, <em>op</em>, <em>axes</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ReorderEntity.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply reorder to an array of axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sch</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.Schedule" title="tvm.schedule.Schedule"><em>tvm.schedule.Schedule</em></a>) – The tvm schedule</li>
+<li><strong>op</strong> (<a class="reference internal" href="tensor.html#tvm.tensor.Operation" title="tvm.tensor.Operation"><em>tvm.tensor.Operation</em></a>) – The stage to be applied</li>
+<li><strong>axis</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.IterVar" title="tvm.schedule.IterVar"><em>tvm.schedule.IterVar</em></a>) – axis to split</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>axes</strong> – The transformed axes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of Axis</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.ReorderSpace">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">ReorderSpace</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ReorderSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parameter space for ordering an array of axes</p>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.ReorderSpace.get_num_output">
+<em class="property">static </em><code class="descname">get_num_output</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.ReorderSpace.get_num_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of output axes after this transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>n</strong> – number of output axes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.SplitEntity">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">SplitEntity</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.SplitEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>A split operation with detailed parameters
+that can apply to an axis</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>size</strong> (<em>Array of int</em>) – <p>the size of every axis after split
+e.g. an axis of extent 128, we split it into 3 axes, a possible</p>
+<blockquote>
+<div>size is [4, 4, 8] (4x4x8 = 128)</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.task.space.SplitEntity.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>sch</em>, <em>op</em>, <em>axis</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.SplitEntity.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply split to an axis</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sch</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.Schedule" title="tvm.schedule.Schedule"><em>tvm.schedule.Schedule</em></a>) – The tvm schedule</li>
+<li><strong>op</strong> (<a class="reference internal" href="tensor.html#tvm.tensor.Operation" title="tvm.tensor.Operation"><em>tvm.tensor.Operation</em></a>) – The stage to be applied</li>
+<li><strong>axis</strong> (<a class="reference internal" href="schedule.html#tvm.schedule.IterVar" title="tvm.schedule.IterVar"><em>tvm.schedule.IterVar</em></a>) – axis to split</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>axes</strong> – The transformed axes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of Axis</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.SplitSpace">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">SplitSpace</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.SplitSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split an axis for several times</p>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.SplitSpace.get_num_output">
+<em class="property">static </em><code class="descname">get_num_output</code><span class="sig-paren">(</span><em>axes</em>, <em>policy</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.SplitSpace.get_num_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of output axes after this transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>n</strong> – number of output axes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.TransformSpace">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">TransformSpace</code><a class="headerlink" href="#tvm.autotvm.task.space.TransformSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for transform space
+TransformSpace is the node in the computation graph of axes</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>We can regard our schedule code as a transformation graph of axes.
+Starting from raw axes in the definition of tvm.compute, we can transform these axes
+by some operators. The operator includes ‘split’, ‘reorder’ and ‘annotate’.
+Each operator has some tunable parameters (e.g. the split factor).
+Then the tuning process is just to find good parameters of these op.</p>
+<p>So the all the combinations of the parameters of these op forms our search space.</p>
+<p class="last">Naming convention:
+We call the set of all possible values as XXXSpace. (XXX can be Split, Reorder, Config …)
+We call a specific entity in a space as XXXEntity.</p>
+</div>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.TransformSpace.get_num_output">
+<em class="property">static </em><code class="descname">get_num_output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.TransformSpace.get_num_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of output axes after this transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>n</strong> – number of output axes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.space.VirtualAxis">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">VirtualAxis</code><span class="sig-paren">(</span><em>var</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.VirtualAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis placeholder in template</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference internal" href="schedule.html#tvm.schedule.IterVar" title="tvm.schedule.IterVar"><em>tvm.schedule.IterVar</em></a>) – <p>If is int, return a virtual axis whose length is the provided argument.
+If is IterVar, return a virtual axis whose length is extracted from</p>
+<blockquote>
+<div>the IterVar’s extent domain.</div></blockquote>
+</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.space.VirtualAxis.get_num_output">
+<em class="property">static </em><code class="descname">get_num_output</code><span class="sig-paren">(</span><em>var</em>, <em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.VirtualAxis.get_num_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of output axes after this transform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>n</strong> – number of output axes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.space.get_factors">
+<code class="descclassname">tvm.autotvm.task.space.</code><code class="descname">get_factors</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.space.get_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>return all factors of an integer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – integer to factorize</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>factors</strong> – List of all factors</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-tvm.autotvm.task.dispatcher"></span><p>Template dispatcher module.</p>
+<p>A dispatcher is a function that can contains multiple behaviors.
+Its specific behavior is can be controlled by DispatchContext.</p>
+<p>DispatchContext is used in two ways, usually via different implementation
+of the DispatchContext base class.</p>
+<ul class="simple">
+<li>During search, we can use it to pass the current proposal from tuner.</li>
+<li>During evaluation, we can use it to set pick the best policy.</li>
+</ul>
+<dl class="class">
+<dt id="tvm.autotvm.task.dispatcher.ApplyConfig">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">ApplyConfig</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a deterministic config entity for all queries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace"><em>ConfigSpace</em></a><em> or </em><a class="reference internal" href="#tvm.autotvm.task.space.ConfigEntity" title="tvm.autotvm.task.space.ConfigEntity"><em>ConfigEntity</em></a>) – The specific configuration we care about.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.ApplyConfig.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em>, <em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyConfig.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override update</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.dispatcher.ApplyGraphBest">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">ApplyGraphBest</code><span class="sig-paren">(</span><em>records</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyGraphBest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the graph level tuning optimal schedules.</p>
+<p>The input records should be in the ascending order of
+node index for target operator. Usually this can be obtained
+with graph tuner.</p>
+<p>This context maintains an internal counter to indicate the current
+node index.</p>
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.ApplyGraphBest.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em>, <em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyGraphBest.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update context with a specific config.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+<li><strong>cfg</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace"><em>ConfigSpace</em></a>) – The specific configuration.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This interface is for cases when TVM decides to replace an operator in the graph.
+For example, <cite>AlterOpLayout</cite> pass (enables when <cite>opt_level = 3</cite>) replaces <cite>NCHW</cite>
+convolution with <cite>NCHW[x]c</cite> implementation on x86 CPUs.
+Thus in TOPI, we first query schedule using original <cite>NCHW</cite> workload,
+then update the dispatcher with the new <cite>NCHW[x]c</cite> workload.
+So that later on, <cite>NCHW[x]c</cite> convolution can get schedule from the dispatcher using
+its own workload directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@conv2d_alter_layout.register</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_alter_conv2d_layout</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">tinfo</span><span class="p">):</span>
+    <span class="n">workload</span> <span class="o">=</span> <span class="n">get_conv2d_workload</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">dispatch_ctx</span> <span class="o">=</span> <span class="n">autotvm</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">DispatchContext</span><span class="o">.</span><span class="n">current</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">current_target</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">workload</span><span class="p">)</span>
+
+    <span class="c1"># Get conv2d_NCHWc workload from config</span>
+    <span class="c1"># new_workload = ...</span>
+    <span class="c1"># new_inputs = ...</span>
+    <span class="c1"># new_attrs = ...</span>
+
+    <span class="c1"># Store altered operator&#39;s config</span>
+    <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">new_workload</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sym</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">conv2d_NCHWc</span><span class="p">(</span><span class="o">*</span><span class="n">new_inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">new_attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">We directly store <cite>config</cite> back because <cite>conv2d_NCHW</cite> and <cite>conv2d_NCHWc</cite>
+share the same schedule parameters.
+One can construct a new <cite>ConfigEntity</cite> if this is not the case.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.dispatcher.ApplyHistoryBest">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">ApplyHistoryBest</code><span class="sig-paren">(</span><em>records</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyHistoryBest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the history best config</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>records</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>iterator of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>)</em>) – <p>Collection of tuning records.
+If is str, then it should be the filename of a records log file.</p>
+<blockquote>
+<div>Each row of this file is an encoded record pair.</div></blockquote>
+<p>Otherwise, it is an iterator.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.ApplyHistoryBest.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>records</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyHistoryBest.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load records to this dispatch context</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>records</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>iterator of</em><em> (</em><a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a><em>, </em><a class="reference internal" href="#tvm.autotvm.measure.MeasureResult" title="tvm.autotvm.measure.MeasureResult"><em>MeasureResult</em></a><em>)</em>) – <p>Collection of tuning records.
+If is str, then it should be the filename of a records log file.</p>
+<blockquote>
+<div>Each row of this file is an encoded record pair.</div></blockquote>
+<p>Otherwise, it is an iterator.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.ApplyHistoryBest.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em>, <em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.ApplyHistoryBest.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update context with a specific config.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+<li><strong>cfg</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace"><em>ConfigSpace</em></a>) – The specific configuration.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This interface is for cases when TVM decides to replace an operator in the graph.
+For example, <cite>AlterOpLayout</cite> pass (enables when <cite>opt_level = 3</cite>) replaces <cite>NCHW</cite>
+convolution with <cite>NCHW[x]c</cite> implementation on x86 CPUs.
+Thus in TOPI, we first query schedule using original <cite>NCHW</cite> workload,
+then update the dispatcher with the new <cite>NCHW[x]c</cite> workload.
+So that later on, <cite>NCHW[x]c</cite> convolution can get schedule from the dispatcher using
+its own workload directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@conv2d_alter_layout.register</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_alter_conv2d_layout</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">tinfo</span><span class="p">):</span>
+    <span class="n">workload</span> <span class="o">=</span> <span class="n">get_conv2d_workload</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">dispatch_ctx</span> <span class="o">=</span> <span class="n">autotvm</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">DispatchContext</span><span class="o">.</span><span class="n">current</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">current_target</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">workload</span><span class="p">)</span>
+
+    <span class="c1"># Get conv2d_NCHWc workload from config</span>
+    <span class="c1"># new_workload = ...</span>
+    <span class="c1"># new_inputs = ...</span>
+    <span class="c1"># new_attrs = ...</span>
+
+    <span class="c1"># Store altered operator&#39;s config</span>
+    <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">new_workload</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sym</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">conv2d_NCHWc</span><span class="p">(</span><span class="o">*</span><span class="n">new_inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">new_attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">We directly store <cite>config</cite> back because <cite>conv2d_NCHW</cite> and <cite>conv2d_NCHWc</cite>
+share the same schedule parameters.
+One can construct a new <cite>ConfigEntity</cite> if this is not the case.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.dispatcher.DispatchContext">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">DispatchContext</code><a class="headerlink" href="#tvm.autotvm.task.dispatcher.DispatchContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class of dispatch context.</p>
+<p>DispatchContext enables the target and workload
+specific dispatch mechanism for templates.</p>
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.DispatchContext.query">
+<code class="descname">query</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.DispatchContext.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query the context to get the specific config for a template.
+If cannot find the result inside this context, this function will query it
+from the upper contexts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>cfg</strong> – The specific configuration.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace">ConfigSpace</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.DispatchContext.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em>, <em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.DispatchContext.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update context with a specific config.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+<li><strong>cfg</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace"><em>ConfigSpace</em></a>) – The specific configuration.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This interface is for cases when TVM decides to replace an operator in the graph.
+For example, <cite>AlterOpLayout</cite> pass (enables when <cite>opt_level = 3</cite>) replaces <cite>NCHW</cite>
+convolution with <cite>NCHW[x]c</cite> implementation on x86 CPUs.
+Thus in TOPI, we first query schedule using original <cite>NCHW</cite> workload,
+then update the dispatcher with the new <cite>NCHW[x]c</cite> workload.
+So that later on, <cite>NCHW[x]c</cite> convolution can get schedule from the dispatcher using
+its own workload directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@conv2d_alter_layout.register</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_alter_conv2d_layout</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">tinfo</span><span class="p">):</span>
+    <span class="n">workload</span> <span class="o">=</span> <span class="n">get_conv2d_workload</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">dispatch_ctx</span> <span class="o">=</span> <span class="n">autotvm</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">DispatchContext</span><span class="o">.</span><span class="n">current</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">current_target</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">workload</span><span class="p">)</span>
+
+    <span class="c1"># Get conv2d_NCHWc workload from config</span>
+    <span class="c1"># new_workload = ...</span>
+    <span class="c1"># new_inputs = ...</span>
+    <span class="c1"># new_attrs = ...</span>
+
+    <span class="c1"># Store altered operator&#39;s config</span>
+    <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">new_workload</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sym</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">conv2d_NCHWc</span><span class="p">(</span><span class="o">*</span><span class="n">new_inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">new_attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">We directly store <cite>config</cite> back because <cite>conv2d_NCHW</cite> and <cite>conv2d_NCHWc</cite>
+share the same schedule parameters.
+One can construct a new <cite>ConfigEntity</cite> if this is not the case.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.autotvm.task.dispatcher.FallbackContext">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">FallbackContext</code><a class="headerlink" href="#tvm.autotvm.task.dispatcher.FallbackContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>A fallback dispatch context.</p>
+<p>Any tunable template can be called under this context.
+This is the root context.</p>
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.FallbackContext.clear_cache">
+<code class="descname">clear_cache</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.FallbackContext.clear_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear fallback cache. Pass the same argument as _query_inside to this function
+to clean the cache.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.dispatcher.FallbackContext.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em>, <em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.FallbackContext.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update context with a specific config.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+<li><strong>cfg</strong> (<a class="reference internal" href="#tvm.autotvm.task.space.ConfigSpace" title="tvm.autotvm.task.space.ConfigSpace"><em>ConfigSpace</em></a>) – The specific configuration.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This interface is for cases when TVM decides to replace an operator in the graph.
+For example, <cite>AlterOpLayout</cite> pass (enables when <cite>opt_level = 3</cite>) replaces <cite>NCHW</cite>
+convolution with <cite>NCHW[x]c</cite> implementation on x86 CPUs.
+Thus in TOPI, we first query schedule using original <cite>NCHW</cite> workload,
+then update the dispatcher with the new <cite>NCHW[x]c</cite> workload.
+So that later on, <cite>NCHW[x]c</cite> convolution can get schedule from the dispatcher using
+its own workload directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@conv2d_alter_layout.register</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_alter_conv2d_layout</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">tinfo</span><span class="p">):</span>
+    <span class="n">workload</span> <span class="o">=</span> <span class="n">get_conv2d_workload</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">dispatch_ctx</span> <span class="o">=</span> <span class="n">autotvm</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">DispatchContext</span><span class="o">.</span><span class="n">current</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">tvm</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">current_target</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">workload</span><span class="p">)</span>
+
+    <span class="c1"># Get conv2d_NCHWc workload from config</span>
+    <span class="c1"># new_workload = ...</span>
+    <span class="c1"># new_inputs = ...</span>
+    <span class="c1"># new_attrs = ...</span>
+
+    <span class="c1"># Store altered operator&#39;s config</span>
+    <span class="n">dispatch_ctx</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">new_workload</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sym</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">conv2d_NCHWc</span><span class="p">(</span><span class="o">*</span><span class="n">new_inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">new_attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last">We directly store <cite>config</cite> back because <cite>conv2d_NCHW</cite> and <cite>conv2d_NCHWc</cite>
+share the same schedule parameters.
+One can construct a new <cite>ConfigEntity</cite> if this is not the case.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.dispatcher.clear_fallback_cache">
+<code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">clear_fallback_cache</code><span class="sig-paren">(</span><em>target</em>, <em>workload</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.clear_fallback_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear fallback cache. Pass the same argument as _query_inside to this function
+to clean the cache.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>Target</em></a>) – The current target</li>
+<li><strong>workload</strong> (<em>Workload</em>) – The current workload.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is used in alter_op_layout to clear the bad cache created before call topi compute function</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.dispatcher.dispatcher">
+<code class="descclassname">tvm.autotvm.task.dispatcher.</code><code class="descname">dispatcher</code><span class="sig-paren">(</span><em>fworkload</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.dispatcher.dispatcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap a workload dispatcher function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fworkload</strong> (<em>function</em>) – The workload extraction function from arguments.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>fdispatcher</strong> – A wrapped dispatcher function, which will
+dispatch based on DispatchContext and
+the current workload.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-tvm.autotvm.task.topi_integration"></span><p>Decorators for registering tunable templates to TOPI.</p>
+<p>These decorators can make your simple implementation be able to use different configurations
+for different workloads.
+Here we directly use all arguments to the TOPI call as “workload”, so make sure all the arguments
+(except tvm.Tensor) in you calls are hashable. For tvm.Tensor, we will serialize it to a hashable
+tuple.</p>
+<p>See tvm/topi/python/topi/arm_cpu/depthwise_conv2d.py for example usage.</p>
+<dl class="class">
+<dt id="tvm.autotvm.task.topi_integration.TaskExtractEnv">
+<em class="property">class </em><code class="descclassname">tvm.autotvm.task.topi_integration.</code><code class="descname">TaskExtractEnv</code><a class="headerlink" href="#tvm.autotvm.task.topi_integration.TaskExtractEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Global environment for extracting tuning tasks from nnvm graph</p>
+<dl class="staticmethod">
+<dt id="tvm.autotvm.task.topi_integration.TaskExtractEnv.get">
+<em class="property">static </em><code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.TaskExtractEnv.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the single instance of TaskExtractEnv</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>env</strong> – The single instance of TaskExtractEnv</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#tvm.autotvm.task.topi_integration.TaskExtractEnv" title="tvm.autotvm.task.topi_integration.TaskExtractEnv">TaskExtractEnv</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.topi_integration.TaskExtractEnv.get_tasks">
+<code class="descname">get_tasks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.TaskExtractEnv.get_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get collected tasks</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>tasks</strong> – A list of tasks extracted from the nnvm graph</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of tuple(name, args)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.autotvm.task.topi_integration.TaskExtractEnv.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><em>wanted_topi_funcs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.TaskExtractEnv.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset task collections</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>wanted_topi_funcs</strong> (<em>List of function</em>) – The topi function to be extracted</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.topi_integration.deserialize_args">
+<code class="descclassname">tvm.autotvm.task.topi_integration.</code><code class="descname">deserialize_args</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.deserialize_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>The inverse function of <code class="code docutils literal notranslate"><span class="pre">serialize_args</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>list of hashable</em><em> or </em><a class="reference internal" href="tensor.html#tvm.tensor.Tensor" title="tvm.tensor.Tensor"><em>Tensor</em></a>) – </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.topi_integration.register_topi_compute">
+<code class="descclassname">tvm.autotvm.task.topi_integration.</code><code class="descname">register_topi_compute</code><span class="sig-paren">(</span><em>topi_compute</em>, <em>target_keys</em>, <em>template_keys</em>, <em>func=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.register_topi_compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a tunable template for a topi compute function.</p>
+<p>After the registration, this topi compute will become a configuration dispatcher. It uses
+all its argument as workload and dispatches configurations according to the input workload.</p>
+<p>It also stores this “workload” to its final ComputeOp, which can be used to reconstruct
+“workload” in the following topi_schedule call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>topi_compute</strong> (<a class="reference internal" href="target.html#tvm.target.GenericFunc" title="tvm.target.GenericFunc"><em>GenericFunc</em></a>) – The topi compute function that will be overloaded</li>
+<li><strong>target_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>list of str</em>) – The compilation target. The same as the argument of GenericFunc.register.</li>
+<li><strong>template_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>list of str</em>) – The template key.
+We might have several strategies for a single operator (e.g. direct, im2col, winograd).
+The template key is used to identity the algorithm strategy.
+Every operator must have a “direct” template, which is used by default.</li>
+<li><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> or </em><em>callable</em>) – If it is None, return a decorator.
+If is callable, decorate this function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>decorator</strong> – A decorator</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">callable</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>See tvm/topi/python/topi/arm_cpu/depthwise_conv2d.py for example usage.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.topi_integration.register_topi_schedule">
+<code class="descclassname">tvm.autotvm.task.topi_integration.</code><code class="descname">register_topi_schedule</code><span class="sig-paren">(</span><em>topi_schedule</em>, <em>target_keys</em>, <em>template_keys</em>, <em>func=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.register_topi_schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a tunable template for a topi schedule function.</p>
+<p>After the registration. This topi schedule will become a configuration dispatcher. It dispatches
+configurations according to the input workload.</p>
+<p>Note that this function will try to find “workload” from all the ComputeOp in the input.
+You can attach “workload” to your compute op by using <a class="reference internal" href="#tvm.autotvm.task.topi_integration.register_topi_compute" title="tvm.autotvm.task.topi_integration.register_topi_compute"><code class="xref any py py-func docutils literal notranslate"><span class="pre">register_topi_compute</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>topi_schedule</strong> (<a class="reference internal" href="target.html#tvm.target.GenericFunc" title="tvm.target.GenericFunc"><em>GenericFunc</em></a>) – The topi schedule function that will be overloaded</li>
+<li><strong>target_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>list of str</em>) – The compilation target</li>
+<li><strong>template_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>list of str</em>) – The template key.
+We might have several strategies for a single operator (e.g. direct, im2col, winograd).
+The template key is used to identity the algorithm strategy.
+Every operator must have a “direct” template, which is used by default.</li>
+<li><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> or </em><em>callable</em>) – If it is None, return a decorator.
+If is callable, decorate this function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>decorator</strong> – A decorator</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">callable</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>See tvm/topi/python/topi/arm_cpu/depthwise_conv2d.py for example usage.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.topi_integration.serialize_args">
+<code class="descclassname">tvm.autotvm.task.topi_integration.</code><code class="descname">serialize_args</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.topi_integration.serialize_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>serialize arguments of a topi function to a hashable tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>list of hashable</em><em> or </em><a class="reference internal" href="tensor.html#tvm.tensor.Tensor" title="tvm.tensor.Tensor"><em>Tensor</em></a>) – </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-tvm.autotvm.task.nnvm_integration"></span><p>Decorator and utilities for the integration with TOPI and NNVM</p>
+<dl class="function">
+<dt id="tvm.autotvm.task.nnvm_integration.extract_from_graph">
+<code class="descclassname">tvm.autotvm.task.nnvm_integration.</code><code class="descname">extract_from_graph</code><span class="sig-paren">(</span><em>graph</em>, <em>shape</em>, <em>dtype</em>, <em>target</em>, <em>symbols</em>, <em>target_host=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.nnvm_integration.extract_from_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract tuning tasks from a nnvm graph.</p>
+<p>This function collects tuning tasks by building the graph
+with a “tracing” target and tracing all the calls to topi.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>graph</strong> (<a class="reference internal" href="nnvm/graph.html#nnvm.graph.Graph" title="nnvm.graph.Graph"><em>Graph</em></a>) – The graph to tune</li>
+<li><strong>shape</strong> (<em>dict of str to tuple</em>) – The input shape to the graph</li>
+<li><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>dict of str to str</em>) – The input types to the graph</li>
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>tvm.target.Target</em></a>) – The compilation target</li>
+<li><strong>symbols</strong> (<em>Array of nnvm.symbol</em>) – Array of nnvm symbols want to be tuned</li>
+<li><strong>target_host</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>tvm.target.Target</em></a>) – The host compilation target</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>task</strong> – collected tasks</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Array of autotvm.task.Task</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.task.nnvm_integration.extract_from_multiple_graph">
+<code class="descclassname">tvm.autotvm.task.nnvm_integration.</code><code class="descname">extract_from_multiple_graph</code><span class="sig-paren">(</span><em>graphs</em>, <em>shapes</em>, <em>dtypes</em>, <em>target</em>, <em>symbols</em>, <em>target_host=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.task.nnvm_integration.extract_from_multiple_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract tuning tasks from multiple nnvm graphs.</p>
+<p>This function is the multiple graph version of extract_from_graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>graphs</strong> (<em>List of Graph</em>) – The list of graphs to tune</li>
+<li><strong>shapes</strong> (<em>List of dict of str to tuple</em>) – The input shape to the graph</li>
+<li><strong>dtypes</strong> (<em>List of str</em><em> or </em><em>dict of str to str</em>) – The input types to the graph</li>
+<li><strong>target</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>tvm.target.Target</em></a>) – The compilation target</li>
+<li><strong>symbols</strong> (<em>Array of nnvm.symbol</em>) – Array of nnvm symbols want to be tuned</li>
+<li><strong>target_host</strong> (<a class="reference internal" href="target.html#tvm.target.Target" title="tvm.target.Target"><em>tvm.target.Target</em></a>) – The host compilation target</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>task</strong> – collected tasks</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Array of autotvm.task.Task</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tvm.autotvm.record">
+<span id="tvm-autotvm-record"></span><h2>tvm.autotvm.record<a class="headerlink" href="#module-tvm.autotvm.record" title="Permalink to this headline">¶</a></h2>
+<p>Tuning record and serialization format</p>
+<dl class="function">
+<dt id="tvm.autotvm.record.decode">
+<code class="descclassname">tvm.autotvm.record.</code><code class="descname">decode</code><span class="sig-paren">(</span><em>row</em>, <em>protocol='json'</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.record.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode encoded record string to python object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – a row in the logger file</li>
+<li><strong>protocol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – log protocol, json or pickle</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>input</strong> (<em>autotvm.tuner.MeasureInput</em>)</li>
+<li><strong>result</strong> (<em>autotvm.tuner.MeasureResult</em>)</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.record.encode">
+<code class="descclassname">tvm.autotvm.record.</code><code class="descname">encode</code><span class="sig-paren">(</span><em>inp</em>, <em>result</em>, <em>protocol='json'</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.record.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>encode (MeasureInput, MeasureResult) pair to a string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>inp</strong> (<em>autotvm.tuner.MeasureInput</em>) – </li>
+<li><strong>result</strong> (<em>autotvm.tuner.MeasureResult</em>) – pair of input/result</li>
+<li><strong>protocol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – log protocol, json or pickle</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>row</strong> – a row in the logger file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.record.load_from_file">
+<code class="descclassname">tvm.autotvm.record.</code><code class="descname">load_from_file</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.record.load_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator: load records from file.
+This is a generator that yields the records.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input</strong> (<em>autotvm.tuner.MeasureInput</em>)</li>
+<li><strong>result</strong> (<em>autotvm.tuner.MeasureResult</em>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.record.measure_str_key">
+<code class="descclassname">tvm.autotvm.record.</code><code class="descname">measure_str_key</code><span class="sig-paren">(</span><em>inp</em>, <em>include_config=True</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.record.measure_str_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>get unique str key for MeasureInput</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>inp</strong> (<a class="reference internal" href="#tvm.autotvm.measure.MeasureInput" title="tvm.autotvm.measure.MeasureInput"><em>MeasureInput</em></a>) – input for the measure</li>
+<li><strong>include_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – whether includes config in the str key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>key</strong> – The str representation of key</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.record.pick_best">
+<code class="descclassname">tvm.autotvm.record.</code><code class="descname">pick_best</code><span class="sig-paren">(</span><em>in_file</em>, <em>out_file</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.record.pick_best" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick best entries from a file and store it to another file.
+This distill the useful log entries from a large log file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>in_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The filename of input</li>
+<li><strong>out_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>file</em>) – The filename of output</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.autotvm.record.split_workload">
+<code class="descclassname">tvm.autotvm.record.</code><code class="descname">split_workload</code><span class="sig-paren">(</span><em>in_file</em>, <em>clean=True</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.autotvm.record.split_workload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split a log file into separate files, each of which contains only a single workload
+This function can also delete duplicated records in log file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>in_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – input filename</li>
+<li><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – whether delete duplicated items</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="graph_runtime.html" class="btn btn-neutral float-right" title="tvm.contrib.graph_runtime" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="function.html" class="btn btn-neutral float-left" title="tvm.Function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, tvm developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75982049-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

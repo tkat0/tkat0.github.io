@@ -1,0 +1,15 @@
+<map id="tvm::relay::TypeNode" name="tvm::relay::TypeNode">
+<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1BaseTensorTypeNode.html" title="Base of all Tensor types This container can hold TensorType or GenericTensorType. ..." alt="" coords="5,440,269,517"/>
+<area shape="rect" id="node6" href="$classtvm_1_1relay_1_1FuncTypeNode.html" title="Function type in Relay. " alt="" coords="293,396,552,561"/>
+<area shape="rect" id="node7" href="$classtvm_1_1relay_1_1GlobalTypeVarNode.html" title="GlobalTypeVar container node. " alt="" coords="576,411,835,547"/>
+<area shape="rect" id="node8" href="$classtvm_1_1relay_1_1IncompleteTypeNode.html" title="IncompleteType container node. " alt="" coords="859,418,1117,539"/>
+<area shape="rect" id="node9" href="$classtvm_1_1relay_1_1RefTypeNode.html" title="Reference Type in relay. " alt="" coords="1141,411,1400,547"/>
+<area shape="rect" id="node10" href="$classtvm_1_1relay_1_1TupleTypeNode.html" title="TupleType container. " alt="" coords="1424,411,1683,547"/>
+<area shape="rect" id="node11" href="$classtvm_1_1relay_1_1TypeCallNode.html" title="TypeCall container node. " alt="" coords="1707,411,1965,547"/>
+<area shape="rect" id="node12" href="$classtvm_1_1relay_1_1TypeConstraintNode.html" title="TypeConstraint container node. " alt="" coords="1989,440,2253,517"/>
+<area shape="rect" id="node14" href="$classtvm_1_1relay_1_1TypeDataNode.html" title="TypeData container node. " alt="" coords="2277,403,2536,554"/>
+<area shape="rect" id="node15" href="$classtvm_1_1relay_1_1TypeVarNode.html" title="TypeVar container node. " alt="" coords="2560,411,2819,547"/>
+<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="1280,131,1544,223"/>
+<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1TensorTypeNode.html" title="TensorType container node. " alt="" coords="8,609,267,775"/>
+<area shape="rect" id="node13" href="$classtvm_1_1relay_1_1TypeRelationNode.html" title="TypeRelation container. " alt="" coords="1992,609,2251,775"/>
+</map>

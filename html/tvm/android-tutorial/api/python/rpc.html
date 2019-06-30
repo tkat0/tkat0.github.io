@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tvm.rpc &mdash; tvm 0.6.dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/tvm_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Framework Bridge APIs" href="bridge.html" />
+    <link rel="prev" title="tvm.contrib.graph_runtime" href="graph_runtime.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/tvm-logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6.dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vta/index.html">VTA: Deep Learning Accelerator Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploy/index.html">Deploy and Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute/index.html">Contribute to TVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../langref/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tvm.html">tvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intrin.html">tvm.intrin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor.html">tvm.tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schedule.html">tvm.schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="target.html">tvm.target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">tvm.build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module.html">tvm.module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">tvm.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndarray.html">tvm.ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html">tvm.container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">tvm.Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autotvm.html">tvm.autotvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_runtime.html">tvm.contrib.graph_runtime</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tvm.rpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html">Framework Bridge APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contrib.html">Additional Contrib APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev.html">Developer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topi.html">TOPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vta/index.html">VTA API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nnvm/index.html">NNVM API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hybrid.html">tvm.hybrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relay/index.html">Relay API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_links.html">Links to API References</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Design and Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nnvm_top.html">NNVM Core Tensor Operators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">tvm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python API</a> &raquo;</li>
+        
+      <li>tvm.rpc</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/python/rpc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tvm.rpc">
+<span id="tvm-rpc"></span><h1>tvm.rpc<a class="headerlink" href="#module-tvm.rpc" title="Permalink to this headline">¶</a></h1>
+<p>Lightweight TVM RPC module.</p>
+<p>RPC enables connect to a remote server, upload and launch functions.
+This is useful to for cross-compile and remote testing,
+The compiler stack runs on local server, while we use RPC server
+to run on remote runtime which don’t have a compiler available.</p>
+<p>The test program compiles the program on local server,
+upload and run remote RPC server, get the result back to verify correctness.</p>
+<dl class="function">
+<dt id="tvm.rpc.connect">
+<code class="descclassname">tvm.rpc.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>url</em>, <em>port</em>, <em>key=''</em>, <em>session_timeout=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to RPC Server</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The url of the host</li>
+<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The port to connect to</li>
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – Additional key to match server</li>
+<li><strong>session_timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The duration of the session, allows server to kill
+the connection when duration is longer than this value.
+When duration is zero, it means the request must always be kept alive.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sess</strong> – The connected session.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tvm.rpc.RPCSession" title="tvm.rpc.RPCSession">RPCSession</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.rpc.connect_tracker">
+<code class="descclassname">tvm.rpc.</code><code class="descname">connect_tracker</code><span class="sig-paren">(</span><em>url</em>, <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.connect_tracker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to a RPC tracker</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The url of the host</li>
+<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The port to connect to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sess</strong> – The connected tracker session.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tvm.rpc.TrackerSession" title="tvm.rpc.TrackerSession">TrackerSession</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.rpc.TrackerSession">
+<em class="property">class </em><code class="descclassname">tvm.rpc.</code><code class="descname">TrackerSession</code><span class="sig-paren">(</span><em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.TrackerSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracker client session.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>addr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) – The address tuple</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.rpc.TrackerSession.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.TrackerSession.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the tracker connection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.TrackerSession.request">
+<code class="descname">request</code><span class="sig-paren">(</span><em>key</em>, <em>priority=1</em>, <em>session_timeout=0</em>, <em>max_retry=5</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.TrackerSession.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request a new connection from the tracker.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The type key of the device.</li>
+<li><strong>priority</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The priority of the request.</li>
+<li><strong>session_timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The duration of the session, allows server to kill
+the connection when duration is longer than this value.
+When duration is zero, it means the request must always be kept alive.</li>
+<li><strong>max_retry</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of times to retry before give up.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.TrackerSession.request_and_run">
+<code class="descname">request_and_run</code><span class="sig-paren">(</span><em>key</em>, <em>func</em>, <em>priority=1</em>, <em>session_timeout=0</em>, <em>max_retry=2</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.TrackerSession.request_and_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request a resource from tracker and run the func.</p>
+<p>This function safe-guard rare server node dropout during execution.
+In such case, a new resource will be requested and func will be ran again.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The type key of the device.</li>
+<li><strong>func</strong> (<em>function of session -&gt; value</em>) – A stateless function</li>
+<li><strong>priority</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The priority of the request.</li>
+<li><strong>session_timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The duration of the session, allows server to kill
+the connection when duration is longer than this value.
+When duration is zero, it means the request must always be kept alive.</li>
+<li><strong>max_retry</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of times to retry the function before give up.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.TrackerSession.summary">
+<code class="descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.TrackerSession.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the summary dict of the tracker.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.TrackerSession.text_summary">
+<code class="descname">text_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.TrackerSession.text_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a text summary of the tracker.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.rpc.RPCSession">
+<em class="property">class </em><code class="descclassname">tvm.rpc.</code><code class="descname">RPCSession</code><span class="sig-paren">(</span><em>sess</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>RPC Client session module</p>
+<p>Do not directly create the obhect, call connect</p>
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.cl">
+<code class="descname">cl</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.cl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct OpenCL device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.context">
+<code class="descname">context</code><span class="sig-paren">(</span><em>dev_type</em>, <em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a remote context.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dev_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </li>
+<li><strong>dev_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ctx</strong> – The corresponding encoded remote context.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="ndarray.html#tvm.ndarray.TVMContext" title="tvm.ndarray.TVMContext">TVMContext</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.cpu">
+<code class="descname">cpu</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.cpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct CPU device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download file from remote temp folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative location to remote temp folder.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>blob</strong> – The result blob from the file.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.7)">bytearray</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.ext_dev">
+<code class="descname">ext_dev</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.ext_dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct extension device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.get_function">
+<code class="descname">get_function</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.get_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get function from the session.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>f</strong> – The result function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="function.html#tvm.Function" title="tvm.Function">Function</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.gpu">
+<code class="descname">gpu</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.gpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct GPU device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.load_module">
+<code class="descname">load_module</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.load_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a remote module, the file need to be uploaded first.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative location to remote temp folder.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>m</strong> – The remote module containing remote function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="module.html#tvm.module.Module" title="tvm.module.Module">Module</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.metal">
+<code class="descname">metal</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.metal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct Metal device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.opengl">
+<code class="descname">opengl</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.opengl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct OpenGL device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove file from remote temp folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative location to remote temp folder.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.upload">
+<code class="descname">upload</code><span class="sig-paren">(</span><em>data</em>, <em>target=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload file to remote runtime temp folder</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.7)"><em>bytearray</em></a>) – The file name or binary in local to upload.</li>
+<li><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The path in remote</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.RPCSession.vulkan">
+<code class="descname">vulkan</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.RPCSession.vulkan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct Vulkan device.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.rpc.LocalSession">
+<em class="property">class </em><code class="descclassname">tvm.rpc.</code><code class="descname">LocalSession</code><a class="headerlink" href="#tvm.rpc.LocalSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>RPCSession interface backed by local environment.</p>
+<p>This class can be used to implement functions that
+need to be ran both locally and remotely.</p>
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.cl">
+<code class="descname">cl</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.cl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct OpenCL device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.context">
+<code class="descname">context</code><span class="sig-paren">(</span><em>dev_type</em>, <em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a remote context.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dev_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </li>
+<li><strong>dev_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ctx</strong> – The corresponding encoded remote context.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="ndarray.html#tvm.ndarray.TVMContext" title="tvm.ndarray.TVMContext">TVMContext</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.cpu">
+<code class="descname">cpu</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.cpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct CPU device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download file from remote temp folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative location to remote temp folder.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>blob</strong> – The result blob from the file.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.7)">bytearray</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.ext_dev">
+<code class="descname">ext_dev</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.ext_dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct extension device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.get_function">
+<code class="descname">get_function</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.get_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get function from the session.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>f</strong> – The result function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="function.html#tvm.Function" title="tvm.Function">Function</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.gpu">
+<code class="descname">gpu</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.gpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct GPU device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.load_module">
+<code class="descname">load_module</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.load_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a remote module, the file need to be uploaded first.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative location to remote temp folder.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>m</strong> – The remote module containing remote function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="module.html#tvm.module.Module" title="tvm.module.Module">Module</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.metal">
+<code class="descname">metal</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.metal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct Metal device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.opengl">
+<code class="descname">opengl</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.opengl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct OpenGL device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove file from remote temp folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative location to remote temp folder.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.upload">
+<code class="descname">upload</code><span class="sig-paren">(</span><em>data</em>, <em>target=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload file to remote runtime temp folder</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.7)"><em>bytearray</em></a>) – The file name or binary in local to upload.</li>
+<li><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The path in remote</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tvm.rpc.LocalSession.vulkan">
+<code class="descname">vulkan</code><span class="sig-paren">(</span><em>dev_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.LocalSession.vulkan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct Vulkan device.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.rpc.Server">
+<em class="property">class </em><code class="descclassname">tvm.rpc.</code><code class="descname">Server</code><span class="sig-paren">(</span><em>host</em>, <em>port=9091</em>, <em>port_end=9199</em>, <em>is_proxy=False</em>, <em>use_popen=False</em>, <em>tracker_addr=None</em>, <em>key=''</em>, <em>load_library=None</em>, <em>custom_addr=None</em>, <em>silent=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start RPC server on a separate process.</p>
+<p>This is a simple python implementation based on multi-processing.
+It is also possible to implement a similar C based server with
+TVM runtime which does not depend on the python.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The host url of the server.</li>
+<li><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The port to be bind to</li>
+<li><strong>port_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The end port to search</li>
+<li><strong>is_proxy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether the address specified is a proxy.
+If this is true, the host and port actually corresponds to the
+address of the proxy server.</li>
+<li><strong>use_popen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to use Popen to start a fresh new process instead of fork.
+This is recommended to switch on if we want to do local RPC demonstration
+for GPU devices to avoid fork safety issues.</li>
+<li><strong>tracker_addr</strong> (<a class="reference internal" href="relay/expr.html#tvm.relay.expr.Tuple" title="tvm.relay.expr.Tuple"><em>Tuple</em></a><em> (</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>) </em><em>, </em><em>optional</em>) – The address of RPC Tracker in tuple(host, ip) format.
+If is not None, the server will register itself to the tracker.</li>
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The key used to identify the device type in tracker.</li>
+<li><strong>load_library</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – List of additional libraries to be loaded during execution.</li>
+<li><strong>custom_addr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – Custom IP Address to Report to RPC Tracker</li>
+<li><strong>silent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether run this server in silent mode.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.rpc.Server.terminate">
+<code class="descname">terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tvm.rpc.Server.terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terminate the server process</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bridge.html" class="btn btn-neutral float-right" title="Framework Bridge APIs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="graph_runtime.html" class="btn btn-neutral float-left" title="tvm.contrib.graph_runtime" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, tvm developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75982049-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+<map id="tvm::IterVarNode" name="tvm::IterVarNode">
+<area shape="rect" id="node3" href="$classtvm_1_1Range.html" title="same as HalideIR::IR::Range except it provide an constructor with (begin, end) " alt="" coords="85,132,269,253"/>
+<area shape="rect" id="node5" href="$classtvm_1_1Var.html" title="a named variable in TVM " alt="" coords="293,132,443,253"/>
+</map>

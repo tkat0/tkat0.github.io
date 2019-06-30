@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tvm.relay.ty &mdash; tvm 0.6.dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/tvm_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="tvm.relay.vision" href="vision.html" />
+    <link rel="prev" title="tvm.relay.scope_builder" href="scope_builder.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/tvm-logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6.dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vta/index.html">VTA: Deep Learning Accelerator Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deploy/index.html">Deploy and Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute/index.html">Contribute to TVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../langref/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../tvm.html">tvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intrin.html">tvm.intrin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tensor.html">tvm.tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedule.html">tvm.schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../target.html">tvm.target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build.html">tvm.build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module.html">tvm.module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error.html">tvm.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ndarray.html">tvm.ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container.html">tvm.container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function.html">tvm.Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autotvm.html">tvm.autotvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph_runtime.html">tvm.contrib.graph_runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rpc.html">tvm.rpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge.html">Framework Bridge APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contrib.html">Additional Contrib APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev.html">Developer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../topi.html">TOPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vta/index.html">VTA API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nnvm/index.html">NNVM API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid.html">tvm.hybrid</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Relay API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backend.html">tvm.relay.backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="base.html">tvm.relay.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_module.html">tvm.relay.build_module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expr.html">tvm.relay.expr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frontend.html">tvm.relay.frontend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">tvm.relay.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ir_pass.html">tvm.relay.ir_pass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module.html">tvm.relay.module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html">tvm.relay.nn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="op.html">tvm.relay.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scope_builder.html">tvm.relay.scope_builder</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tvm.relay.ty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">tvm.relay.vision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_links.html">Links to API References</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Design and Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nnvm_top.html">NNVM Core Tensor Operators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">tvm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Python API</a> &raquo;</li>
+        
+          <li><a href="index.html">Relay API</a> &raquo;</li>
+        
+      <li>tvm.relay.ty</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/python/relay/ty.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tvm.relay.ty">
+<span id="tvm-relay-ty"></span><h1>tvm.relay.ty<a class="headerlink" href="#module-tvm.relay.ty" title="Permalink to this headline">¶</a></h1>
+<p>The type nodes of the Relay language.</p>
+<dl class="class">
+<dt id="tvm.relay.ty.FuncType">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">FuncType</code><span class="sig-paren">(</span><em>arg_types</em>, <em>ret_type</em>, <em>type_params=None</em>, <em>type_constraints=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.FuncType" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function type in Relay, see tvm/relay/type.h for more details.</p>
+<p>This is the type assigned to functions in Relay. They consist of
+a list of type parameters which enable the definition of generic
+functions, a set of type constraints which we omit for the time
+being, a sequence of argument types, and a return type.</p>
+<p>We informally write them as:
+<cite>forall (type_params), (arg_types) -&gt; ret_type where type_constraints</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg_types</strong> (<em>List</em><em>[</em><em>tvm.relay.Type</em><em>]</em>) – The argument types</li>
+<li><strong>ret_type</strong> (<em>tvm.relay.Type</em>) – The return type.</li>
+<li><strong>type_params</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>tvm.relay.TypeVar</em><em>]</em><em>]</em>) – The type parameters</li>
+<li><strong>type_constraints</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>tvm.relay.TypeConstraint</em><em>]</em><em>]</em>) – The type constraints.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.GlobalTypeVar">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">GlobalTypeVar</code><span class="sig-paren">(</span><em>var</em>, <em>kind=&lt;Kind.AdtHandle: 5&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.GlobalTypeVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>A global type variable in Relay.
+GlobalTypeVar is used to refer to the global type-level definitions
+stored in the environment.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.IncompleteType">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">IncompleteType</code><span class="sig-paren">(</span><em>kind=&lt;Kind.Type: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.IncompleteType" title="Permalink to this definition">¶</a></dt>
+<dd><p>An incomplete type.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.Kind">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">Kind</code><a class="headerlink" href="#tvm.relay.ty.Kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>The kind of a type parameter, represents a variable shape,
+base type, type, or dimension.</p>
+<p>This controls what a type parameter is allowed to be instantiated
+with. For example one’s of kind BaseType can only be <cite>float32</cite>, <cite>int32</cite>,
+and so on.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.RefType">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">RefType</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.RefType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference Type in relay.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference internal" href="#tvm.relay.ty.Type" title="tvm.relay.ty.Type"><em>Type</em></a>) – The value type.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.TensorType">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TensorType</code><span class="sig-paren">(</span><em>shape</em>, <em>dtype='float32'</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.TensorType" title="Permalink to this definition">¶</a></dt>
+<dd><p>A concrete TensorType in Relay.</p>
+<p>This is the type assigned to tensor’s with a known dype and shape. For
+example a tensor of <cite>float32</cite> and <cite>(5, 5)</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shape</strong> (<em>List</em><em>[</em><em>tvm.Expr</em><em>]</em>) – The shape of the Tensor</li>
+<li><strong>dtype</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The content data type.
+Default to “float32”.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tensor_type</strong> – The tensor type.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tvm.relay.TensorType</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="tvm.relay.ty.TensorType.concrete_shape">
+<code class="descname">concrete_shape</code><a class="headerlink" href="#tvm.relay.ty.TensorType.concrete_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get shape of the type as concrete tuple of int.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>shape</strong> – The concrete shape of the Type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">TypeError : If the shape is symbolic</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.TupleType">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TupleType</code><span class="sig-paren">(</span><em>fields</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.TupleType" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple type in Relay, see tvm/relay/type.h for more details.</p>
+<p>Lists the type of each field in the tuple.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.Type">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">Type</code><a class="headerlink" href="#tvm.relay.ty.Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base type for all Relay types.</p>
+<dl class="method">
+<dt id="tvm.relay.ty.Type.same_as">
+<code class="descname">same_as</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.Type.same_as" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares two Relay types by referential equality.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.TypeCall">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeCall</code><span class="sig-paren">(</span><em>func</em>, <em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.TypeCall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type-level function application in Relay.
+A type call applies argument types to a constructor (type-level function).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.TypeConstraint">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeConstraint</code><a class="headerlink" href="#tvm.relay.ty.TypeConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class representing a type constraint.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.TypeRelation">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeRelation</code><span class="sig-paren">(</span><em>func</em>, <em>args</em>, <em>num_inputs</em>, <em>attrs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.TypeRelation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type relation in relay.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> (<a class="reference internal" href="../container.html#tvm.container.EnvFunc" title="tvm.container.EnvFunc"><em>EnvFunc</em></a>) – User defined relation function.</li>
+<li><strong>args</strong> (<em>[</em><em>tvm.relay.Type</em><em>]</em>) – List of types to the func.</li>
+<li><strong>num_inputs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of input arguments in args,
+this act as a hint for type inference.</li>
+<li><strong>attrs</strong> (<em>Attrs</em>) – The attribute attached to the relation information</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>type_relation</strong> – The type relation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tvm.relay.TypeRelation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.ty.TypeVar">
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeVar</code><span class="sig-paren">(</span><em>var</em>, <em>kind=&lt;Kind.Type: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.TypeVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>A type variable used for generic types in Relay,
+see tvm/relay/type.h for more details.</p>
+<p>A type variable represents a type placeholder which will
+be filled in later on. This allows the user to write
+functions which are generic over types.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.relay.ty.scalar_type">
+<code class="descclassname">tvm.relay.ty.</code><code class="descname">scalar_type</code><span class="sig-paren">(</span><em>dtype</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.ty.scalar_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a scalar type.</p>
+<p>This function returns TensorType((), dtype)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The content data type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>s_type</strong> – The result type.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tvm.relay.TensorType</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">Type</code></dt>
+<dd><p>The base type for all Relay types.</p>
+<dl class="method">
+<dt>
+<code class="descname">same_as</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span></dt>
+<dd><p>Compares two Relay types by referential equality.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TensorType</code><span class="sig-paren">(</span><em>shape</em>, <em>dtype='float32'</em><span class="sig-paren">)</span></dt>
+<dd><p>A concrete TensorType in Relay.</p>
+<p>This is the type assigned to tensor’s with a known dype and shape. For
+example a tensor of <cite>float32</cite> and <cite>(5, 5)</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shape</strong> (<em>List</em><em>[</em><em>tvm.Expr</em><em>]</em>) – The shape of the Tensor</li>
+<li><strong>dtype</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The content data type.
+Default to “float32”.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tensor_type</strong> – The tensor type.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tvm.relay.TensorType</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">concrete_shape</code></dt>
+<dd><p>Get shape of the type as concrete tuple of int.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>shape</strong> – The concrete shape of the Type.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a>]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">TypeError : If the shape is symbolic</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">Kind</code></dt>
+<dd><p>The kind of a type parameter, represents a variable shape,
+base type, type, or dimension.</p>
+<p>This controls what a type parameter is allowed to be instantiated
+with. For example one’s of kind BaseType can only be <cite>float32</cite>, <cite>int32</cite>,
+and so on.</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeVar</code><span class="sig-paren">(</span><em>var</em>, <em>kind=&lt;Kind.Type: 0&gt;</em><span class="sig-paren">)</span></dt>
+<dd><p>A type variable used for generic types in Relay,
+see tvm/relay/type.h for more details.</p>
+<p>A type variable represents a type placeholder which will
+be filled in later on. This allows the user to write
+functions which are generic over types.</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeConstraint</code></dt>
+<dd><p>Abstract class representing a type constraint.</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TupleType</code><span class="sig-paren">(</span><em>fields</em><span class="sig-paren">)</span></dt>
+<dd><p>A tuple type in Relay, see tvm/relay/type.h for more details.</p>
+<p>Lists the type of each field in the tuple.</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">FuncType</code><span class="sig-paren">(</span><em>arg_types</em>, <em>ret_type</em>, <em>type_params=None</em>, <em>type_constraints=None</em><span class="sig-paren">)</span></dt>
+<dd><p>A function type in Relay, see tvm/relay/type.h for more details.</p>
+<p>This is the type assigned to functions in Relay. They consist of
+a list of type parameters which enable the definition of generic
+functions, a set of type constraints which we omit for the time
+being, a sequence of argument types, and a return type.</p>
+<p>We informally write them as:
+<cite>forall (type_params), (arg_types) -&gt; ret_type where type_constraints</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>arg_types</strong> (<em>List</em><em>[</em><em>tvm.relay.Type</em><em>]</em>) – The argument types</li>
+<li><strong>ret_type</strong> (<em>tvm.relay.Type</em>) – The return type.</li>
+<li><strong>type_params</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>tvm.relay.TypeVar</em><em>]</em><em>]</em>) – The type parameters</li>
+<li><strong>type_constraints</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>tvm.relay.TypeConstraint</em><em>]</em><em>]</em>) – The type constraints.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">IncompleteType</code><span class="sig-paren">(</span><em>kind=&lt;Kind.Type: 0&gt;</em><span class="sig-paren">)</span></dt>
+<dd><p>An incomplete type.</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">tvm.relay.ty.</code><code class="descname">TypeRelation</code><span class="sig-paren">(</span><em>func</em>, <em>args</em>, <em>num_inputs</em>, <em>attrs</em><span class="sig-paren">)</span></dt>
+<dd><p>Type relation in relay.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> (<a class="reference internal" href="../container.html#tvm.container.EnvFunc" title="tvm.container.EnvFunc"><em>EnvFunc</em></a>) – User defined relation function.</li>
+<li><strong>args</strong> (<em>[</em><em>tvm.relay.Type</em><em>]</em>) – List of types to the func.</li>
+<li><strong>num_inputs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of input arguments in args,
+this act as a hint for type inference.</li>
+<li><strong>attrs</strong> (<em>Attrs</em>) – The attribute attached to the relation information</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>type_relation</strong> – The type relation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tvm.relay.TypeRelation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vision.html" class="btn btn-neutral float-right" title="tvm.relay.vision" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scope_builder.html" class="btn btn-neutral float-left" title="tvm.relay.scope_builder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, tvm developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75982049-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

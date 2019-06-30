@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/cargo-make-1/</loc>
+    <lastmod>2019-06-30T18:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/mediapipe/</loc>
+    <lastmod>2019-06-19T06:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/read-onnxruntime/</loc>
+    <lastmod>2019-03-22T09:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/setup-raspi/</loc>
+    <lastmod>2019-03-06T11:10:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/docker-env-for-distiller/</loc>
+    <lastmod>2019-02-22T11:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/learn-chainer-compiler-2/</loc>
+    <lastmod>2019-02-06T09:30:01+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/pytorch-named_modules/</loc>
+    <lastmod>2019-02-06T08:30:01+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/learn-chainer-compiler-1/</loc>
+    <lastmod>2019-02-04T09:30:01+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/learn-onnx/</loc>
+    <lastmod>2019-02-02T13:00:01+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/distiller-thinning/</loc>
+    <lastmod>2019-02-02T12:00:01+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/build-ergodash/</loc>
+    <lastmod>2019-02-01T22:36:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/build-blog/</loc>
+    <lastmod>2019-02-01T10:00:01+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/writing-blog-with-hugo/</loc>
+    <lastmod>2017-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/chainer/</loc>
+    <lastmod>2019-02-06T09:30:01+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/chainer-compiler/</loc>
+    <lastmod>2019-02-06T09:30:01+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/deeplearning/</loc>
+    <lastmod>2019-02-22T11:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/deepleraning/</loc>
+    <lastmod>2019-06-19T06:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/distiller/</loc>
+    <lastmod>2019-02-22T11:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/docker/</loc>
+    <lastmod>2019-02-22T11:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/hugo/</loc>
+    <lastmod>2019-02-01T10:00:01+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/keyboard/</loc>
+    <lastmod>2019-02-01T22:36:10+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/mediapipe/</loc>
+    <lastmod>2019-06-19T06:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/onnx/</loc>
+    <lastmod>2019-03-22T09:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/onnxruntime/</loc>
+    <lastmod>2019-03-22T09:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/posts/</loc>
+    <lastmod>2019-06-30T18:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/pruning/</loc>
+    <lastmod>2019-02-22T11:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/pytorch/</loc>
+    <lastmod>2019-02-06T08:30:01+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/raspberry-pi/</loc>
+    <lastmod>2019-03-06T11:10:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/rust/</loc>
+    <lastmod>2019-06-30T18:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/</loc>
+    <lastmod>2019-02-06T09:30:01+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/tags/tvm/</loc>
+    <lastmod>2019-03-22T09:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tkat0.github.io/</loc>
+    <lastmod>2019-06-30T18:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

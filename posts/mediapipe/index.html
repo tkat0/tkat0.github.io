@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://tkat0.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="GoogleのMediaPipeでMLアプリ開発が楽になる"/>
+  <meta name="twitter:description" content="GoogleがMediaPipeを公開。
+エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。"/>
+  
+    <meta name="twitter:site" content="@_tkato_"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@tomohiro.kato"/>
+  
+
+
+
+		
+		<meta name="author" content="tomohiro.kato">
+		<meta name="description" content="tkat0.github.io">
+		<meta name="generator" content="Hugo 0.53" />
+		<title>GoogleのMediaPipeでMLアプリ開発が楽になる &middot; tkat0.github.io</title>
+		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tkat0.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tkat0.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tkat0.github.io/posts'>Archive</a>
+	<a href='https://tkat0.github.io/tags'>Tags</a>
+	<a href='https://tkat0.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://tkat0.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        GoogleのMediaPipeでMLアプリ開発が楽になる
+                    </h1>
+                    <h2 class="headline">
+                    Jun 19, 2019 06:30
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://tkat0.github.io/tags/mediapipe">MEDIAPIPE</a>
+                          
+                              <a href="https://tkat0.github.io/tags/deepleraning">DEEPLERANING</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                
+                <section id="post-body">
+                    <p>GoogleがMediaPipeを公開。
+エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">At <a href="https://twitter.com/hashtag/CVPR2019?src=hash&amp;ref_src=twsrc%5Etfw">#CVPR2019</a>? Visit the Google booth at 10:15 to learn about MediaPipe (<a href="https://t.co/wmAUPRg7VJ">https://t.co/wmAUPRg7VJ</a>), an open source framework for building machine learning pipelines, along with the many methods submitted to the recent Challenge on Learned Image Compression (<a href="https://t.co/u5BbXDukh5">https://t.co/u5BbXDukh5</a>) <a href="https://t.co/9uteIcgfrc">pic.twitter.com/9uteIcgfrc</a></p>&mdash; Google AI (@GoogleAI) <a href="https://twitter.com/GoogleAI/status/1141028951734677504?ref_src=twsrc%5Etfw">June 18, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<ul>
+<li><a href="https://sites.google.com/view/perception-cv4arvr/mediapipe">Google Research Perception - CV4AR/VR - MediaPipe</a></li>
+<li><a href="https://mediapipe.readthedocs.io/en/latest/index.html">MediaPipe — MediaPipe v0.5 documentation</a></li>
+<li><a href="https://github.com/google/mediapipe">https://github.com/google/mediapipe</a></li>
+</ul>
+
+<p>たとえば顔検出のアプリケーションを作る上でも、画像の前処理、モデルでの推論、結果の後処理、描画、など複数のコンポーネントに分かれる。
+さらにモバイルデバイスのセンサなど活用したアプリを作ろうとするとML以外のところでデータの同期やら諸々が大変になってくる。
+MediaPipeは、これを各機能のノードからなるグラフとして扱い、各コンポーネントの組み合わせや切り替えでアルゴリズムのパイプラインを開発できるようにしている。</p>
+
+<p>最も特徴的なのは、グラフをDSL(pbtxt)で記述すること。コードはほとんど書かなくていい。</p>
+
+<p>顔検出のサンプルがわかりやすい。
+<a href="https://github.com/google/mediapipe/blob/3730fa08ab226aab00d8c30c1c6ea591da6f85e8/mediapipe/docs/face_detection_android_gpu.md#graph">mediapipe/face_detection_android_gpu.md at 3730fa08ab226aab00d8c30c1c6ea591da6f85e8 · google/mediapipe · GitHub</a></p>
+
+<ul>
+<li>ビデオ入力から前処理、tfliteでの推論、後処理、描画までがグラフになってる</li>
+<li>グラフのノードがCalculatorで、in/outのstreamに接続</li>
+<li>オプションもここで指定できるようなので、汎用的なCalculatorを作っておけばコードに触らずにアプリ用の設定ができる</li>
+</ul>
+
+<p>グラフのデバッグのために、オンラインで使えるVisualizerがある。
+これでCalculator間の接続が期待通りかなど確認。</p>
+
+<p><a href="https://mediapipe.readthedocs.io/en/latest/visualizer.html">Visualizing MediaPipe Graphs — MediaPipe v0.5 documentation</a></p>
+
+<p>ノード間を流れるデータはPacketといい、タイムスタンプと任意のデータへのポインタ（ref countみたい）からなる。
+タイムスタンプで複数のセンサデータをsyncしたりするみたい。</p>
+
+<p>MainActivityが色々含めて159行。パイプラインはDSLで書いているのでこれを読み込むお決まりのコードを書くだけのようだ。
+ <a href="https://github.com/google/mediapipe/blob/d68f5e416903e3d756ebe07d08c4a3b911741a91/mediapipe/examples/android/src/java/com/google/mediapipe/apps/objectdetectiongpu/MainActivity.java">https://github.com/google/mediapipe/blob/d68f5e416903e3d756ebe07d08c4a3b911741a91/mediapipe/examples/android/src/java/com/google/mediapipe/apps/objectdetectiongpu/MainActivity.java</a></p>
+
+<p>サンプルは、AndroidやPC向けがある。iOSは今後サポートされるようだ。
+<a href="https://mediapipe.readthedocs.io/en/latest/examples.html">Examples — MediaPipe v0.5 documentation</a></p>
+
+<p>プロファイリングのAPIも実装はされており、今後プロファイラのツールがでるらしい。
+<a href="https://mediapipe.readthedocs.io/en/latest/measure_performance.html">Measuring Performance — MediaPipe v0.5 documentation</a></p>
+
+<p>MediaPipe Calculator Registory的なものが登場して、学習済みの各種モデルや画像処理等が使えるようになるのではないかと期待している。
+再利用可能な形でMLそれに関連するコンポーネントを作成/提供できると非常に嬉しいので、MediaPipeはWatch。</p>
+
+<p>まさに以下のAbstractで言ってる課題感がある。</p>
+
+<p><a href="https://sites.google.com/view/perception-cv4arvr/mediapipe">Google Research Perception - CV4AR/VR - MediaPipe</a></p>
+
+<p>過去に公開された様々なアプリケーションもMediaPipe使ってるんですね。アプリケーション開発の課題からそれをフレームワークにしちゃうの相変わらず強い。
+MediaPipeは特にモバイルでのAR系のアプリ開発にfitしてるが、サーバーサイドでのMLパイプライン（ワークフローエンジンで構築するレベルでなく、1プロセスに閉じたようなアプリの中のパイプライン）構築で便利そう。
+いや、他に最適なフレームワーク有るのかな。面白いもの知っている方は教えてください。</p>
+
+<p>使ってみつつ、以下を読んでいきたい</p>
+
+<ul>
+<li><a href="https://mediapipe.readthedocs.io/en/latest/framework_concepts.html">Framework Concepts — MediaPipe v0.5 documentation</a></li>
+<li><a href="https://mediapipe.readthedocs.io/en/latest/scheduling_sync.html#">Framework Architecture — MediaPipe v0.5 documentation</a></li>
+</ul>
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=Google%e3%81%aeMediaPipe%e3%81%a7ML%e3%82%a2%e3%83%97%e3%83%aa%e9%96%8b%e7%99%ba%e3%81%8c%e6%a5%bd%e3%81%ab%e3%81%aa%e3%82%8b by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2fmediapipe%2f "><span class="icon-twitter"> tweet</span></a>
+
+            
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/cargo-make-1/">タスクランナーをmakeからcargo-makeへ移行<aside class="dates">Jun 30 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/docker-env-for-distiller/">Distillerの検証環境をDockerで作った<aside class="dates">Feb 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/pytorch-named_modules/">PyTorchのModule#named_modules<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/build-ergodash/">自作キーボード作った ErgoDash<aside class="dates">Feb 1 2019</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.github.com/tkat0">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/_tkato_">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tkat0.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tkat0.github.io/js/main.js"></script>
+<script src="https://tkat0.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-98471030-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+    </body>
+</html>

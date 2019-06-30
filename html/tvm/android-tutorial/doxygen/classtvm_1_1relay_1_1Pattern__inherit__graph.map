@@ -1,0 +1,5 @@
+<map id="tvm::relay::Pattern" name="tvm::relay::Pattern">
+<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1PatternConstructor.html" title="{tvm::relay::PatternConstructor\n||+ PatternConstructor()\l+ PatternConstructor()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="5,271,220,392"/>
+<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1PatternVar.html" title="{tvm::relay::PatternVar\n||+ PatternVar()\l+ PatternVar()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="245,271,405,392"/>
+<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1PatternWildcard.html" title="{tvm::relay::PatternWildcard\n||+ PatternWildcard()\l+ PatternWildcard()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="429,271,621,392"/>
+</map>

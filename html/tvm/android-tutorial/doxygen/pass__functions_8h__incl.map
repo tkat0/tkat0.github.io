@@ -1,0 +1,12 @@
+<map id="nnvm/include/nnvm/pass_functions.h" name="nnvm/include/nnvm/pass_functions.h">
+<area shape="rect" id="node6" href="$nnvm_2include_2nnvm_2base_8h.html" title="Configuration of nnvm as well as basic data structure. " alt="" coords="1410,468,1475,495"/>
+<area shape="rect" id="node14" href="$nnvm_2include_2nnvm_2pass_8h.html" title="Pass that can be applied to a graph. " alt="" coords="840,95,904,121"/>
+<area shape="rect" id="node28" href="$graph__attr__types_8h.html" title="Data structures that can appear in graph attributes. " alt="" coords="323,319,466,345"/>
+<area shape="rect" id="node16" href="$graph_8h.html" title="Configuation of nnvm as well as basic data structure. " alt="" coords="837,169,907,196"/>
+<area shape="rect" id="node20" href="$node_8h.html" title="Graph node data structure. " alt="" coords="956,319,1023,345"/>
+<area shape="rect" id="node26" href="$symbolic_8h.html" title="Symbolic graph construction API. " alt="" coords="652,244,743,271"/>
+<area shape="rect" id="node21" href="$nnvm_2include_2nnvm_2op_8h.html" title="Operator information structor. " alt="" coords="1243,393,1293,420"/>
+<area shape="rect" id="node25" href="$c__api_8h.html" title="C API of NNVM symbolic construction and pass. Enables construction and transformation of Graph in any..." alt="" coords="1319,468,1385,495"/>
+<area shape="rect" id="node29" href="$tuple_8h.html" title="Data structure Tuple and TShape to store dynamic sized shapes. " alt="" coords="445,393,512,420"/>
+<area shape="rect" id="node32" href="$layout_8h.html" title="Layout expression. The layout is composed of upper cases, lower cases and numbers, where upper case indicates a (super&#45;)dimension and the corresponding lower case with factor size indicates the split (sub&#45;)dimension. For example, NCHW16c can describe a 5&#45;D tensor of [batch_size, channel, height, width, channel_block]. Here sub&#45;dimension channel_block=16 is the split of super&#45;dimension C (channel). " alt="" coords="347,393,421,420"/>
+</map>

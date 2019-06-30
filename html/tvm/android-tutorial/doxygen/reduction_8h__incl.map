@@ -1,0 +1,28 @@
+<map id="topi/include/topi/reduction.h" name="topi/include/topi/reduction.h">
+<area shape="rect" id="node6" href="$broadcast_8h.html" title="Broadcast op constructions. " alt="" coords="1191,80,1318,107"/>
+<area shape="rect" id="node42" href="$tvm_8h.html" title="Header to include all C++ API. " alt="" coords="1700,319,1788,345"/>
+<area shape="rect" id="node45" href="$constant__utils_8h.html" title="Utility functions for handling constants in TVM expressions. " alt="" coords="1265,229,1410,271"/>
+<area shape="rect" id="node46" href="$tags_8h.html" title="External function interface to cuBLAS libraries. " alt="" coords="61,319,152,345"/>
+<area shape="rect" id="node47" href="$elemwise_8h.html" title="Elementwise op constructions. " alt="" coords="417,237,538,263"/>
+<area shape="rect" id="node48" href="$topi_2include_2topi_2transform_8h.html" title="Transform op constructors. " alt="" coords="1656,155,1781,181"/>
+<area shape="rect" id="node49" href="$ravel__unravel_8h.html" title="Index ravel and unraval operations. " alt="" coords="3224,237,3411,263"/>
+<area shape="rect" id="node7" href="$detail_2broadcast_8h.html" title="Detail broadcast. " alt="" coords="1135,155,1300,181"/>
+<area shape="rect" id="node9" href="$ir__pass_8h.html" title="Collection of IR pass functions. " alt="" coords="1209,393,1317,420"/>
+<area shape="rect" id="node13" href="$expr_8h.html" title="The Expr and related elements in DataFlow construction. " alt="" coords="1747,841,1808,868"/>
+<area shape="rect" id="node30" href="$buffer_8h.html" title="Symbolic n&#45;dimensional array, to represent a memory buffer. " alt="" coords="1262,617,1333,644"/>
+<area shape="rect" id="node36" href="$schedule_8h.html" title="Define a schedule. " alt="" coords="1516,468,1607,495"/>
+<area shape="rect" id="node41" href="$lowered__func_8h.html" title="Information about a lowered TVM function. This data structure is final step toward codegen..." alt="" coords="929,543,1047,569"/>
+<area shape="rect" id="node16" href="$include_2tvm_2base_8h.html" title="Defines the base data structure. " alt="" coords="1643,916,1709,943"/>
+<area shape="rect" id="node28" href="$c__runtime__api_8h.html" title="TVM runtime library. " alt="" coords="1513,1140,1637,1167"/>
+<area shape="rect" id="node23" href="$registry_8h.html" title="This file defines the TVM global function registry. " alt="" coords="1815,991,1950,1017"/>
+<area shape="rect" id="node24" href="$packed__func_8h.html" title="Type&#45;erased function used across TVM API. " alt="" coords="2159,1065,2273,1092"/>
+<area shape="rect" id="node31" href="$expr__operator_8h.html" title="Common operators defined for Expr. " alt="" coords="2073,692,2196,719"/>
+<area shape="rect" id="node32" href="$ir_8h.html" title="Additional high level nodes in the IR. " alt="" coords="1035,767,1077,793"/>
+<area shape="rect" id="node34" href="$include_2tvm_2runtime_2util_8h.html" title="Useful runtime util. " alt="" coords="1132,1065,1239,1092"/>
+<area shape="rect" id="node37" href="$include_2tvm_2tensor_8h.html" title="Dataflow tensor object. " alt="" coords="1753,617,1828,644"/>
+<area shape="rect" id="node40" href="$tensor__intrin_8h.html" title="Tensor intrinsic operations. " alt="" coords="1276,543,1391,569"/>
+<area shape="rect" id="node39" href="$arithmetic_8h.html" title="Algebra and set operations and simplifications. " alt="" coords="2529,767,2628,793"/>
+<area shape="rect" id="node43" href="$operation_8h.html" title="Operation node can generate one or multiple Tensors. " alt="" coords="1945,393,2039,420"/>
+<area shape="rect" id="node44" href="$include_2tvm_2packed__func__ext_8h.html" title="Extension package to PackedFunc This enales pass NodeRef types into/from PackedFunc. " alt="" coords="2320,543,2461,569"/>
+<area shape="rect" id="node50" href="$data__layout_8h.html" title="Layout expression to describe the data organization of a tensor. And BijectiveLayout to mapping two d..." alt="" coords="2615,617,2753,644"/>
+</map>

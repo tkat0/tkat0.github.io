@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://tkat0.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="chainer-compiler調査（2）"/>
+  <meta name="twitter:description" content="コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。"/>
+  
+    <meta name="twitter:site" content="@_tkato_"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@tomohiro.kato"/>
+  
+
+
+
+		
+		<meta name="author" content="tomohiro.kato">
+		<meta name="description" content="tkat0.github.io">
+		<meta name="generator" content="Hugo 0.53" />
+		<title>chainer-compiler調査（2） &middot; tkat0.github.io</title>
+		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tkat0.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tkat0.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tkat0.github.io/posts'>Archive</a>
+	<a href='https://tkat0.github.io/tags'>Tags</a>
+	<a href='https://tkat0.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://tkat0.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        chainer-compiler調査（2）
+                    </h1>
+                    <h2 class="headline">
+                    Feb 6, 2019 09:30
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://tkat0.github.io/tags/chainer-compiler">chainer-compiler</a>
+                          
+                              <a href="https://tkat0.github.io/tags/deeplearning">deeplearning</a>
+                          
+                              <a href="https://tkat0.github.io/tags/chainer">chainer</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#examples-train-mnist-py">examples/train_mnist.py</a></li>
+<li><a href="#compiledmodel-forward">CompiledModel#forward</a></li>
+<li><a href="#compiledmodel-compile">CompiledModel#compile</a></li>
+<li><a href="#runcompiledmodel-forward">RunCompiledModel#forward</a></li>
+<li><a href="#その他">その他</a></li>
+</ul></li>
+</ul>
+</nav>
+                    </div>
+                  
+                
+                <section id="post-body">
+                    <p>コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。</p>
+
+<p>前回</p>
+
+<ul>
+<li><a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1） · tkat0.github.io</a></li>
+</ul>
+
+<p>今回は、Python -&gt; XCVMへ変換するまでのフローを追ってみる(今回は途中まで)</p>
+
+<p>対象としたコードは今朝のmaster</p>
+
+<p><a href="https://github.com/pfnet-research/chainer-compiler/tree/fba53f165cf3f3c6bfb9f1bc18b54e2320830961">pfnet-research/chainer-compiler@fba53f1</a></p>
+
+<h2 id="examples-train-mnist-py">examples/train_mnist.py</h2>
+
+<pre><code class="language-python">mlp = MLP(args.unit, 10)
+mlp = chainer_compiler.compile(mlp, dump_onnx=args.dump_onnx)
+</code></pre>
+
+<p>chainer_compiler.compileの戻り値mlpは、<code>CompiledModel</code>クラスのオブジェクト。
+これ自体は<code>chainer.Chain</code>のサブクラスなので、通常のモデルとして振る舞う。</p>
+
+<p>なので、<code>CompiledModel#forward</code>から見ていく</p>
+
+<h2 id="compiledmodel-forward">CompiledModel#forward</h2>
+
+<ul>
+<li>モデルがコンパイルされていない場合は通常のChainerで推論実行し、次の実行のためにコンパイル(<code>CompiledModel#compile</code>)
+
+<ul>
+<li><code>__init__</code>でコンパイルするようにもできる</li>
+</ul></li>
+<li>入力とパラメータを<code>RunCompiledModel</code>に渡して推論
+
+<ul>
+<li>これは<code>FunctionNode</code>のサブクラスなので、<code>F.relu</code>とかと同じように振る舞う</li>
+</ul></li>
+</ul>
+
+<h2 id="compiledmodel-compile">CompiledModel#compile</h2>
+
+<ul>
+<li><code>ch2o.compile_model</code> でコンパイル</li>
+<li>self.fwd, self.bwd。これが推論のコアAPI</li>
+</ul>
+
+<p>流れとしてはこんなかんじ（抜粋）</p>
+
+<pre><code class="language-python">xmodel = ch2o.compile_model(self.mc, inputs)
+# これをファイルにダンプして
+...
+# ここで読み込む
+graph = chainer_compiler_core.load(f.name)
+...
+fwd_graph, bwd_graph = graph.backward_to(graph.input_names())
+...
+self.fwd = fwd_graph.compile()
+self.bwd = bwd_graph.compile()
+</code></pre>
+
+<p>xmodelやgraphはONNX相当っぽい。</p>
+
+<p>追記: 以下の補足を頂きました。</p>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">調査ありがとうございます。xmodelもgraphもONNX相当というのはそうなのですが、前者はonnx::ModelProtoで後者はそれをデシリアライズしたchainer_compiler::Graphになっていて、変数名が xmodel とか xgraph とか x がついてると onnx:: みたいなことで使いわけています</p>&mdash; shinichiro hamaji (@shinh) <a href="https://twitter.com/shinh/status/1092954048989294592?ref_src=twsrc%5Etfw">February 6, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p><code>chainer_compiler_core</code>は、<code>chainer_compiler_core.cc</code></p>
+
+<p>APIは以下</p>
+
+<pre><code class="language-python">PYBIND11_MODULE(chainer_compiler_core, m) {  // NOLINT
+    m.doc() = &quot;chainer_compiler&quot;;
+
+    InitGraph(m);
+
+    InitXCVMVar(m);
+
+    InitXCVM(m);
+
+    m.def(&quot;load&quot;, &amp;LoadGraph, &quot;Load an ONNX model&quot;);
+    m.def(&quot;value&quot;, &amp;CreateValueFromArray, &quot;Create an XCVMVar from a ChainerX Array&quot;);
+    m.def(&quot;value&quot;, &amp;CreateValueFromSequence, &quot;Create an XCVMVar from a sequence of XCVMVars&quot;);
+}
+</code></pre>
+
+<h2 id="runcompiledmodel-forward">RunCompiledModel#forward</h2>
+
+<ul>
+<li>これがコンパイル済モデルを実行するメインの部分</li>
+<li><code>outputs = self.fwd.run(inputs)</code>
+
+<ul>
+<li>self.fwdはCompiledModelでコンパイルしたそれが渡されているだけ</li>
+</ul></li>
+</ul>
+
+<h2 id="その他">その他</h2>
+
+<p><i class="fa fa-heart" aria-hidden="true"></i></p>
+
+<pre><code class="language-python">    # sliceがIdxの場合は、Idxのexprにlistが来うる可能性があるのでGatherする
+    # Numpyのsliceは闇では...???
+    # TODO(satos) Sliceの実装を&quot;ちゃんと&quot;したものにする(現在だと v[0:1,[2,3]] みたいなのは動かない)
+    # あと、これだとIndexに副作用が存在する場合にやばい
+</code></pre>
+
+<p><a href="https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/ch2o/ch2o/chainer2onnx.py#L840-L860">https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/ch2o/ch2o/chainer2onnx.py#L840-L860</a></p>
+
+<hr />
+
+<p>次回はCPP周りを見ていく。</p>
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=chainer-compiler%e8%aa%bf%e6%9f%bb%ef%bc%882%ef%bc%89 by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2flearn-chainer-compiler-2%2f "><span class="icon-twitter"> tweet</span></a>
+
+            
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/cargo-make-1/">タスクランナーをmakeからcargo-makeへ移行<aside class="dates">Jun 30 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/mediapipe/">GoogleのMediaPipeでMLアプリ開発が楽になる<aside class="dates">Jun 19 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/docker-env-for-distiller/">Distillerの検証環境をDockerで作った<aside class="dates">Feb 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/pytorch-named_modules/">PyTorchのModule#named_modules<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/build-ergodash/">自作キーボード作った ErgoDash<aside class="dates">Feb 1 2019</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.github.com/tkat0">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/_tkato_">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tkat0.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tkat0.github.io/js/main.js"></script>
+<script src="https://tkat0.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-98471030-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+    </body>
+</html>

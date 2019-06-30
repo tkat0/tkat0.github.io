@@ -1,0 +1,15 @@
+<map id="topi/include/topi/detail/fuse.h" name="topi/include/topi/detail/fuse.h">
+<area shape="rect" id="node2" href="$cuda_2extern_8h.html" title="CUDA schedule for extern followed by injective operations. " alt="" coords="5,95,164,136"/>
+<area shape="rect" id="node3" href="$cuda_2injective_8h.html" title="CUDA schedule for injective operations. " alt="" coords="188,95,347,136"/>
+<area shape="rect" id="node4" href="$cuda_2pooling_8h.html" title="CUDA schedule for pooling operations. " alt="" coords="371,95,529,136"/>
+<area shape="rect" id="node5" href="$cuda_2reduction_8h.html" title="CUDA schedule for reduction operations. " alt="" coords="553,95,712,136"/>
+<area shape="rect" id="node6" href="$cuda_2softmax_8h.html" title="topi/include/topi/cuda\l/softmax.h" alt="" coords="736,95,895,136"/>
+<area shape="rect" id="node7" href="$generic_2default_8h.html" title="Generic default schedule. " alt="" coords="919,95,1093,136"/>
+<area shape="rect" id="node8" href="$generic_2extern_8h.html" title="Schedule for extern followed by injective ops. " alt="" coords="1117,95,1292,136"/>
+<area shape="rect" id="node11" href="$generic_2injective_8h.html" title="Generic schedule for injective operations. " alt="" coords="1316,95,1491,136"/>
+<area shape="rect" id="node12" href="$x86_2bnn_8h.html" title="x86 schedule for binary operations " alt="" coords="1515,95,1665,136"/>
+<area shape="rect" id="node13" href="$x86_2default_8h.html" title="default x86 schedule " alt="" coords="1689,95,1840,136"/>
+<area shape="rect" id="node14" href="$x86_2injective_8h.html" title="x86 schedule for injective ops " alt="" coords="1864,95,2015,136"/>
+<area shape="rect" id="node9" href="$cuda_2dense_8h.html" title="CUDA schedule for dense operation. " alt="" coords="1067,184,1225,225"/>
+<area shape="rect" id="node10" href="$rocm_2dense_8h.html" title="rocm schedule for dense operation " alt="" coords="1125,273,1285,315"/>
+</map>

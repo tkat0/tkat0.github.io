@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on tkat0.github.io</title>
+    <link>https://tkat0.github.io/posts/</link>
+    <description>Recent content in Posts on tkat0.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 30 Jun 2019 18:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://tkat0.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>タスクランナーをmakeからcargo-makeへ移行</title>
+      <link>https://tkat0.github.io/posts/cargo-make-1/</link>
+      <pubDate>Sun, 30 Jun 2019 18:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/cargo-make-1/</guid>
+      <description>&lt;p&gt;cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。
+今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GoogleのMediaPipeでMLアプリ開発が楽になる</title>
+      <link>https://tkat0.github.io/posts/mediapipe/</link>
+      <pubDate>Wed, 19 Jun 2019 06:30:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/mediapipe/</guid>
+      <description>&lt;p&gt;GoogleがMediaPipeを公開。
+エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ONNXRuntime調査</title>
+      <link>https://tkat0.github.io/posts/read-onnxruntime/</link>
+      <pubDate>Fri, 22 Mar 2019 09:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/read-onnxruntime/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/Microsoft/onnxruntime&#34;&gt;https://github.com/Microsoft/onnxruntime&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi買ったよ</title>
+      <link>https://tkat0.github.io/posts/setup-raspi/</link>
+      <pubDate>Wed, 06 Mar 2019 11:10:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/setup-raspi/</guid>
+      <description>&lt;p&gt;Raspberry Pi 3 B+を買ったので初期設定のメモ&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Distillerの検証環境をDockerで作った</title>
+      <link>https://tkat0.github.io/posts/docker-env-for-distiller/</link>
+      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/docker-env-for-distiller/</guid>
+      <description>&lt;p&gt;PyTorch向けの軽量化ライブラリである&lt;a href=&#34;https://github.com/NervanaSystems/distiller&#34;&gt;Distiller&lt;/a&gt;を触る環境をDockerで作っただけの話&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>chainer-compiler調査（2）</title>
+      <link>https://tkat0.github.io/posts/learn-chainer-compiler-2/</link>
+      <pubDate>Wed, 06 Feb 2019 09:30:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/learn-chainer-compiler-2/</guid>
+      <description>&lt;p&gt;コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PyTorchのModule#named_modules</title>
+      <link>https://tkat0.github.io/posts/pytorch-named_modules/</link>
+      <pubDate>Wed, 06 Feb 2019 08:30:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/pytorch-named_modules/</guid>
+      <description>&lt;p&gt;PyTorchの&lt;code&gt;Module#named_modules&lt;/code&gt;でモデル内のすべてのOperatorにアクセスするときにはまったメモ。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>chainer-compiler調査（1）</title>
+      <link>https://tkat0.github.io/posts/learn-chainer-compiler-1/</link>
+      <pubDate>Mon, 04 Feb 2019 09:30:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/learn-chainer-compiler-1/</guid>
+      <description>&lt;p&gt;今日からchainer-compilerについて調べてみよう。
+DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.com/event/115446/&#34;&gt;FPGAX&lt;/a&gt;でも話題になってましたね（リモートでちょっと見てました）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>いまさらONNXを調べた(v1.4.1)</title>
+      <link>https://tkat0.github.io/posts/learn-onnx/</link>
+      <pubDate>Sat, 02 Feb 2019 13:00:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/learn-onnx/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://onnx.ai/&#34;&gt;ONNX&lt;/a&gt;は1年以上前から使ってるもののちゃんと仕様しらないな〜、だったので調べた。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Distillerのthinningの仕様</title>
+      <link>https://tkat0.github.io/posts/distiller-thinning/</link>
+      <pubDate>Sat, 02 Feb 2019 12:00:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/distiller-thinning/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/NervanaSystems/distiller&#34;&gt;Distiller&lt;/a&gt;はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&amp;rdquo;thinning&amp;rdquo;ができる。
+今回はそのソースを読んで気がついたことのまとめ。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作キーボード作った ErgoDash</title>
+      <link>https://tkat0.github.io/posts/build-ergodash/</link>
+      <pubDate>Fri, 01 Feb 2019 22:36:10 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/build-ergodash/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://yushakobo.jp/&#34;&gt;遊舎工房&lt;/a&gt;の実店舗で&lt;a href=&#34;https://booth.pm/ja/items/1011978&#34;&gt;ErgoDash&lt;/a&gt;を買ってそのまま作ってきた記録。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>再びblogを</title>
+      <link>https://tkat0.github.io/posts/build-blog/</link>
+      <pubDate>Fri, 01 Feb 2019 10:00:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/build-blog/</guid>
+      <description>&lt;p&gt;GitHubを整理していたら、何年か前に&lt;a href=&#34;https://tkat0.github.io/posts/writing-blog-with-hugo/&#34;&gt;はてなブログからhugo@github.ioへ移行しようとした残骸&lt;/a&gt;を見つけたので復活させた。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugoでブログ作成</title>
+      <link>https://tkat0.github.io/posts/writing-blog-with-hugo/</link>
+      <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/writing-blog-with-hugo/</guid>
+      <description>&lt;p&gt;はてなブログから&lt;code&gt;Hugo&lt;/code&gt;を使ってGitHub Pagesに移行したときのメモです&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt;はgolang製の静的サイトジェネレータで、カスタマイズが柔軟にできて、ビルドも速い&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

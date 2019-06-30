@@ -1,0 +1,6 @@
+<map id="tvm::relay::PatternNode" name="tvm::relay::PatternNode">
+<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1PatternConstructorNode.html" title="PatternVar container node. " alt="" coords="5,396,264,547"/>
+<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1PatternVarNode.html" title="PatternVar container node. " alt="" coords="288,403,547,539"/>
+<area shape="rect" id="node6" href="$classtvm_1_1relay_1_1PatternWildcardNode.html" title="PatternWildcard container node. " alt="" coords="571,411,829,532"/>
+<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="285,131,549,223"/>
+</map>

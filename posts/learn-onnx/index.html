@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://tkat0.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="いまさらONNXを調べた(v1.4.1)"/>
+  <meta name="twitter:description" content="ONNXは1年以上前から使ってるもののちゃんと仕様しらないな〜、だったので調べた。"/>
+  
+    <meta name="twitter:site" content="@_tkato_"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@tomohiro.kato"/>
+  
+
+
+
+		
+		<meta name="author" content="tomohiro.kato">
+		<meta name="description" content="tkat0.github.io">
+		<meta name="generator" content="Hugo 0.53" />
+		<title>いまさらONNXを調べた(v1.4.1) &middot; tkat0.github.io</title>
+		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tkat0.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tkat0.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tkat0.github.io/posts'>Archive</a>
+	<a href='https://tkat0.github.io/tags'>Tags</a>
+	<a href='https://tkat0.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://tkat0.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        いまさらONNXを調べた(v1.4.1)
+                    </h1>
+                    <h2 class="headline">
+                    Feb 2, 2019 13:00
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://tkat0.github.io/tags/onnx">onnx</a>
+                          
+                              <a href="https://tkat0.github.io/tags/deeplearning">deeplearning</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#onnx-proto">onnx.proto</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#onnx-optimizer">ONNX Optimizer</a></li>
+<li><a href="#typedenotation">TypeDenotation</a></li>
+</ul></li>
+</ul>
+</nav>
+                    </div>
+                  
+                
+                <section id="post-body">
+                    <p><a href="https://onnx.ai/">ONNX</a>は1年以上前から使ってるもののちゃんと仕様しらないな〜、だったので調べた。</p>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ONNXの仕様まとめって需要あるのかな。（すでにある？</p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1076019658300346368?ref_src=twsrc%5Etfw">December 21, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>とか言ってた。</p>
+
+<ul>
+<li>以下、ONNXv1.4.1を対象
+
+<ul>
+<li><a href="https://github.com/onnx/onnx/tree/v1.4.1">https://github.com/onnx/onnx/tree/v1.4.1</a></li>
+</ul></li>
+<li>ONNXのドキュメントはGitHubにまとまっている
+
+<ul>
+<li><a href="https://github.com/onnx/onnx/tree/v1.4.1#learn-about-the-onnx-spec">Learn about ONNX spec</a></li>
+<li>この記事は上記のドキュメントから必要なところをまとめたもの</li>
+</ul></li>
+<li>ONNX自体はProtobufで定義した仕様で、ランタイム非依存。</li>
+<li>ONNXとONNX-MLがあるけど、主にDeepLearning向けに使いたいのでONNXについて調べた</li>
+</ul>
+
+<h2 id="onnx-proto">onnx.proto</h2>
+
+<p>IRの仕様は以下で説明されている。
+<a href="https://github.com/onnx/onnx/blob/v1.4.1/docs/IR.md">https://github.com/onnx/onnx/blob/v1.4.1/docs/IR.md</a></p>
+
+<p>これらはprotoファイルに実体が定義されているので、あわせてみるとわかりやすい。</p>
+
+<p>IRの定義の.proto <br />
+<a href="https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx.proto3">https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx.proto3</a></p>
+
+<p>例えば<a href="https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx.proto3#L190-L234"><code>ModelProto</code></a>が<a href="https://github.com/onnx/onnx/blob/v1.4.1/docs/IR.md#models">ここの</a>モデル定義
+同様にprotoとドキュメントが対応付けできる。</p>
+
+<p>また、ONNXでつかえる行列データはTensor型があるが、以下の定義。 <br />
+<a href="https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx.proto3#L281-L314">https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx.proto3#L281-L314</a></p>
+
+<p>ポピュラーなのはuint8~float64かな。
+任意精度はなさそうだけどIssueに上がっていた気がする。</p>
+
+<p>続いてIRの上に構築されるOperatorやOperatorSetの定義 <br />
+<a href="https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx-operators.proto3">https://github.com/onnx/onnx/blob/v1.4.1/onnx/onnx-operators.proto3</a></p>
+
+<p>OperatorはConvとかFCとか。OperatorSetはそれらをまとめてバージョン付したもの。
+デフォルトではai.onnxのopsetが使える。これで足りない場合はユーザーが同様に定義できる。
+詳細は以下。 <br />
+<a href="https://github.com/onnx/onnx/blob/v1.4.1/docs/IR.md#operator-sets">https://github.com/onnx/onnx/blob/v1.4.1/docs/IR.md#operator-sets</a></p>
+
+<p>protobufは、コンパイルすることでC++やPythonから呼び出せるクラスになる。 <br />
+<code>int64 version = 2;</code> のような右辺はfield numberで、後方互換性を保ってフィールドを追加したり名前を変えたりするための識別子。</p>
+
+<h2 id="versioning">Versioning</h2>
+
+<p><a href="https://github.com/onnx/onnx/blob/v1.4.1/docs/Versioning.md">https://github.com/onnx/onnx/blob/v1.4.1/docs/Versioning.md</a></p>
+
+<p>特に道具としてONNXを使おうとするとこのバージョンの理解は必要。
+フレームワークAからBへONNX経由で変換したいときに、バージョン違いで変換できないこともあるので。</p>
+
+<p>IR, model, opsetでそれぞれバージョンを定義。使う側として意識するのはopsetかな。</p>
+
+<ul>
+<li>IR specification
+
+<ul>
+<li>Floatなどの型定義など、Operatorなどを構築するIRそのもの</li>
+<li>最新はv4でBFLOAT16型の追加など</li>
+</ul></li>
+<li>version of model
+
+<ul>
+<li>学習済みモデルをONNXとして配布する場合のバージョンの付け方（任意）</li>
+</ul></li>
+<li>version of operator set
+
+<ul>
+<li>conv, fcなどoperatorの集合を定義して、そのバージョン管理をする</li>
+<li>例えばopset v9からXXXは導入されたとかそういう</li>
+<li>モデルは、自身が依存するopsetとそのバージョンを明示する(例: このモデルはai.onnx v9のopsetを使いますよ)</li>
+<li>opset自体もユーザーが定義できる</li>
+<li>versionだけでなくstatus属性（EXPERIMENTAL or STABLE）もあり、STABLEになったら変更してはいけない
+<br /></li>
+</ul></li>
+</ul>
+
+<p>あとはONNX自体もsemantic versioningでバージョン付されている。</p>
+
+<p>opsetのバージョンが違う場合に変換するためのVersion Converterがある。
+だけど、opset v9には対応していないのかな。issueにも上がっていた気がした。
+これらのツールは基本C++で書いてあるけどPythonで呼び出せるようにwrapされている。</p>
+
+<p>ONNX Model Opset Version Converter <br />
+<a href="https://github.com/onnx/onnx/blob/v1.4.1/docs/OpsetVersionConverter.md">https://github.com/onnx/onnx/blob/v1.4.1/docs/OpsetVersionConverter.md</a></p>
+
+<h2 id="onnx-optimizer">ONNX Optimizer</h2>
+
+<p>ONNX Optimizer <br />
+<a href="https://github.com/onnx/onnx/blob/master/docs/Optimizer.md">https://github.com/onnx/onnx/blob/master/docs/Optimizer.md</a></p>
+
+<p>コンパイラのパスと同じようなもの。
+ONNXのバックエンドに実装されるであろう最適化の中でもバックエンド比依存のものはIRでやっていきましょうというよくあるもの。</p>
+
+<p>汎用的なpassは以下に組み込まれている
+<a href="https://github.com/onnx/onnx/tree/master/onnx/optimizer/passes">https://github.com/onnx/onnx/tree/master/onnx/optimizer/passes</a></p>
+
+<p><code>fuse_bn_into_conv</code> などある。グラフレベルの最適化、ある程度ONNXでやっちゃっても良さそう。</p>
+
+<p>passはPythonではかけないみたい。Pythonでかけると色々やりたいことあるんだけどな。</p>
+
+<h2 id="typedenotation">TypeDenotation</h2>
+
+<p>onnx/TypeDenotation.md at master · onnx/onnx <br />
+<a href="https://github.com/onnx/onnx/blob/master/docs/TypeDenotation.md">https://github.com/onnx/onnx/blob/master/docs/TypeDenotation.md</a></p>
+
+<p>onnx/MetadataProps.md at master · onnx/onnx <br />
+<a href="https://github.com/onnx/onnx/blob/master/docs/MetadataProps.md">https://github.com/onnx/onnx/blob/master/docs/MetadataProps.md</a></p>
+
+<p>モデルのメタデータをどうやって保持するか。これ面白い。</p>
+
+<p>denotation属性にRGBとか、NHCWのどれかとかを格納するみたい。値が取りうる範囲0-255とかも。</p>
+
+<p>モデルの前処理後処理の情報もメタデータとしてONNXに書くのは良いですね。やろうと思えばソフトウェアで処理できる。</p>
+
+<hr />
+
+<p>これでONNXの上を歩けるようになったぞ〜。万が一バックエンド実装する機会が来たら、また詳細を調べようか。</p>
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=%e3%81%84%e3%81%be%e3%81%95%e3%82%89ONNX%e3%82%92%e8%aa%bf%e3%81%b9%e3%81%9f%28v1.4.1%29 by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2flearn-onnx%2f "><span class="icon-twitter"> tweet</span></a>
+
+            
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/cargo-make-1/">タスクランナーをmakeからcargo-makeへ移行<aside class="dates">Jun 30 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/mediapipe/">GoogleのMediaPipeでMLアプリ開発が楽になる<aside class="dates">Jun 19 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/docker-env-for-distiller/">Distillerの検証環境をDockerで作った<aside class="dates">Feb 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/pytorch-named_modules/">PyTorchのModule#named_modules<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/build-ergodash/">自作キーボード作った ErgoDash<aside class="dates">Feb 1 2019</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.github.com/tkat0">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/_tkato_">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tkat0.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tkat0.github.io/js/main.js"></script>
+<script src="https://tkat0.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-98471030-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+    </body>
+</html>

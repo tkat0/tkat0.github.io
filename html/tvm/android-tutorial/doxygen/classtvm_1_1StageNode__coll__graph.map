@@ -1,0 +1,5 @@
+<map id="tvm::StageNode" name="tvm::StageNode">
+<area shape="rect" id="node4" href="$classtvm_1_1Stage.html" title="Stage, contains scheduling for a stage of computation. " alt="" coords="160,132,304,356"/>
+<area shape="rect" id="node6" href="$classtvm_1_1IterVar.html" title="Iteration Variable, represents an iteration over an integer interval. " alt="" coords="329,183,463,305"/>
+<area shape="rect" id="node7" href="$classtvm_1_1Operation.html" title="Operation that produces tensors. " alt="" coords="487,183,606,305"/>
+</map>

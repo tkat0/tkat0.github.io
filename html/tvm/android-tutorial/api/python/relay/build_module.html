@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tvm.relay.build_module &mdash; tvm 0.6.dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/tvm_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="tvm.relay.expr" href="expr.html" />
+    <link rel="prev" title="tvm.relay.base" href="base.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/tvm-logo-small.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6.dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vta/index.html">VTA: Deep Learning Accelerator Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deploy/index.html">Deploy and Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute/index.html">Contribute to TVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../langref/index.html">Language Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../tvm.html">tvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intrin.html">tvm.intrin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tensor.html">tvm.tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../schedule.html">tvm.schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../target.html">tvm.target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build.html">tvm.build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module.html">tvm.module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../error.html">tvm.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ndarray.html">tvm.ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container.html">tvm.container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function.html">tvm.Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autotvm.html">tvm.autotvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph_runtime.html">tvm.contrib.graph_runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rpc.html">tvm.rpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge.html">Framework Bridge APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contrib.html">Additional Contrib APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev.html">Developer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../topi.html">TOPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vta/index.html">VTA API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nnvm/index.html">NNVM API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid.html">tvm.hybrid</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Relay API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="backend.html">tvm.relay.backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="base.html">tvm.relay.base</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tvm.relay.build_module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expr.html">tvm.relay.expr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frontend.html">tvm.relay.frontend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">tvm.relay.image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ir_pass.html">tvm.relay.ir_pass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="module.html">tvm.relay.module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html">tvm.relay.nn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="op.html">tvm.relay.op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scope_builder.html">tvm.relay.scope_builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ty.html">tvm.relay.ty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">tvm.relay.vision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_links.html">Links to API References</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Design and Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nnvm_top.html">NNVM Core Tensor Operators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">tvm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Python API</a> &raquo;</li>
+        
+          <li><a href="index.html">Relay API</a> &raquo;</li>
+        
+      <li>tvm.relay.build_module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/api/python/relay/build_module.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tvm.relay.build_module">
+<span id="tvm-relay-build-module"></span><h1>tvm.relay.build_module<a class="headerlink" href="#module-tvm.relay.build_module" title="Permalink to this headline">¶</a></h1>
+<p>Construct the necessary state for the TVM graph runtime
+from a Relay expression.</p>
+<dl class="function">
+<dt id="tvm.relay.build_module.build">
+<code class="descclassname">tvm.relay.build_module.</code><code class="descname">build</code><span class="sig-paren">(</span><em>func</em>, <em>target=None</em>, <em>target_host=None</em>, <em>params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a function to run on TVM graph runtime.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> (<em>relay.Function</em>) – The function to build.</li>
+<li><strong>target</strong> (str, <a class="reference internal" href="../target.html#tvm.target.Target" title="tvm.target.Target"><code class="xref any py py-class docutils literal notranslate"><span class="pre">tvm.target.Target</span></code></a>, or dict of str(i.e. device/context) – </li>
+<li><strong>to str/tvm.target.Target</strong><strong>, </strong><strong>optional</strong> (<em>name</em><em>)</em>) – For heterogeneous compilation, it is a dictionary indicating context to
+target mapping. For homogeneous compilation, it is a build target.</li>
+<li><strong>target_host</strong> (str or <a class="reference internal" href="../target.html#tvm.target.Target" title="tvm.target.Target"><code class="xref any py py-class docutils literal notranslate"><span class="pre">tvm.target.Target</span></code></a>, optional) – Host compilation target, if target is device.
+When TVM compiles device specific program such as CUDA,
+we also need host(CPU) side code to interact with the driver
+setup the dimensions and parameters correctly.
+target_host is used to specify the host side codegen target.
+By default, llvm is used if it is enabled,
+otherwise a stackvm intepreter is used.</li>
+<li><strong>params</strong> (<em>dict of str to NDArray</em>) – Input parameters to the graph that do not change
+during inference time. Used for constant folding.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>graph_json</strong> (<em>str</em>) – The json string that can be accepted by graph runtime.</li>
+<li><strong>mod</strong> (<em>tvm.Module</em>) – The module containing necessary libraries.</li>
+<li><strong>params</strong> (<em>dict</em>) – The parameters of the final graph.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.relay.build_module.build_config">
+<code class="descclassname">tvm.relay.build_module.</code><code class="descname">build_config</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.build_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the build behavior by setting config variables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>opt_level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default=2</em>) – Optimization level. See OPT_PASS_LEVEL for level of each pass.</li>
+<li><strong>add_pass</strong> (<em>set of str</em>) – Optimization pass to be added regardless of optimization level.</li>
+<li><strong>fallback_device</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>tvm.TVMContext</em>) – The fallback device. It is also used as the default device for
+operators without specified device during heterogeneous execution.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>config</strong> – The build configuration</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#tvm.relay.build_module.BuildConfig" title="tvm.relay.build_module.BuildConfig">BuildConfig</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.relay.build_module.optimize">
+<code class="descclassname">tvm.relay.build_module.</code><code class="descname">optimize</code><span class="sig-paren">(</span><em>func</em>, <em>target=None</em>, <em>params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.optimize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform target invariant optimizations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> (<em>tvm.relay.Function</em>) – The input to optimization.</li>
+<li><strong>target</strong> (Optional[<a class="reference internal" href="../target.html#tvm.target.Target" title="tvm.target.Target"><code class="xref any py py-class docutils literal notranslate"><span class="pre">tvm.target.Target</span></code></a>, Dict[int, tvm.target.Target]]) – The optimization target. For heterogeneous compilation, it is a
+dictionary mapping device type to compilation target. For homogeneous
+compilation, it is a build target.</li>
+<li><strong>params</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>tvm.nd.NDArray</em><em>]</em><em>]</em>) – Input parameters to the graph that do not change
+during inference time. used for constant folding.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>opt_func</strong> – The optimized version of the function.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tvm.relay.Function</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tvm.relay.build_module.create_executor">
+<code class="descclassname">tvm.relay.build_module.</code><code class="descname">create_executor</code><span class="sig-paren">(</span><em>kind='debug'</em>, <em>mod=None</em>, <em>ctx=None</em>, <em>target='llvm'</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.create_executor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory function to create an executor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>kind</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The type of executor</li>
+<li><strong>mod</strong> (<a class="reference internal" href="module.html#tvm.relay.module.Module" title="tvm.relay.module.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a>) – The Relay module containing collection of functions</li>
+<li><strong>ctx</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">tvm.TVMContext</span></code>) – The context to execute the code.</li>
+<li><strong>target</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">tvm.Target</span></code>) – The corresponding context</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.build_module.BuildConfig">
+<em class="property">class </em><code class="descclassname">tvm.relay.build_module.</code><code class="descname">BuildConfig</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.BuildConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration scope to set a build config option.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kwargs</strong> – Keyword arguments of configurations to set.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tvm.relay.build_module.BuildConfig.pass_enabled">
+<code class="descname">pass_enabled</code><span class="sig-paren">(</span><em>pass_name</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.BuildConfig.pass_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get whether pass is enabled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pass_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The optimization pass name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>enabled</strong> – Whether pass is enabled.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tvm.relay.build_module.GraphExecutor">
+<em class="property">class </em><code class="descclassname">tvm.relay.build_module.</code><code class="descname">GraphExecutor</code><span class="sig-paren">(</span><em>mod</em>, <em>ctx</em>, <em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#tvm.relay.build_module.GraphExecutor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around Executor interface.</p>
+<p>This executor is used for debug and testing purpoes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mod</strong> (<a class="reference internal" href="module.html#tvm.relay.module.Module" title="tvm.relay.module.Module"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a>) – The module to support the execution.</li>
+<li><strong>ctx</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">TVMContext</span></code>) – The runtime context to run the code on.</li>
+<li><strong>target</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code>) – The target option to build the function.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="expr.html" class="btn btn-neutral float-right" title="tvm.relay.expr" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="base.html" class="btn btn-neutral float-left" title="tvm.relay.base" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, tvm developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75982049-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

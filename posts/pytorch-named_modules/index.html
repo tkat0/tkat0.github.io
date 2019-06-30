@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://tkat0.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="PyTorchのModule#named_modules"/>
+  <meta name="twitter:description" content="PyTorchのModule#named_modulesでモデル内のすべてのOperatorにアクセスするときにはまったメモ。"/>
+  
+    <meta name="twitter:site" content="@_tkato_"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@tomohiro.kato"/>
+  
+
+
+
+		
+		<meta name="author" content="tomohiro.kato">
+		<meta name="description" content="tkat0.github.io">
+		<meta name="generator" content="Hugo 0.53" />
+		<title>PyTorchのModule#named_modules &middot; tkat0.github.io</title>
+		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tkat0.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tkat0.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tkat0.github.io/posts'>Archive</a>
+	<a href='https://tkat0.github.io/tags'>Tags</a>
+	<a href='https://tkat0.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://tkat0.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        PyTorchのModule#named_modules
+                    </h1>
+                    <h2 class="headline">
+                    Feb 6, 2019 08:30
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://tkat0.github.io/tags/pytorch">pytorch</a>
+                          
+                              <a href="https://tkat0.github.io/tags/deeplearning">deeplearning</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                
+                <section id="post-body">
+                    <p>PyTorchの<code>Module#named_modules</code>でモデル内のすべてのOperatorにアクセスするときにはまったメモ。</p>
+
+<p>PyTorchはChainerでいうLinkもFunctionもModuleなのでグラフのトレースは楽かと思ったけど意外とはまった。
+<code>model.named_modules()</code>ではnn.Sequentialもその中身のModuleもすべてが得られてしまうので、
+<code>Module#modules</code>でコンテナ内のモジュール数をチェックした上でトレースしていくことで、<code>nn.Conv2d</code>などプリミティブなOPのみ得られる。</p>
+
+<p>以下がコード例</p>
+
+<pre><code class="language-python">for name, module in model.named_modules():
+    # nn.Sequentialやユーザー定義の複数のmoduleをもつmoduleではなく、
+    # Conv2dなどの単一のmoduleのみ取得
+    n_modules = len(list(module.modules()))
+    if n_modules == 1:
+        print(name)
+</code></pre>
+
+<p>Moduleのドキュメントを読むと良かった。</p>
+
+<p>torch.nn — PyTorch master documentation <br />
+<a href="https://pytorch.org/docs/stable/nn.html#module">https://pytorch.org/docs/stable/nn.html#module</a></p>
+
+<p>PyTorchの内部構造については以下のような記事があるようだ。</p>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">公式でも書いてるのね<a href="https://t.co/5ieoAXNw2j">https://t.co/5ieoAXNw2j</a></p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1092762049602441216?ref_src=twsrc%5Etfw">February 5, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おーこれおもしろい<a href="https://t.co/tAZ93V93Qv">https://t.co/tAZ93V93Qv</a></p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1092761728956264448?ref_src=twsrc%5Etfw">February 5, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=PyTorch%e3%81%aeModule%23named_modules by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2fpytorch-named_modules%2f "><span class="icon-twitter"> tweet</span></a>
+
+            
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/cargo-make-1/">タスクランナーをmakeからcargo-makeへ移行<aside class="dates">Jun 30 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/mediapipe/">GoogleのMediaPipeでMLアプリ開発が楽になる<aside class="dates">Jun 19 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/docker-env-for-distiller/">Distillerの検証環境をDockerで作った<aside class="dates">Feb 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/build-ergodash/">自作キーボード作った ErgoDash<aside class="dates">Feb 1 2019</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.github.com/tkat0">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/_tkato_">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tkat0.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tkat0.github.io/js/main.js"></script>
+<script src="https://tkat0.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-98471030-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+    </body>
+</html>

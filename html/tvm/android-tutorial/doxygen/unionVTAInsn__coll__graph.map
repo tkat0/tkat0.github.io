@@ -1,0 +1,6 @@
+<map id="VTAInsn" name="VTAInsn">
+<area shape="rect" id="node2" href="$structVTAGenericInsn.html" title="VTA generic instruction. " alt="" coords="5,101,127,193"/>
+<area shape="rect" id="node3" href="$structVTAMemInsn.html" title="VTA load/store instruction Load/store instruction can describe a 2D strided access pattern with paddi..." alt="" coords="151,5,285,288"/>
+<area shape="rect" id="node4" href="$structVTAAluInsn.html" title="VTA ALU instruction ALU instruction is implemented by executing a sequence of micro&#45;operations that i..." alt="" coords="309,35,444,259"/>
+<area shape="rect" id="node5" href="$structVTAGemInsn.html" title="VTA GEMM instruction GEMM instruction is implemented by executing a sequence of micro&#45;operations that..." alt="" coords="468,35,603,259"/>
+</map>

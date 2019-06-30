@@ -1,0 +1,53 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classtvm_1_1arith_1_1ConstIntBound.html" title="tvm::arith::ConstIntBound" alt="" coords="128,5,315,32"/>
+<area shape="rect" id="node3" href="$classtvm_1_1arith_1_1ModularSet.html" title="tvm::arith::ModularSet" alt="" coords="139,56,304,83"/>
+<area shape="rect" id="node4" href="$classtvm_1_1AttrFieldInfo.html" title="AttrFieldInfo. " alt="" coords="156,107,287,133"/>
+<area shape="rect" id="node5" href="$classtvm_1_1Attrs.html" title="Base attribute container for all attributes. " alt="" coords="178,157,265,184"/>
+<area shape="rect" id="node6" href="$classtvm_1_1BuildConfig.html" title="Container for build configuration options. " alt="" coords="158,208,285,235"/>
+<area shape="rect" id="node7" href="$classtvm_1_1EnvFunc.html" title="A serializable function backed by TVM&#39;s global environment. " alt="" coords="168,259,275,285"/>
+<area shape="rect" id="node8" href="$structtvm_1_1ir_1_1CommReducer.html" title="tvm::ir::CommReducer" alt="" coords="139,309,304,336"/>
+<area shape="rect" id="node9" href="$classtvm_1_1IterVar.html" title="Iteration Variable, represents an iteration over an integer interval. " alt="" coords="173,360,270,387"/>
+<area shape="rect" id="node10" href="$classtvm_1_1IterVarAttr.html" title="Additional scheduable attributes about IterVar. " alt="" coords="161,411,282,437"/>
+<area shape="rect" id="node11" href="$classtvm_1_1IterVarRelation.html" title="The schedule relation between IterVars can be Split, Fuse. " alt="" coords="148,461,295,488"/>
+<area shape="rect" id="node12" href="$classtvm_1_1MemoryInfo.html" title="Defines memory info. " alt="" coords="156,512,287,539"/>
+<area shape="rect" id="node13" href="$classtvm_1_1relay_1_1Clause.html" title="tvm::relay::Clause" alt="" coords="153,563,289,589"/>
+<area shape="rect" id="node14" href="$classtvm_1_1relay_1_1Expr.html" title="tvm::relay::Expr" alt="" coords="161,613,282,640"/>
+<area shape="rect" id="node31" href="$classtvm_1_1relay_1_1Id.html" title="tvm::relay::Id" alt="" coords="169,664,273,691"/>
+<area shape="rect" id="node32" href="$structtvm_1_1relay_1_1Module.html" title="tvm::relay::Module" alt="" coords="152,715,291,741"/>
+<area shape="rect" id="node33" href="$classtvm_1_1relay_1_1Type.html" title="Type is the base type of relay type hiearchy. " alt="" coords="161,892,282,919"/>
+<area shape="rect" id="node46" href="$classtvm_1_1relay_1_1TypeReporter.html" title="Container class of TypeReporter. " alt="" coords="134,943,309,969"/>
+<area shape="rect" id="node47" href="$classtvm_1_1relay_1_1Value.html" title="tvm::relay::Value" alt="" coords="157,993,285,1020"/>
+<area shape="rect" id="node48" href="$classtvm_1_1Stage.html" title="Stage, contains scheduling for a stage of computation. " alt="" coords="175,1044,268,1071"/>
+<area shape="rect" id="node49" href="$classtvm_1_1Target.html" title="tvm::Target" alt="" coords="174,1095,269,1121"/>
+<area shape="rect" id="node50" href="$classtvm_1_1Tensor.html" title="Tensor structure representing a possible input, or intermediate computation result. " alt="" coords="173,1145,269,1172"/>
+<area shape="rect" id="node51" href="$classtvm_1_1TensorIntrin.html" title="Tensor intrinsic node. " alt="" coords="157,1196,285,1223"/>
+<area shape="rect" id="node52" href="$classtvm_1_1TensorIntrinCall.html" title="Tensor intrinsic calling node. " alt="" coords="146,1247,297,1273"/>
+<area shape="rect" id="node15" href="$classtvm_1_1relay_1_1Call.html" title="tvm::relay::Call" alt="" coords="402,31,518,57"/>
+<area shape="rect" id="node16" href="$classtvm_1_1relay_1_1Constant.html" title="tvm::relay::Constant" alt="" coords="385,81,535,108"/>
+<area shape="rect" id="node17" href="$classtvm_1_1relay_1_1Constructor.html" title="tvm::relay::Constructor" alt="" coords="376,132,544,159"/>
+<area shape="rect" id="node18" href="$classtvm_1_1relay_1_1Function.html" title="tvm::relay::Function" alt="" coords="387,183,533,209"/>
+<area shape="rect" id="node19" href="$classtvm_1_1relay_1_1GlobalVar.html" title="tvm::relay::GlobalVar" alt="" coords="383,233,537,260"/>
+<area shape="rect" id="node20" href="$classtvm_1_1relay_1_1If.html" title="tvm::relay::If" alt="" coords="410,284,510,311"/>
+<area shape="rect" id="node21" href="$classtvm_1_1relay_1_1Let.html" title="tvm::relay::Let" alt="" coords="403,335,517,361"/>
+<area shape="rect" id="node22" href="$classtvm_1_1relay_1_1Match.html" title="tvm::relay::Match" alt="" coords="394,385,526,412"/>
+<area shape="rect" id="node23" href="$classtvm_1_1relay_1_1Op.html" title="Operator reference class. " alt="" coords="405,436,515,463"/>
+<area shape="rect" id="node24" href="$classtvm_1_1relay_1_1RefCreate.html" title="tvm::relay::RefCreate" alt="" coords="383,487,537,513"/>
+<area shape="rect" id="node25" href="$classtvm_1_1relay_1_1RefRead.html" title="tvm::relay::RefRead" alt="" coords="389,537,531,564"/>
+<area shape="rect" id="node26" href="$classtvm_1_1relay_1_1RefWrite.html" title="tvm::relay::RefWrite" alt="" coords="389,588,531,615"/>
+<area shape="rect" id="node27" href="$classtvm_1_1relay_1_1TempExpr.html" title="tvm::relay::TempExpr" alt="" coords="383,639,537,665"/>
+<area shape="rect" id="node28" href="$classtvm_1_1relay_1_1Tuple.html" title="tvm::relay::Tuple" alt="" coords="397,689,523,716"/>
+<area shape="rect" id="node29" href="$classtvm_1_1relay_1_1TupleGetItem.html" title="tvm::relay::TupleGetItem" alt="" coords="371,740,549,767"/>
+<area shape="rect" id="node30" href="$classtvm_1_1relay_1_1Var.html" title="tvm::relay::Var" alt="" coords="403,791,517,817"/>
+<area shape="rect" id="node34" href="$classtvm_1_1relay_1_1BaseTensorType.html" title="tvm::relay::BaseTensorType" alt="" coords="363,841,557,868"/>
+<area shape="rect" id="node35" href="$classtvm_1_1relay_1_1FuncType.html" title="tvm::relay::FuncType" alt="" coords="385,892,535,919"/>
+<area shape="rect" id="node36" href="$classtvm_1_1relay_1_1GlobalTypeVar.html" title="tvm::relay::GlobalTypeVar" alt="" coords="369,943,551,969"/>
+<area shape="rect" id="node37" href="$classtvm_1_1relay_1_1IncompleteType.html" title="tvm::relay::IncompleteType" alt="" coords="364,993,556,1020"/>
+<area shape="rect" id="node38" href="$classtvm_1_1relay_1_1RefType.html" title="tvm::relay::RefType" alt="" coords="390,1044,530,1071"/>
+<area shape="rect" id="node39" href="$classtvm_1_1relay_1_1TensorType.html" title="tvm::relay::TensorType" alt="" coords="379,1095,541,1121"/>
+<area shape="rect" id="node40" href="$classtvm_1_1relay_1_1TupleType.html" title="tvm::relay::TupleType" alt="" coords="383,1145,537,1172"/>
+<area shape="rect" id="node41" href="$classtvm_1_1relay_1_1TypeCall.html" title="tvm::relay::TypeCall" alt="" coords="388,1196,532,1223"/>
+<area shape="rect" id="node42" href="$classtvm_1_1relay_1_1TypeConstraint.html" title="tvm::relay::TypeConstraint" alt="" coords="367,1247,553,1273"/>
+<area shape="rect" id="node44" href="$classtvm_1_1relay_1_1TypeData.html" title="tvm::relay::TypeData" alt="" coords="384,1297,536,1324"/>
+<area shape="rect" id="node45" href="$classtvm_1_1relay_1_1TypeVar.html" title="tvm::relay::TypeVar" alt="" coords="389,1348,531,1375"/>
+<area shape="rect" id="node43" href="$classtvm_1_1relay_1_1TypeRelation.html" title="tvm::relay::TypeRelation" alt="" coords="605,1247,776,1273"/>
+</map>

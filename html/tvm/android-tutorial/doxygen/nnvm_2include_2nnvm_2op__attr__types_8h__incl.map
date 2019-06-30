@@ -1,0 +1,8 @@
+<map id="nnvm/include/nnvm/op_attr_types.h" name="nnvm/include/nnvm/op_attr_types.h">
+<area shape="rect" id="node7" href="$nnvm_2include_2nnvm_2base_8h.html" title="Configuration of nnvm as well as basic data structure. " alt="" coords="679,244,744,271"/>
+<area shape="rect" id="node15" href="$node_8h.html" title="Graph node data structure. " alt="" coords="761,95,827,121"/>
+<area shape="rect" id="node22" href="$tuple_8h.html" title="Data structure Tuple and TShape to store dynamic sized shapes. " alt="" coords="237,169,303,196"/>
+<area shape="rect" id="node26" href="$layout_8h.html" title="Layout expression. The layout is composed of upper cases, lower cases and numbers, where upper case indicates a (super&#45;)dimension and the corresponding lower case with factor size indicates the split (sub&#45;)dimension. For example, NCHW16c can describe a 5&#45;D tensor of [batch_size, channel, height, width, channel_block]. Here sub&#45;dimension channel_block=16 is the split of super&#45;dimension C (channel). " alt="" coords="429,169,503,196"/>
+<area shape="rect" id="node17" href="$nnvm_2include_2nnvm_2op_8h.html" title="Operator information structor. " alt="" coords="933,169,983,196"/>
+<area shape="rect" id="node21" href="$c__api_8h.html" title="C API of NNVM symbolic construction and pass. Enables construction and transformation of Graph in any..." alt="" coords="1106,244,1173,271"/>
+</map>
