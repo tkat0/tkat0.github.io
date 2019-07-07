@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://tkat0.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="[1907.01989] On-Device Neural Net Inference with Mobile GPUs"/>
+  <meta name="twitter:description" content="Google Researchより、TFLite GPUのアーキテクチャ設計についての論文。"/>
+  
+    <meta name="twitter:site" content="@_tkato_"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@tomohiro.kato"/>
+  
+
+
+
+		
+		<meta name="author" content="tomohiro.kato">
+		<meta name="description" content="tkat0.github.io">
+		<meta name="generator" content="Hugo 0.53" />
+		<title>[1907.01989] On-Device Neural Net Inference with Mobile GPUs &middot; tkat0.github.io</title>
+		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tkat0.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tkat0.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tkat0.github.io/posts'>Archive</a>
+	<a href='https://tkat0.github.io/tags'>Tags</a>
+	<a href='https://tkat0.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://tkat0.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        [1907.01989] On-Device Neural Net Inference with Mobile GPUs
+                    </h1>
+                    <h2 class="headline">
+                    Jul 7, 2019 15:30
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://tkat0.github.io/tags/tflite">TFLITE</a>
+                          
+                              <a href="https://tkat0.github.io/tags/deepleraning">DEEPLERANING</a>
+                          
+                              <a href="https://tkat0.github.io/tags/paper">PAPER</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                
+                <section id="post-body">
+                    <p>Google Researchより、TFLite GPUのアーキテクチャ設計についての論文。</p>
+
+<p>実装はこれ</p>
+
+<p><a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/delegates/gpu">tensorflow/tensorflow/lite/delegates/gpu at master · tensorflow/tensorflow · GitHub</a></p>
+
+<p>ざっとまとめると、</p>
+
+<ul>
+<li>モバイルCPUでNNの推論は難しい
+
+<ul>
+<li>計算量、熱、バッテリー</li>
+<li>特に既存のロジックがCPUで動いてるのに、そこに計算負荷を追加すると…</li>
+<li>実際、Fig8でiPhone XSのMobileNetV1のCPU推論、3分ちょいで熱でパフォーマンス落ちてる</li>
+</ul></li>
+<li>モバイルGPUをNNの推論に使う
+
+<ul>
+<li>NPUなどのアクセラレータ、一部のハイエンド機しかないよね</li>
+<li>多くのデバイスをターゲットとするためにGPU</li>
+<li>モデルにもよるが、TFLiteのCPU→GPUでx2-9は速くなる</li>
+</ul></li>
+<li>TFLite GPUのデザイン
+
+<ul>
+<li>vendor specificな実装を避け、OpenGLやMetalをバックエンドとした
+
+<ul>
+<li>OpenCLはサポートしてない端末多いよね</li>
+</ul></li>
+<li>delegate
+
+<ul>
+<li>GPUオフロード可能なサブグラフをまとめて、delegate node</li>
+<li>それ以外はCPU</li>
+</ul></li>
+<li>最適化
+
+<ul>
+<li>コマンド数やメモリIOを少なくするため、よくある最適化はしている
+
+<ul>
+<li>コードだとこの辺のモジュール</li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/46252f3/tensorflow/lite/delegates/gpu/gl/compiler/fuse_inline.cc">tensorflow/fuse_inline.cc at 46252f3 · tensorflow/tensorflow · GitHub</a></li>
+</ul></li>
+<li>operator fusion</li>
+<li>意味のない命令は消す（x1のリサイズとか）</li>
+<li>パラメータをシェーダにインライン化</li>
+<li>ドライバでの最適化も期待し、TFLiteとしてはあくまでコードを出力</li>
+<li>一部のシェーダは人手で最適化</li>
+</ul></li>
+<li>データレイアウト
+
+<ul>
+<li>モバイルGPUは、文字通りグラフィクス用途に適した4要素のベクトル（x,y,z,w）の計算や読み書きに特化</li>
+<li>これに合わせてNNも計算しないと遅いので、HWCのテンソルもCを4チャネル単位で分解して、PHWC4と呼ぶレイアウトにしている</li>
+<li>（TFLiteじゃないフレームワークでも、この”4”でpack/unpackはよく見る気がする</li>
+<li>CHW-&gt;PHWC4への変換の実装
+
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/tree/46252f3/tensorflow/lite/delegates/gpu/gl/converters">tensorflow/tensorflow/lite/delegates/gpu/gl/converters at 46252f3 · tensorflow/tensorflow · GitHub</a></li>
+</ul></li>
+</ul></li>
+<li>WorkGroup数の決め方
+
+<ul>
+<li>GPUによって、WorkGroup数のチューニングのシビアさが変わる
+
+<ul>
+<li>Maliはチューニング頑張っても5%程度しか向上しないが、Adrenoは30％向上する場合も</li>
+</ul></li>
+<li>総当たりで調べるのは、デバイスの状態（熱など）にもよるので、必ずしも最適解は得にくい</li>
+<li>そこで推論時間の関数を勾配法で最適化して、デバイスや属性ごとにいくつかのセットをつくってるみたい
+
+<ul>
+<li>最適化部分のコードはわからないけど、結果は以下のようにディスパッチ
+
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/46252f3/tensorflow/lite/delegates/gpu/gl/kernels/conv.cc#L207-L239">tensorflow/conv.cc at 46252f3 · tensorflow/tensorflow · GitHub</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/46252f3/tensorflow/lite/delegates/gpu/gl/workgroups/default_calculator.cc">tensorflow/default_calculator.cc at 46252f3 · tensorflow/tensorflow · GitHub</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>メモリ管理
+
+<ul>
+<li>メモリのフットプリントを小さくするため、中間テンソルをいつ確保するか</li>
+<li>GreedyとMCFPの2つのアルゴリズムを実装
+
+<ul>
+<li>（詳細はよんでないけど、
+
+<ul>
+<li>中間テンソルは使い回す前提で、最大サイズでアロケートしておき、使いまわせるタイミングで使い回す（雑な理解</li>
+</ul></li>
+<li>モデルにより良し悪しが変わるのでデフォルトGreedy</li>
+<li>ただナイーブな実装よりはMB単位で数倍は軽くなる</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>実験
+
+<ul>
+<li>iOSは、CoreMLよりTFLite GPUが総じて速い
+
+<ul>
+<li>（これなんでだろう？</li>
+</ul></li>
+<li>Androidは、vendor specificなフレームワーク（SNPE(Qualcomm)）より2倍程度遅いケースもある
+
+<ul>
+<li>それより多くの端末で動くほうが嬉しいよねという感じ</li>
+<li>（MACE（Xiaomi）、こんど使ってみるかーと思ってたけど、これならTFLiteのほうが良さそう…</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>TFLiteの実装はちゃんと見てないけど、この論文で説明がある構成になってるんだろう。
+MediaPipeなど見ていると、スマホARなどでTFLiteを使って様々なアプリケーションを高速に世に出していきたいんだろうなーと思えていて、それを実現する技術として、この選択肢をとったかと思うと面白い。</p>
+
+<p>Table5、Android端末でTFLite GPUとMACE（Xiaomi）、SNPE（Qualcomm）を比較してるんだけど、
+この速度差ならどっちのフレームワークをつかう？ってのは人によって判断が変わりそうで面白い。
+数倍の遅延も許容できない、かつ、サポートしたいプラットフォームがすくなければ、vendor specificなフレームワークでもいいかもしれない。</p>
+
+<p>しかし、新しいアーキテクチャがでたとか、BlazeFaceのように7x7がいいよみたいなときに、実際に早く速く動かせるものはどれ？と考えると、
+Research→Deploymentまでのエコシステムの充実度、ベンダーに依存しない拡張の早さが見込めるなどでTFLiteを選択するモチベーションは大きいんじゃないかな。</p>
+
+<p>実装はちら見した程度だけど、カーネルの実装の中にも<code>GpuType::ADRENO</code>とかでてきて、やっぱり避けられないよなーという感じ。</p>
+
+<p>合わせて読みたい論文としては以下。</p>
+
+<p><a href="https://research.fb.com/publications/machine-learning-at-facebook-understanding-inference-at-the-edge/">Machine Learning at Facebook: Understanding Inference at the Edge - Facebook Research</a></p>
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=%5b1907.01989%5d%20On-Device%20Neural%20Net%20Inference%20with%20Mobile%20GPUs by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2f1907.01989%2f "><span class="icon-twitter"> tweet</span></a>
+
+            
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/cargo-make-1/">タスクランナーをmakeからcargo-makeへ移行<aside class="dates">Jun 30 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/mediapipe/">GoogleのMediaPipeでMLアプリ開発が楽になる<aside class="dates">Jun 19 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/docker-env-for-distiller/">Distillerの検証環境をDockerで作った<aside class="dates">Feb 22 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/pytorch-named_modules/">PyTorchのModule#named_modules<aside class="dates">Feb 6 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.github.com/tkat0">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/_tkato_">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tkat0.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tkat0.github.io/js/main.js"></script>
+<script src="https://tkat0.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-98471030-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+    </body>
+</html>

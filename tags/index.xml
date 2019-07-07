@@ -41,7 +41,7 @@
     <item>
       <title>Deepleraning</title>
       <link>https://tkat0.github.io/tags/deepleraning/</link>
-      <pubDate>Wed, 19 Jun 2019 06:30:00 +0900</pubDate>
+      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/tags/deepleraning/</guid>
       <description></description>
@@ -111,6 +111,15 @@
     </item>
     
     <item>
+      <title>Paper</title>
+      <link>https://tkat0.github.io/tags/paper/</link>
+      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/paper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Pruning</title>
       <link>https://tkat0.github.io/tags/pruning/</link>
       <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
@@ -143,6 +152,15 @@
       <pubDate>Sun, 30 Jun 2019 18:00:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tflite</title>
+      <link>https://tkat0.github.io/tags/tflite/</link>
+      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/tflite/</guid>
       <description></description>
     </item>
     
