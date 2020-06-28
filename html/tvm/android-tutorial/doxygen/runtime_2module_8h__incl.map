@@ -1,7 +1,0 @@
-<map id="include/tvm/runtime/module.h" name="include/tvm/runtime/module.h">
-<area shape="rect" id="node7" href="$c__runtime__api_8h.html" title="TVM runtime library. " alt="" coords="1055,319,1179,345"/>
-<area shape="rect" id="node11" href="$packed__func_8h.html" title="Type&#45;erased function used across TVM API. " alt="" coords="542,95,657,121"/>
-<area shape="rect" id="node19" href="$ndarray_8h.html" title="Abstract device memory management API. " alt="" coords="857,169,939,196"/>
-<area shape="rect" id="node23" href="$node__base_8h.html" title="Base data structure for Node. " alt="" coords="729,169,833,196"/>
-<area shape="rect" id="node21" href="$serializer_8h.html" title="Serializer extension to support TVM data types Include this file to enable serialization of DLDataTyp..." alt="" coords="853,244,943,271"/>
-</map>

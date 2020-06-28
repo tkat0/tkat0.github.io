@@ -1,4 +1,0 @@
-<map id="tvm::relay::TypeConstraint" name="tvm::relay::TypeConstraint">
-<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1TypeRelation.html" title="{tvm::relay::TypeRelation\n||+ TypeRelation()\l+ TypeRelation()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="13,440,184,561"/>
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1Type.html" title="Type is the base type of relay type hiearchy. " alt="" coords="38,131,159,223"/>
-</map>

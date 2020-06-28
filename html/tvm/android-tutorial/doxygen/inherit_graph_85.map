@@ -1,4 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtvm_1_1relay_1_1PatternFunctor.html" title="tvm::relay::PatternFunctor\l\&lt; void(const Pattern &amp;n)\&gt;" alt="" coords="5,5,197,47"/>
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1PatternVisitor.html" title="A simple visitor wrapper around PatternFunctor. " alt="" coords="245,13,424,39"/>
-</map>

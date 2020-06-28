@@ -1,4 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtvm_1_1relay_1_1ExprFunctor.html" title="tvm::relay::ExprFunctor\l\&lt; Expr(const Expr &amp;)\&gt;" alt="" coords="5,5,173,47"/>
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1ExprMutator.html" title="A wrapper around ExprFunctor which functionally updates the AST. " alt="" coords="221,13,392,39"/>
-</map>

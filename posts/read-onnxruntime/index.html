@@ -14,9 +14,7 @@
   
   
   <meta name="twitter:title" content="ONNXRuntime調査"/>
-  <meta name="twitter:description" content="https://github.com/Microsoft/onnxruntime
-
-ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。"/>
+  <meta name="twitter:description" content="ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。"/>
   
     <meta name="twitter:site" content="@_tkato_"/>
   
@@ -31,7 +29,7 @@ ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機�
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>ONNXRuntime調査 &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
@@ -43,8 +41,6 @@ ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機�
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -75,19 +71,20 @@ ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機�
                         ONNXRuntime調査
                     </h1>
                     <h2 class="headline">
-                    Mar 22, 2019 09:00
+                    May 22, 2019 09:00
+                    · 138 words
                     · 1 minute read
                       <span class="tags">
                       
                       
                           
-                              <a href="https://tkat0.github.io/tags/onnxruntime">ONNXRUNTIME</a>
+                              <a href="https://tkat0.github.io/tags/onnxruntime">onnxruntime</a>
                           
-                              <a href="https://tkat0.github.io/tags/deepleraning">DEEPLERANING</a>
+                              <a href="https://tkat0.github.io/tags/deeplearning">deeplearning</a>
                           
-                              <a href="https://tkat0.github.io/tags/onnx">ONNX</a>
+                              <a href="https://tkat0.github.io/tags/onnx">onnx</a>
                           
-                              <a href="https://tkat0.github.io/tags/tvm">TVM</a>
+                              <a href="https://tkat0.github.io/tags/tvm">tvm</a>
                           
                       
                       
@@ -98,128 +95,95 @@ ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機�
                   
                     <div id="toc">
                       <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#design-and-key-features">Design and Key Features</a></li>
-<li><a href="#その他1">その他1</a></li>
-<li><a href="#その他2">その他2</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#design-and-key-features">Design and Key Features</a></li>
+    <li><a href="#その他1">その他1</a></li>
+    <li><a href="#その他2">その他2</a></li>
+  </ul>
 </nav>
                     </div>
                   
                 
                 <section id="post-body">
-                    <p><a href="https://github.com/Microsoft/onnxruntime">https://github.com/Microsoft/onnxruntime</a></p>
-
-<p>ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。</p>
-
+                    <p>ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。</p>
+<p><a href="https://github.com/Microsoft/onnxruntime">https://github.com/Microsoft/onnxruntime</a></p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">.<a href="https://twitter.com/Azure?ref_src=twsrc%5Etfw">@Azure</a> has open sourced a preview of the <a href="https://twitter.com/nvidia?ref_src=twsrc%5Etfw">@nvidia</a> TensorRT execution provider in ONNX Runtime. <a href="https://twitter.com/hashtag/AI?src=hash&amp;ref_src=twsrc%5Etfw">#AI</a> <a href="https://twitter.com/hashtag/technology?src=hash&amp;ref_src=twsrc%5Etfw">#technology</a> <a href="https://t.co/EK8JnQp4ev">https://t.co/EK8JnQp4ev</a></p>&mdash; ONNX (@onnxai) <a href="https://twitter.com/onnxai/status/1108516736448393217?ref_src=twsrc%5Etfw">March 20, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>ONNX Model Zooの全てのモデルが動くことを検証したとのこと。</p>
-
 <p><a href="https://github.com/Microsoft/onnxruntime/blob/bdc2bbb2070ee92f7588ebfa4c19fce35e481f9a/TensorRT-ExecutionProvider.md">https://github.com/Microsoft/onnxruntime/blob/bdc2bbb2070ee92f7588ebfa4c19fce35e481f9a/TensorRT-ExecutionProvider.md</a></p>
-
-<p>この記事を見たほうが良いです。
-<a href="https://tech-blog.optim.co.jp/entry/2018/12/05/160831">Microsoft の ONNX Runtime を速攻レビュー - OPTiM TECH BLOG</a></p>
-
+<p>この記事を見たほうが良いです。 <a href="https://tech-blog.optim.co.jp/entry/2018/12/05/160831">Microsoft の ONNX Runtime を速攻レビュー - OPTiM TECH BLOG</a></p>
 <p>onnxruntime自体はこれを目指して開発。</p>
-
 <ol>
 <li>Run any ONNX model
-
 <ul>
 <li>ONNX-MLもサポート（使ったこと無いけど）</li>
-</ul></li>
+</ul>
+</li>
 <li>High performance
-
 <ul>
-<li>バックエンドは <code>execution providers</code> と呼ぶ</li>
+<li>バックエンドは execution providers と呼ぶ</li>
 <li>現在サポート
-
 <ul>
 <li>MLAS (Microsoft Linear Algebra Subprograms), MKL-DNN, and MKL-ML for computation acceleration.</li>
 <li>ARM Linux/Windowsもexperimental support
-
 <ul>
 <li><a href="https://github.com/Microsoft/onnxruntime/blob/master/BUILD.md#arm-builds">https://github.com/Microsoft/onnxruntime/blob/master/BUILD.md#arm-builds</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>今後サポート予定
-
 <ul>
 <li>Intel MKL-DNN and nGraph, NVIDIA TensorRT</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Cross platform
-
 <ul>
 <li>Python, C#, CのAPI。C++もあるぽい</li>
 <li>Linux, Windows, Mac</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h2 id="usage">Usage</h2>
-
 <p>簡単</p>
-
 <p><a href="https://microsoft.github.io/onnxruntime/">https://microsoft.github.io/onnxruntime/</a></p>
-
-<pre><code class="language-python">import numpy
-import onnxruntime as rt
-sess = rt.InferenceSession(&quot;model.onnx&quot;)
-input_name = sess.get_inputs()[0].name
-X = numpy.random.random((3, 4, 5)).astype(numpy.float32)
-pred_onnx = sess.run(None, {input_name: X})
-print(pred_onnx)
-</code></pre>
-
-<h2 id="design-and-key-features">Design and Key Features</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">onnxruntime</span> <span class="kn">as</span> <span class="nn">rt</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="s2">&#34;model.onnx&#34;</span><span class="p">)</span>
+<span class="n">input_name</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">pred_onnx</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">{</span><span class="n">input_name</span><span class="p">:</span> <span class="n">X</span><span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pred_onnx</span><span class="p">)</span>
+</code></pre></div><h2 id="design-and-key-features">Design and Key Features</h2>
 <p><a href="https://github.com/Microsoft/onnxruntime#design-and-key-features">https://github.com/Microsoft/onnxruntime#design-and-key-features</a></p>
-
 <p><a href="https://github.com/Microsoft/onnxruntime/blob/master/docs/HighLevelDesign.md">https://github.com/Microsoft/onnxruntime/blob/master/docs/HighLevelDesign.md</a></p>
-
-<p>各プラットフォーム向けのバックエンドはexecution providerのI/Fを実装する
-サブグラフに分けて別々のexecution providerで実行することも</p>
-
+<p>各プラットフォーム向けのバックエンドはexecution providerのI/Fを実装する サブグラフに分けて別々のexecution providerで実行することも</p>
 <p><a href="https://github.com/Microsoft/onnxruntime/blob/master/include/onnxruntime/core/framework/execution_provider.h">include/onnxruntime/core/framework/execution_provider.h</a></p>
-
 <h2 id="その他1">その他1</h2>
-
 <p>諸々。execution providerや独自Opの対応もやればできる。</p>
-
 <p><a href="https://github.com/Microsoft/onnxruntime/tree/master/docs">https://github.com/Microsoft/onnxruntime/tree/master/docs</a></p>
-
-<p><a href="../include/onnxruntime/core/graph/graph_transformer.h">graph-transformation API</a> によるグラフレベル最適化。</p>
-
+<p><a href="https://tkat0.github.io/posts/include/onnxruntime/core/graph/graph_transformer.h">graph-transformation API</a> によるグラフレベル最適化。</p>
 <p>わりとONNXのOptimizerでもできる気がする。ConvBNFusionでもこんなにコード書くのかーとげんなりしている。</p>
-
 <p><a href="https://github.com/Microsoft/onnxruntime/tree/master/onnxruntime/core/optimizer">https://github.com/Microsoft/onnxruntime/tree/master/onnxruntime/core/optimizer</a></p>
-
 <h2 id="その他2">その他2</h2>
-
 <p>まだa+bのコンパイルしかできないみたいだけど、onnxruntimeのグラフをtvmに変換する部分もある</p>
-
 <p><a href="https://github.com/Microsoft/onnxruntime/tree/master/onnxruntime/core/codegen/tvm">onnxruntime/onnxruntime/core/codegen/tvm/</a></p>
-
-<p>CMakeの<code>onnxruntime_USE_TVM</code>で有効（デフォルト無効）</p>
-
+<p>CMakeのonnxruntime_USE_TVMで有効（デフォルト無効）</p>
 <ul>
 <li><a href="https://github.com/Microsoft/onnxruntime/blob/85ec13f58df7ecec3c81b46b11ec90fa8902f364/onnxruntime/test/tvm/tvm_basic_test.cc#L173">https://github.com/Microsoft/onnxruntime/blob/85ec13f58df7ecec3c81b46b11ec90fa8902f364/onnxruntime/test/tvm/tvm_basic_test.cc#L173</a>
-
 <ul>
 <li>test code</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://github.com/Microsoft/onnxruntime/blob/master/onnxruntime/core/codegen/tvm/tvm_compiler.cc#L71">https://github.com/Microsoft/onnxruntime/blob/master/onnxruntime/core/codegen/tvm/tvm_compiler.cc#L71</a>
-
 <ul>
 <li>onnxruntime::Nodeの入力をTVMのplaceholderに変換。Op(+)部分は決め打ち</li>
-</ul></li>
+</ul>
+</li>
 </ul>
                 </section>
             </article>
@@ -251,15 +215,11 @@ print(pred_onnx)
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
-        </li>
-    
-        <li>
             <a href="https://tkat0.github.io/posts/docker-env-for-distiller/">Distillerの検証環境をDockerで作った<aside class="dates">Feb 22 2019</aside></a>
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
@@ -267,7 +227,7 @@ print(pred_onnx)
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
@@ -276,6 +236,10 @@ print(pred_onnx)
     
         <li>
             <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi 3 B&#43;買ったよ<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -303,7 +267,7 @@ print(pred_onnx)
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

@@ -1,4 +1,0 @@
-<map id="tvm::relay::ShapeOfAttrs" name="tvm::relay::ShapeOfAttrs">
-<area shape="rect" id="node2" href="$classtvm_1_1AttrsNode.html" title="{tvm::AttrsNode\&lt; ShapeOfAttrs \&gt;\n||+ VisitAttrs()\l+ VisitNonDefaultAttrs()\l+ InitByPackedArgs()\l+ ListFieldInfo()\l+ ContentEqual()\l+ ContentHash()\l}" alt="" coords="19,361,255,512"/>
-<area shape="rect" id="node3" href="$classtvm_1_1BaseAttrsNode.html" title="Base class of all attribute class. " alt="" coords="5,132,269,312"/>
-</map>

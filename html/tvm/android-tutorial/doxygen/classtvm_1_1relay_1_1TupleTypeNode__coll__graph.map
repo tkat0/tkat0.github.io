@@ -1,5 +1,0 @@
-<map id="tvm::relay::TupleTypeNode" name="tvm::relay::TupleTypeNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1TypeNode.html" title="Base type of the Relay type hiearchy. " alt="" coords="5,443,269,520"/>
-<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,316,269,393"/>
-<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="149,132,283,253"/>
-</map>

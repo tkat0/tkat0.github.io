@@ -13,9 +13,8 @@
     
   
   
-  <meta name="twitter:title" content="chainer-compiler調査（1）"/>
-  <meta name="twitter:description" content="今日からchainer-compilerについて調べてみよう。
-DeepLearningコンパイラ、先日のFPGAXでも話題になってましたね（リモートでちょっと見てました）"/>
+  <meta name="twitter:title" content="Chainer-compiler調査（1）"/>
+  <meta name="twitter:description" content="今日からChainer-compilerについて調べてみよう。 DeepLearningコンパイラ、先日のFPGAXでも話題になってましたね（リモートでちょっと見てました）"/>
   
     <meta name="twitter:site" content="@_tkato_"/>
   
@@ -30,8 +29,8 @@ DeepLearningコンパイラ、先日のFPGAXでも話題になってましたね
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
-		<title>chainer-compiler調査（1） &middot; tkat0.github.io</title>
+		<meta name="generator" content="Hugo 0.72.0" />
+		<title>Chainer-compiler調査（1） &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
@@ -42,8 +41,6 @@ DeepLearningコンパイラ、先日のFPGAXでも話題になってましたね
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -71,10 +68,11 @@ DeepLearningコンパイラ、先日のFPGAXでも話題になってましたね
             <article>
                 <header>
                     <h1>
-                        chainer-compiler調査（1）
+                        Chainer-compiler調査（1）
                     </h1>
                     <h2 class="headline">
                     Feb 4, 2019 09:30
+                    · 395 words
                     · 2 minute read
                       <span class="tags">
                       
@@ -95,208 +93,166 @@ DeepLearningコンパイラ、先日のFPGAXでも話題になってましたね
                   
                     <div id="toc">
                       <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#examples">Examples</a></li>
-<li><a href="#overview-of-components">Overview of components</a></li>
-<li><a href="#chainer-compiler-python">chainer-compiler/python</a></li>
-<li><a href="#次にやりたいこと">次にやりたいこと</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#examples">Examples</a></li>
+    <li><a href="#overview-of-components">Overview of components</a></li>
+    <li><a href="#chainer-compilerpython">chainer-compiler/python</a></li>
+    <li><a href="#次にやりたいこと">次にやりたいこと</a></li>
+  </ul>
 </nav>
                     </div>
                   
                 
                 <section id="post-body">
-                    <p>今日からchainer-compilerについて調べてみよう。
-DeepLearningコンパイラ、先日の<a href="https://fpgax.connpass.com/event/115446/">FPGAX</a>でも話題になってましたね（リモートでちょっと見てました）</p>
-
+                    <p>今日からChainer-compilerについて調べてみよう。 DeepLearningコンパイラ、先日の<a href="https://fpgax.connpass.com/event/115446/">FPGAX</a>でも話題になってましたね（リモートでちょっと見てました）</p>
 <p>PFNからのreleaseはこれ</p>
-
-<p><a href="https://research.preferred.jp/2019/01/chainerモデルのさらなる高速化、デプロイの簡便化、/">Chainerモデルのさらなる高速化、デプロイの簡便化、可搬性の向上に向けた実験的な取り組みについて | Preferred Research</a></p>
-
+<p><a href="https://tech.preferred.jp/ja/blog/chainer%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E3%81%95%E3%82%89%E3%81%AA%E3%82%8B%E9%AB%98%E9%80%9F%E5%8C%96%E3%80%81%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%AE%E7%B0%A1%E4%BE%BF%E5%8C%96%E3%80%81/">Chainerモデルのさらなる高速化、デプロイの簡便化、可搬性の向上に向けた実験的な取り組みについて | Preferred Research</a></p>
 <p>今日見るソースとバージョンはこれ。experimentalな点注意。</p>
-
-<p>pfnet-research/chainer-compiler at 1c788abbaf5fc74533d332b3141d5a141b6db020 <br />
+<p>pfnet-research/chainer-compiler at 1c788abbaf5fc74533d332b3141d5a141b6db020
 <a href="https://github.com/pfnet-research/chainer-compiler/tree/1c788abbaf5fc74533d332b3141d5a141b6db020">https://github.com/pfnet-research/chainer-compiler/tree/1c788abbaf5fc74533d332b3141d5a141b6db020</a></p>
-
 <p>READMEをよむ</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">This is an experimental toolchain expected to be used with Chainer. This project aims to achieve a bunch of correlated goals such as
 
-<pre><code>This is an experimental toolchain expected to be used with Chainer. This project aims to achieve a bunch of correlated goals such as
-
-- Make Python Chainer model deployable without Python runtime
-- Efficiently execute Chainer models with optimization techniques
-- Integrate Chainer with other systems or domain-specific chips
-- Be a playground to try algorithms for neural network frameworks
+<span class="k">-</span> Make Python Chainer model deployable without Python runtime
+<span class="k">-</span> Efficiently execute Chainer models with optimization techniques
+<span class="k">-</span> Integrate Chainer with other systems or domain-specific chips
+<span class="k">-</span> Be a playground to try algorithms for neural network frameworks
 without sacrificing flexibility and coverage of Chainer.
-</code></pre>
-
-<p>思ったこと</p>
-
+</code></pre></div><p>思ったこと</p>
 <ul>
 <li>パフォーマンスはバックエンド次第だけど、モデルの前処理後処理の行列演算までPythonで記述しそれをコンパイルできるのはかなり便利（移植コスト等々の観点で）
-
 <ul>
 <li>Pythonの構文木を解釈するってことで点では、利用者からしても嬉しい
-
 <ul>
 <li>専用の関数等でAST構築しなくても、Pythonで書けばコンパイルできる</li>
-</ul></li>
-<li>TVMでもPython→任意バックエンドへのコンパイルは実現できるけど、tvmのAPIでIRを構築する必要がある ← これ結構めんどいんだよな
-
-<ul>
-<li>tvmのhybrid frontendはPython構文をコンパイルできるように見せかけている点で、chainer-compilerとはアプローチが違うような気がする（たぶん）
-<br /></li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+<li>TVMでもPython→任意バックエンドへのコンパイルは実現できるけど、tvmのAPIでIRを構築する必要がある ← これ結構めんどいんだよな
+<ul>
+<li>tvmのhybrid frontendはPython構文をコンパイルできるように見せかけている点で、chainer-compilerとはアプローチが違うような気がする（たぶん）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p>さらに読む</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">To achieve these goals, this toolchain
 
-<pre><code>To achieve these goals, this toolchain
-
-- Translates Python AST to extended ONNX. As this is a compiler rather than an execution tracer, it can export Python code with control-flows (e.g., LSTM with attention written by Python's loop)
-- Modifies the graph for optimization, auto-differentiation, etc. It then generates deployable code.
-- Runs the exported code with ChainerX's C++ API. Currently, the only backend it supports is a simple virtual machine implemented by ChainerX.
+<span class="k">-</span> Translates Python AST to extended ONNX. As this is a compiler rather than an execution tracer, it can export Python code with control-flows (e.g., LSTM with attention written by Python&#39;s loop)
+<span class="k">-</span> Modifies the graph for optimization, auto-differentiation, etc. It then generates deployable code.
+<span class="k">-</span> Runs the exported code with ChainerX&#39;s C++ API. Currently, the only backend it supports is a simple virtual machine implemented by ChainerX.
 
 This project is still in the early stage and is not expected to be used by end-users. Interfaces can change quickly and some features may be abandoned. That said, it will be appreciated if you try this a bit and give us any feedbacks. Also, importantly, we are hiring! If you are interested in working on deep learning frameworks, please consider applying to Preferred Networks.
-</code></pre>
-
-<ul>
-<li>いつぞや<code>ONNX+</code>といってたやつかな</li>
+</code></pre></div><ul>
+<li>いつぞやONNX+といってたやつかな</li>
 <li>Python → ONNX+ → 最適化等々 → codegenって感じかな</li>
 <li>現在対応するバックエンドは、ChainerXのVM向け
-
 <ul>
 <li>NVRTCとTVMのバックエンドも開発すすんでるみたい</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="examples">Examples</h2>
-
 <p>雰囲気はexampleをみるとわかりやすい</p>
-
-<p>chainer-compiler/train_mnist.py at 1c788abbaf5fc74533d332b3141d5a141b6db020 · pfnet-research/chainer-compiler <br />
+<p>chainer-compiler/train_mnist.py at 1c788abbaf5fc74533d332b3141d5a141b6db020 · pfnet-research/chainer-compiler
 <a href="https://github.com/pfnet-research/chainer-compiler/blob/1c788abbaf5fc74533d332b3141d5a141b6db020/examples/mnist/train_mnist.py">https://github.com/pfnet-research/chainer-compiler/blob/1c788abbaf5fc74533d332b3141d5a141b6db020/examples/mnist/train_mnist.py</a></p>
-
 <p>コンパイルしたグラフをそのままPythonからtraining-loopで呼び出せるのかー。</p>
-
-<pre><code class="language-python">    # Set up a neural network to train
-    # Classifier reports softmax cross entropy loss and accuracy at every
-    # iteration, which will be used by the PrintReport extension below.
-    mlp = MLP(args.unit, 10)
-    if args.compile:
-        mlp = chainer_compiler.compile(mlp, dump_onnx=args.dump_onnx) # これな
-    model = L.Classifier(mlp)
-    model.to_device(device)
-    device.use()
-</code></pre>
-
-<h2 id="overview-of-components">Overview of components</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># Set up a neural network to train</span>
+    <span class="c1"># Classifier reports softmax cross entropy loss and accuracy at every</span>
+    <span class="c1"># iteration, which will be used by the PrintReport extension below.</span>
+    <span class="n">mlp</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">compile</span><span class="p">:</span>
+        <span class="n">mlp</span> <span class="o">=</span> <span class="n">chainer_compiler</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">mlp</span><span class="p">,</span> <span class="n">dump_onnx</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">dump_onnx</span><span class="p">)</span> <span class="c1"># これな</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">Classifier</span><span class="p">(</span><span class="n">mlp</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">to_device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">use</span><span class="p">()</span>
+</code></pre></div><h2 id="overview-of-components">Overview of components</h2>
 <p>コンポーネントを知る</p>
-
-<p>chainer-compiler/overview.md at 1c788abbaf5fc74533d332b3141d5a141b6db020 · pfnet-research/chainer-compiler <br />
+<p>chainer-compiler/overview.md at 1c788abbaf5fc74533d332b3141d5a141b6db020 · pfnet-research/chainer-compiler
 <a href="https://github.com/pfnet-research/chainer-compiler/blob/1c788abbaf5fc74533d332b3141d5a141b6db020/docs/overview.md">https://github.com/pfnet-research/chainer-compiler/blob/1c788abbaf5fc74533d332b3141d5a141b6db020/docs/overview.md</a></p>
-
 <p>プロジェクトルート以下の各ディレクトリについて</p>
-
 <ul>
 <li>ch2o
-
 <ul>
 <li>Python-to-ONNXコンパイラ。CHainer2Onnxの略かな</li>
-</ul></li>
+</ul>
+</li>
 <li>elichika
-
 <ul>
 <li>ch2oを置き換えるために（おっ？）開発してるPython-to-ONNXコンパイラ</li>
 <li>まだtop-levelのapiからはelichikaは呼び出されていないみたい。ch2oを使っている。いずれ置き換えてくのか。</li>
-</ul></li>
+</ul>
+</li>
 <li>common
-
 <ul>
 <li>C++ functions which are used by other components.</li>
-</ul></li>
+</ul>
+</li>
 <li>compiler
-
 <ul>
 <li>コアっぽいなー</li>
 <li>ONNXグラフの操作</li>
 <li>自動微分</li>
-<li><strong>Naive code generators which uses NVRTC/TVM</strong></li>
+<li>Naive code generators which uses NVRTC/TVM</li>
 <li>Generate code for XCVM, a virtual machine based on ChainerX</li>
 <li>gen_node.pyについては後述</li>
-</ul></li>
+</ul>
+</li>
 <li>runtime
-
 <ul>
 <li>XCVMの実装. ChainerX側に実装してあるのかと思ってたけど、ここにあったのね</li>
-</ul></li>
+</ul>
+</li>
 <li>python
-
 <ul>
-<li>ここの先程のexampleの<code>chainer_compiler.compile</code>などが実装</li>
-</ul></li>
+<li>ここの先程のexampleのchainer_compiler.compileなどが実装</li>
+</ul>
+</li>
 <li>tools</li>
 <li>scripts</li>
 </ul>
-
-<h2 id="chainer-compiler-python">chainer-compiler/python</h2>
-
-<p>chainer-compiler/python at 1c788abbaf5fc74533d332b3141d5a141b6db020 · pfnet-research/chainer-compiler <br />
+<h2 id="chainer-compilerpython">chainer-compiler/python</h2>
+<p>chainer-compiler/python at 1c788abbaf5fc74533d332b3141d5a141b6db020 · pfnet-research/chainer-compiler
 <a href="https://github.com/pfnet-research/chainer-compiler/tree/1c788abbaf5fc74533d332b3141d5a141b6db020/python">https://github.com/pfnet-research/chainer-compiler/tree/1c788abbaf5fc74533d332b3141d5a141b6db020/python</a></p>
-
 <ul>
-<li><code>chainer_compiler_core.cc</code> をpybind11でwrapして、<code>chainer_compiler.py</code>からコールしてる</li>
-<li>現状は<code>ch2o</code>をつかっている（elichikaは使ってない）</li>
-<li><code>chainer_compiler_tvm.py</code>
-
+<li>chainer_compiler_core.cc をpybind11でwrapして、chainer_compiler.pyからコールしてる</li>
+<li>現状はch2oをつかっている（elichikaは使ってない）</li>
+<li>chainer_compiler_tvm.py
 <ul>
-<li><code>chainer_compiler.tvm.schedule_conv2d</code>などをTVMのoperator registryへ登録している</li>
+<li>chainer_compiler.tvm.schedule_conv2dなどをTVMのoperator registryへ登録している</li>
 <li>以下で呼ばれてる
-
 <ul>
-<li><code>tools/run_onnx.py</code></li>
-<li><code>tools/train_imagenet.py</code></li>
-</ul></li>
-<li>登録したOp自体は<code>compiler/tvm/compiler.cc</code>で呼ばれてる。TVMCompiler is 何
-
-<ul>
-<li><a href="https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/compiler/tvm/compiler.cc#L142-L149">https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/compiler/tvm/compiler.cc#L142-L149</a>
-<br />
-<br /></li>
-</ul></li>
-</ul></li>
+<li>tools/run_onnx.py</li>
+<li>tools/train_imagenet.py</li>
 </ul>
-
-<h2 id="次にやりたいこと">次にやりたいこと</h2>
-
+</li>
+</ul>
+</li>
+<li>登録したOp自体はcompiler/tvm/compiler.ccで呼ばれてる。TVMCompiler is 何
 <ul>
-<li>動かしてみる</li>
+<li><a href="https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/compiler/tvm/compiler.cc#L142-L149">https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/compiler/tvm/compiler.cc#L142-L149</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="次にやりたいこと">次にやりたいこと</h2>
+<p>動かしてみる</p>
+<ul>
 <li>Python -&gt; XCVMへ変換するまでのフローを追ってみる</li>
 <li>XCVMの仕様を調べる
-
 <ul>
-<li><code>Most operations are/should be simple wrappers of ChainerX's routines</code> らしいのでわかりやすそうではある
-<br /></li>
-</ul></li>
+<li>Most operations are/should be simple wrappers of ChainerX&rsquo;s routines らしいのでわかりやすそうではある</li>
 </ul>
-
-<p>通勤前の1時間程度で調べられる範囲を調べてみた。
-時間を区切ってblog書いたほうが続けられる気がした。
-気が済むまで調べてみて、その後まとめるかなという気持ち。</p>
-
+</li>
+</ul>
+<p>通勤前の1時間程度で調べられる範囲を調べてみた。 時間を区切ってblog書いたほうが続けられる気がした。 気が済むまで調べてみて、その後まとめるかなという気持ち。</p>
 <p>この辺の気持ちが強い</p>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">やっぱ適切な時間働いて、余暇で次の勉強してかないと取り残されるなーと思うこの頃です。</p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1088819537619894272?ref_src=twsrc%5Etfw">January 25, 2019</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">やっぱ適切な時間働いて、余暇で次の勉強してかないと取り残されるなーと思うこの頃です。</p>&mdash; _tkato_ (@_tkato_) <a href="https://twitter.com/_tkato_/status/1088819537619894272?ref_src=twsrc%5Etfw">January 25, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=chainer-compiler%e8%aa%bf%e6%9f%bb%ef%bc%881%ef%bc%89 by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2flearn-chainer-compiler-1%2f "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=Chainer-compiler%e8%aa%bf%e6%9f%bb%ef%bc%881%ef%bc%89 by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2flearn-chainer-compiler-1%2f "><span class="icon-twitter"> tweet</span></a>
 
             
 
@@ -322,11 +278,7 @@ This project is still in the early stage and is not expected to be used by end-u
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -334,7 +286,7 @@ This project is still in the early stage and is not expected to be used by end-u
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
@@ -347,6 +299,10 @@ This project is still in the early stage and is not expected to be used by end-u
     
         <li>
             <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi 3 B&#43;買ったよ<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -374,7 +330,7 @@ This project is still in the early stage and is not expected to be used by end-u
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

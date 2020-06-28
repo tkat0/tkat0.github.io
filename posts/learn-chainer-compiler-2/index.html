@@ -13,8 +13,8 @@
     
   
   
-  <meta name="twitter:title" content="chainer-compiler調査（2）"/>
-  <meta name="twitter:description" content="コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。"/>
+  <meta name="twitter:title" content="Chainer-compiler調査（2）"/>
+  <meta name="twitter:description" content="Chainer-compilerの調査その2"/>
   
     <meta name="twitter:site" content="@_tkato_"/>
   
@@ -29,8 +29,8 @@
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
-		<title>chainer-compiler調査（2） &middot; tkat0.github.io</title>
+		<meta name="generator" content="Hugo 0.72.0" />
+		<title>Chainer-compiler調査（2） &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/highlight.css">
@@ -41,8 +41,6 @@
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -70,10 +68,11 @@
             <article>
                 <header>
                     <h1>
-                        chainer-compiler調査（2）
+                        Chainer-compiler調査（2）
                     </h1>
                     <h2 class="headline">
                     Feb 6, 2019 09:30
+                    · 135 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -94,140 +93,101 @@
                   
                     <div id="toc">
                       <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#examples-train-mnist-py">examples/train_mnist.py</a></li>
-<li><a href="#compiledmodel-forward">CompiledModel#forward</a></li>
-<li><a href="#compiledmodel-compile">CompiledModel#compile</a></li>
-<li><a href="#runcompiledmodel-forward">RunCompiledModel#forward</a></li>
-<li><a href="#その他">その他</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#examplestrain_mnistpy">examples/train_mnist.py</a></li>
+    <li><a href="#compiledmodelforward">CompiledModel#forward</a></li>
+    <li><a href="#compiledmodelcompile">CompiledModel#compile</a></li>
+    <li><a href="#runcompiledmodelforward">RunCompiledModel#forward</a></li>
+    <li><a href="#その他">その他</a></li>
+  </ul>
 </nav>
                     </div>
                   
                 
                 <section id="post-body">
-                    <p>コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。</p>
-
+                    <p>Chainer-compilerの調査その2</p>
+<p>コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。</p>
 <p>前回</p>
-
 <ul>
-<li><a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1） · tkat0.github.io</a></li>
+<li><a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1） · tkat0.github.io</a></li>
 </ul>
-
 <p>今回は、Python -&gt; XCVMへ変換するまでのフローを追ってみる(今回は途中まで)</p>
-
 <p>対象としたコードは今朝のmaster</p>
-
 <p><a href="https://github.com/pfnet-research/chainer-compiler/tree/fba53f165cf3f3c6bfb9f1bc18b54e2320830961">pfnet-research/chainer-compiler@fba53f1</a></p>
-
-<h2 id="examples-train-mnist-py">examples/train_mnist.py</h2>
-
-<pre><code class="language-python">mlp = MLP(args.unit, 10)
-mlp = chainer_compiler.compile(mlp, dump_onnx=args.dump_onnx)
-</code></pre>
-
-<p>chainer_compiler.compileの戻り値mlpは、<code>CompiledModel</code>クラスのオブジェクト。
-これ自体は<code>chainer.Chain</code>のサブクラスなので、通常のモデルとして振る舞う。</p>
-
-<p>なので、<code>CompiledModel#forward</code>から見ていく</p>
-
-<h2 id="compiledmodel-forward">CompiledModel#forward</h2>
-
+<h2 id="examplestrain_mnistpy">examples/train_mnist.py</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">mlp</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">mlp</span> <span class="o">=</span> <span class="n">chainer_compiler</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">mlp</span><span class="p">,</span> <span class="n">dump_onnx</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">dump_onnx</span><span class="p">)</span>
+</code></pre></div><p>chainer_compiler.compileの戻り値mlpは、CompiledModelクラスのオブジェクト。 これ自体はchainer.Chainのサブクラスなので、通常のモデルとして振る舞う。</p>
+<p>なので、CompiledModel#forwardから見ていく</p>
+<h2 id="compiledmodelforward">CompiledModel#forward</h2>
 <ul>
-<li>モデルがコンパイルされていない場合は通常のChainerで推論実行し、次の実行のためにコンパイル(<code>CompiledModel#compile</code>)
-
+<li>モデルがコンパイルされていない場合は通常のChainerで推論実行し、次の実行のためにコンパイル(CompiledModel#compile)
 <ul>
-<li><code>__init__</code>でコンパイルするようにもできる</li>
-</ul></li>
-<li>入力とパラメータを<code>RunCompiledModel</code>に渡して推論
-
-<ul>
-<li>これは<code>FunctionNode</code>のサブクラスなので、<code>F.relu</code>とかと同じように振る舞う</li>
-</ul></li>
+<li>__init__でコンパイルするようにもできる</li>
 </ul>
-
-<h2 id="compiledmodel-compile">CompiledModel#compile</h2>
-
+</li>
+<li>入力とパラメータをRunCompiledModelに渡して推論
 <ul>
-<li><code>ch2o.compile_model</code> でコンパイル</li>
+<li>これはFunctionNodeのサブクラスなので、F.reluとかと同じように振る舞う</li>
+</ul>
+</li>
+</ul>
+<h2 id="compiledmodelcompile">CompiledModel#compile</h2>
+<ul>
+<li>ch2o.compile_model でコンパイル</li>
 <li>self.fwd, self.bwd。これが推論のコアAPI</li>
 </ul>
-
 <p>流れとしてはこんなかんじ（抜粋）</p>
-
-<pre><code class="language-python">xmodel = ch2o.compile_model(self.mc, inputs)
-# これをファイルにダンプして
-...
-# ここで読み込む
-graph = chainer_compiler_core.load(f.name)
-...
-fwd_graph, bwd_graph = graph.backward_to(graph.input_names())
-...
-self.fwd = fwd_graph.compile()
-self.bwd = bwd_graph.compile()
-</code></pre>
-
-<p>xmodelやgraphはONNX相当っぽい。</p>
-
-<p>追記: 以下の補足を頂きました。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">xmodel</span> <span class="o">=</span> <span class="n">ch2o</span><span class="o">.</span><span class="n">compile_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mc</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+<span class="c1"># これをファイルにダンプして</span>
+<span class="o">...</span>
+<span class="c1"># ここで読み込む</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">chainer_compiler_core</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">fwd_graph</span><span class="p">,</span> <span class="n">bwd_graph</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">backward_to</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">input_names</span><span class="p">())</span>
+<span class="o">...</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">fwd</span> <span class="o">=</span> <span class="n">fwd_graph</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">bwd</span> <span class="o">=</span> <span class="n">bwd_graph</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<span class="n">xmodelやgraphはONNX相当っぽい</span><span class="err">。</span>
+</code></pre></div><p>追記: 以下の補足を頂きました。</p>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">調査ありがとうございます。xmodelもgraphもONNX相当というのはそうなのですが、前者はonnx::ModelProtoで後者はそれをデシリアライズしたchainer_compiler::Graphになっていて、変数名が xmodel とか xgraph とか x がついてると onnx:: みたいなことで使いわけています</p>&mdash; shinichiro hamaji (@shinh) <a href="https://twitter.com/shinh/status/1092954048989294592?ref_src=twsrc%5Etfw">February 6, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
-<p><code>chainer_compiler_core</code>は、<code>chainer_compiler_core.cc</code></p>
-
+<p>chainer_compiler_coreは、chainer_compiler_core.cc</p>
 <p>APIは以下</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">PYBIND11_MODULE</span><span class="p">(</span><span class="n">chainer_compiler_core</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// NOLINT
+</span><span class="c1"></span>    <span class="n">m</span><span class="p">.</span><span class="n">doc</span><span class="p">()</span> <span class="o">=</span> <span class="s">&#34;chainer_compiler&#34;</span><span class="p">;</span>
 
-<pre><code class="language-python">PYBIND11_MODULE(chainer_compiler_core, m) {  // NOLINT
-    m.doc() = &quot;chainer_compiler&quot;;
+    <span class="n">InitGraph</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 
-    InitGraph(m);
+    <span class="n">InitXCVMVar</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 
-    InitXCVMVar(m);
+    <span class="n">InitXCVM</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 
-    InitXCVM(m);
-
-    m.def(&quot;load&quot;, &amp;LoadGraph, &quot;Load an ONNX model&quot;);
-    m.def(&quot;value&quot;, &amp;CreateValueFromArray, &quot;Create an XCVMVar from a ChainerX Array&quot;);
-    m.def(&quot;value&quot;, &amp;CreateValueFromSequence, &quot;Create an XCVMVar from a sequence of XCVMVars&quot;);
-}
-</code></pre>
-
-<h2 id="runcompiledmodel-forward">RunCompiledModel#forward</h2>
-
+    <span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&#34;load&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">LoadGraph</span><span class="p">,</span> <span class="s">&#34;Load an ONNX model&#34;</span><span class="p">);</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&#34;value&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CreateValueFromArray</span><span class="p">,</span> <span class="s">&#34;Create an XCVMVar from a ChainerX Array&#34;</span><span class="p">);</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&#34;value&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CreateValueFromSequence</span><span class="p">,</span> <span class="s">&#34;Create an XCVMVar from a sequence of XCVMVars&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="runcompiledmodelforward">RunCompiledModel#forward</h2>
 <ul>
-<li>これがコンパイル済モデルを実行するメインの部分</li>
-<li><code>outputs = self.fwd.run(inputs)</code>
-
+<li>これがコンパイル済モデルを実行するメインの部分
 <ul>
-<li>self.fwdはCompiledModelでコンパイルしたそれが渡されているだけ</li>
-</ul></li>
+<li>outputs = self.fwd.run(inputs)</li>
 </ul>
-
+</li>
+<li>self.fwdはCompiledModelでコンパイルしたそれが渡されているだけ</li>
+</ul>
 <h2 id="その他">その他</h2>
-
-<p><i class="fa fa-heart" aria-hidden="true"></i></p>
-
-<pre><code class="language-python">    # sliceがIdxの場合は、Idxのexprにlistが来うる可能性があるのでGatherする
-    # Numpyのsliceは闇では...???
-    # TODO(satos) Sliceの実装を&quot;ちゃんと&quot;したものにする(現在だと v[0:1,[2,3]] みたいなのは動かない)
-    # あと、これだとIndexに副作用が存在する場合にやばい
-</code></pre>
-
-<p><a href="https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/ch2o/ch2o/chainer2onnx.py#L840-L860">https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/ch2o/ch2o/chainer2onnx.py#L840-L860</a></p>
-
-<hr />
-
-<p>次回はCPP周りを見ていく。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># sliceがIdxの場合は、Idxのexprにlistが来うる可能性があるのでGatherする</span>
+    <span class="c1"># Numpyのsliceは闇では...???</span>
+    <span class="c1"># TODO(satos) Sliceの実装を&#34;ちゃんと&#34;したものにする(現在だと v[0:1,[2,3]] みたいなのは動かない)</span>
+    <span class="c1"># あと、これだとIndexに副作用が存在する場合にやばい</span>
+</code></pre></div><p><a href="https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/ch2o/ch2o/chainer2onnx.py#L840-L860">https://github.com/pfnet-research/chainer-compiler/blob/d6ab1e0612a8db1ed1bb20c792100e81de8b597a/ch2o/ch2o/chainer2onnx.py#L840-L860</a></p>
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=chainer-compiler%e8%aa%bf%e6%9f%bb%ef%bc%882%ef%bc%89 by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2flearn-chainer-compiler-2%2f "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=Chainer-compiler%e8%aa%bf%e6%9f%bb%ef%bc%882%ef%bc%89 by @_tkato_ https%3a%2f%2ftkat0.github.io%2fposts%2flearn-chainer-compiler-2%2f "><span class="icon-twitter"> tweet</span></a>
 
             
 
@@ -253,11 +213,7 @@ self.bwd = bwd_graph.compile()
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -269,7 +225,7 @@ self.bwd = bwd_graph.compile()
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
@@ -278,6 +234,10 @@ self.bwd = bwd_graph.compile()
     
         <li>
             <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi 3 B&#43;買ったよ<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -305,7 +265,7 @@ self.bwd = bwd_graph.compile()
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

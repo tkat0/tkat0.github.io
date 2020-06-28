@@ -14,8 +14,7 @@
   
   
   <meta name="twitter:title" content="タスクランナーをmakeからcargo-makeへ移行"/>
-  <meta name="twitter:description" content="cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。
-今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。"/>
+  <meta name="twitter:description" content="cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。 今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。"/>
   
     <meta name="twitter:site" content="@_tkato_"/>
   
@@ -30,7 +29,7 @@
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>タスクランナーをmakeからcargo-makeへ移行 &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
@@ -42,8 +41,6 @@
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -75,12 +72,13 @@
                     </h1>
                     <h2 class="headline">
                     Jun 30, 2019 18:00
+                    · 456 words
                     · 3 minute read
                       <span class="tags">
                       
                       
                           
-                              <a href="https://tkat0.github.io/tags/rust">RUST</a>
+                              <a href="https://tkat0.github.io/tags/rust">rust</a>
                           
                       
                       
@@ -91,345 +89,244 @@
                   
                     <div id="toc">
                       <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#やりたかったことや-既存のツールでの課題">やりたかったことや、既存のツールでの課題</a></li>
-<li><a href="#cargo-make">cargo-make</a>
-<ul>
-<li><a href="#シェルスクリプトを直接書く">シェルスクリプトを直接書く</a></li>
-<li><a href="#pythonスクリプトを直接書く">Pythonスクリプトを直接書く</a></li>
-<li><a href="#コマンドライン引数の読み取り">コマンドライン引数の読み取り</a></li>
-<li><a href="#extend">Extend</a></li>
-<li><a href="#その他の機能">その他の機能</a></li>
-</ul></li>
-<li><a href="#感想">感想</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#やりたかったことや既存のツールでの課題">やりたかったことや、既存のツールでの課題</a></li>
+    <li><a href="#cargo-make">cargo-make</a>
+      <ul>
+        <li><a href="#シェルスクリプトを直接書く">シェルスクリプトを直接書く</a></li>
+        <li><a href="#pythonスクリプトを直接書く">Pythonスクリプトを直接書く</a></li>
+        <li><a href="#コマンドライン引数の読み取り">コマンドライン引数の読み取り</a></li>
+        <li><a href="#extend">Extend</a></li>
+        <li><a href="#その他の機能">その他の機能</a></li>
+      </ul>
+    </li>
+    <li><a href="#感想">感想</a></li>
+  </ul>
 </nav>
                     </div>
                   
                 
                 <section id="post-body">
-                    <p>cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。
-今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。</p>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">makeをタスクランナーにしてたけど、こっちのがいいな。rustのプロジェクトに限らず使いたいレベル<a href="https://t.co/SWbDLT5hAz">https://t.co/SWbDLT5hAz</a></p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1143394139569975296?ref_src=twsrc%5Etfw">June 25, 2019</a></blockquote>
+                    <p>cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。 今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">makeをタスクランナーにしてたけど、こっちのがいいな。rustのプロジェクトに限らず使いたいレベル<a href="https://t.co/SWbDLT5hAz">https://t.co/SWbDLT5hAz</a></p>&mdash; _tkato_ (@_tkato_) <a href="https://twitter.com/_tkato_/status/1143394139569975296?ref_src=twsrc%5Etfw">June 25, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p><a href="https://sagiegurari.github.io/cargo-make/">cargo-make | Rust task runner and build tool.</a></p>
-
 <p>Rustじゃないプロジェクトでも普通に使えるので、Pythonをメインでつかう機械学習エンジニアの人でも使うと便利になると思う。</p>
-
 <p>何ができるかというと、</p>
-
 <p>まずインストール。後述するがRustがない環境向けにバイナリも配布されてる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cargo install --force cargo-make
+</code></pre></div><p>以下のように、タスクをMakefile.tomlに書いて、</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">BUILD</span><span class="p">]</span>
+<span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;Build hoge&#34;</span>
+<span class="nx">script</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">#!/usr/bin/env bash
+</span><span class="s1">echo &#34;build ${@}...&#34;
+</span><span class="s1">&#39;&#39;&#39;</span><span class="p">]</span>
 
-<pre><code class="language-bash">cargo install --force cargo-make
-</code></pre>
-
-<p>以下のように、タスクをMakefile.tomlに書いて、</p>
-
-<pre><code class="language-toml">[tasks.BUILD]
-description = &quot;Build hoge&quot;
-script = ['''
-#!/usr/bin/env bash
-echo &quot;build ${@}...&quot;
-''']
-
-[tasks.TEST]
-description = &quot;Test hoge&quot;
-script = ['''
-#!/usr/bin/env python3
-print(&quot;test ...&quot;)
-''']
-dependencies = [&quot;BUILD&quot;]
-</code></pre>
-
-<p><code>cargo make TEST</code> あるいは <code>makers TEST</code> で実行。後者のが短いので好き。
-これは<code>BUILD(bash)-&gt;TEST(python)</code>と依存するスクリプトを流した例。
-以下のように、タスクが実行されログが出る。</p>
-
-<pre><code class="language-toml">$ makers TEST -- --option-a --option-b
-[cargo-make] INFO - makers 0.20.0
-[cargo-make] INFO - Using Build File: Makefile.toml
-[cargo-make] INFO - Task: TEST
-[cargo-make] INFO - Profile: development
-[cargo-make] INFO - Running Task: init
-[cargo-make] INFO - Running Task: BUILD
-[cargo-make] INFO - Execute Command: &quot;/usr/bin/env&quot; &quot;bash&quot; &quot;/var/folders/wc/k31v1cd10pg3l46x7q7kc1wjjk8c7c/T/cargo-make/x9KmMmJyej.sh&quot; &quot;--option-a&quot; &quot;--option-b&quot;
+<span class="p">[</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">TEST</span><span class="p">]</span>
+<span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;Test hoge&#34;</span>
+<span class="nx">script</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">#!/usr/bin/env python3
+</span><span class="s1">print(&#34;test ...&#34;)
+</span><span class="s1">&#39;&#39;&#39;</span><span class="p">]</span>
+<span class="nx">dependencies</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;BUILD&#34;</span><span class="p">]</span>
+</code></pre></div><p><code>cargo make TEST</code> あるいは <code>makers TEST</code> で実行。後者のが短いので好き。 これは <code>BUILD(bash)-&gt;TEST(python)</code> と依存するスクリプトを流した例。 以下のように、タスクが実行されログが出る。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ makers TEST -- --option-a --option-b
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - makers 0.20.0
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Using Build File: Makefile.toml
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Task: TEST
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Profile: development
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Running Task: init
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Running Task: BUILD
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Execute Command: <span class="s2">&#34;/usr/bin/env&#34;</span> <span class="s2">&#34;bash&#34;</span> <span class="s2">&#34;/var/folders/wc/k31v1cd10pg3l46x7q7kc1wjjk8c7c/T/cargo-make/x9KmMmJyej.sh&#34;</span> <span class="s2">&#34;--option-a&#34;</span> <span class="s2">&#34;--option-b&#34;</span>
 build --option-a --option-b...
-[cargo-make] INFO - Running Task: TEST
-[cargo-make] INFO - Execute Command: &quot;/usr/bin/env&quot; &quot;python3&quot; &quot;/var/folders/wc/k31v1cd10pg3l46x7q7kc1wjjk8c7c/T/cargo-make/LwmKbxQaWP.sh&quot; &quot;--option-a&quot; &quot;--option-b&quot;
-test ...
-[cargo-make] INFO - Running Task: end
-[cargo-make] INFO - Build Done  in 0 seconds.
-</code></pre>
-
-<h2 id="やりたかったことや-既存のツールでの課題">やりたかったことや、既存のツールでの課題</h2>
-
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Running Task: TEST
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Execute Command: <span class="s2">&#34;/usr/bin/env&#34;</span> <span class="s2">&#34;python3&#34;</span> <span class="s2">&#34;/var/folders/wc/k31v1cd10pg3l46x7q7kc1wjjk8c7c/T/cargo-make/LwmKbxQaWP.sh&#34;</span> <span class="s2">&#34;--option-a&#34;</span> <span class="s2">&#34;--option-b&#34;</span>
+<span class="nb">test</span> ...
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Running Task: end
+<span class="o">[</span>cargo-make<span class="o">]</span> INFO - Build Done  in <span class="m">0</span> seconds.
+</code></pre></div><h2 id="やりたかったことや既存のツールでの課題">やりたかったことや、既存のツールでの課題</h2>
 <p>それなりのプロジェクトで作業していると、メインのソフトウェアを書く以外にも以下のようなタスクが発生する。</p>
-
 <ul>
 <li>CIでのビルドやテスト、デプロイ</li>
 <li>データのダウンロード</li>
 <li>ドキュメントのビルド</li>
 <li>開発ツールの起動</li>
 </ul>
-
-<p>こうしたタスクを簡単に実行できるようにするために、Makefileを書いて <code>make build test deploy</code> とかで実行できるようにしておくと便利だ。
-Makefileをタスクランナーとして上記のようなことをする例としては、 <a href="https://github.com/docker-science/cookiecutter-docker-science">cookiecutter-docker-science</a>の
-の<a href="https://github.com/docker-science/cookiecutter-docker-science/blob/master/%7B%7B%20cookiecutter.project_slug%20%7D%7D/Makefile">Makefile</a>を見ると雰囲気がわかる。
-これは当時かなりお世話になったツールです。</p>
-
-<p>しかし、Makefileは書きにくい。凝ったことは難しいのでシェルスクリプト別に書いてそれをMakefileから呼んで…と、
-いつの間にかCI用のオレオレフレームワークができてしまってメンテナンス辛い、みたいな感じになると思う。
-この課題感に共感できる方はご飯食べに行きましょう（愚痴りましょう）。</p>
-
-<p>特に、リリースビルドやデバッグビルドなどのオプションを実行時に与えたいときはmakeで実現するのは面倒た。
-とはいえ、AirflowやDigdag、Luigiなどワークフローエンジンを覚えたり開発環境に入れたりして使うほどでもないし、何より複雑にしたくない。<sup class="footnote-ref" id="fnref:digdag"><a href="#fn:digdag">1</a></sup></p>
-
+<p>こうしたタスクを簡単に実行できるようにするために、Makefileを書いて <code>make build test deploy</code> とかで実行できるようにしておくと便利だ。 Makefileをタスクランナーとして上記のようなことをする例としては、 <a href="https://github.com/docker-science/cookiecutter-docker-science/blob/master/%7B%7B%20cookiecutter.project_slug%20%7D%7D/Makefile">cookiecutter-docker-scienceのMakefile</a>を見ると雰囲気がわかる。 これは当時かなりお世話になったツールです。</p>
+<p>しかし、Makefileは書きにくい。凝ったことは難しいのでシェルスクリプト別に書いてそれをMakefileから呼んで…と、 いつの間にかCI用のオレオレフレームワークができてしまってメンテナンス辛い、みたいな感じになると思う。 この課題感に共感できる方はご飯食べに行きましょう（愚痴りましょう）。</p>
+<p>特に、リリースビルドやデバッグビルドなどのオプションを実行時に与えたいときはmakeで実現するのは面倒だ。
+とはいえ、AirflowやDigdag、Luigiなどワークフローエンジンを覚えたり開発環境に入れたりして使うほどでもないし、何より複雑にしたくない。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>使ったことないチームメンバでも、ぱっとみて、あーなるほどとなり、公式のドキュメントを見れば1時間もあればそれなりに使いこなせて、makeとワークフローエンジンの中間にあるくらいのものが欲しかった。</p>
-
 <h2 id="cargo-make">cargo-make</h2>
-
-<p>前置きが長くなったが、上記を解決してくれるなと思ったのがcargo-cmakeだった。
-cargo-makeは、Makeの上位互換のような印象。
-依存関係をもつタスクを簡単に定義できるのはもちろん、Makefile.tomlの継承やPythonスクリプトやシェルスクリプトの直書きなど、
-タスクランナーとしてやりたいことはたいていカバーされていて便利だった。なにより記法や概念がシンプルでわかりやすかった。</p>
-
-<p>Rustじゃないプロジェクトでも簡単に使えるのがポイント。
-各プラットフォーム向けにビルド済みのバイナリがGitHubでリリースされているので、Rustの環境がないところでもうごくはず。</p>
-
+<p>前置きが長くなったが、上記を解決してくれるなと思ったのがcargo-cmakeだった。 cargo-makeは、Makeの上位互換のような印象。 依存関係をもつタスクを簡単に定義できるのはもちろん、Makefile.tomlの継承やPythonスクリプトやシェルスクリプトの直書きなど、 タスクランナーとしてやりたいことはたいていカバーされていて便利だった。なにより記法や概念がシンプルでわかりやすかった。</p>
+<p>Rustじゃないプロジェクトでも簡単に使えるのがポイント。 各プラットフォーム向けにビルド済みのバイナリがGitHubでリリースされているので、Rustの環境がないところでもうごくはず。</p>
 <p>以降は、特に自分がよく使う例を書いておく。調べながら書いていたら長くなってしまった…</p>
-
 <p>より詳細は本家README参照。</p>
-
 <h3 id="シェルスクリプトを直接書く">シェルスクリプトを直接書く</h3>
-
-<p><code>&quot;</code>で囲ったりせず普通に書けるので書きやすい</p>
-
-<pre><code class="language-toml">[tasks.bash]
-script = [
-'''
-#!/usr/bin/env bash
-echo Hello, World!
-'''
-]
-</code></pre>
-
-<h3 id="pythonスクリプトを直接書く">Pythonスクリプトを直接書く</h3>
-
+<p><code>&quot;</code> で囲ったりせず普通に書けるので書きやすい</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">bash</span><span class="p">]</span>
+<span class="nx">script</span> <span class="p">=</span> <span class="p">[</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">#!/usr/bin/env bash
+</span><span class="s1">echo Hello, World!
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="p">]</span>
+</code></pre></div><h3 id="pythonスクリプトを直接書く">Pythonスクリプトを直接書く</h3>
 <p><a href="https://github.com/sagiegurari/cargo-make#other-programming-languages">https://github.com/sagiegurari/cargo-make#other-programming-languages</a></p>
-
 <p>ディレクトリ走査やJsonなどのコンフィグからなにかする時、Pythonで書くと楽に書けるのでタスクをPythonで直接記述できるのは嬉しい。</p>
-
-<p>テンポラリファイルとしてPythonスクリプトを作成してそれを<code>python3</code>で呼び出してるみたい。</p>
-
-<pre><code class="language-toml">[tasks.python]
-script_runner = &quot;python&quot;
-script_extension = &quot;py&quot;
-script = [
-'''
-print(&quot;Hello, World!&quot;)
-'''
-]
-</code></pre>
-
-<p>ただし、shebangでも動くので以下のほうがシンプルに書ける。</p>
-
-<pre><code class="language-toml">[tasks.shebang-py]
-script = [
-'''
-#!/usr/bin/env python3
-print(&quot;Hello, World!&quot;)
-'''
-]
-</code></pre>
-
-<p>同様にして任意のスクリプト言語を埋め込める。</p>
-
+<p>テンポラリファイルとしてPythonスクリプトを作成してそれをpython3で呼び出してるみたい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>tasks.python<span class="o">]</span>
+<span class="nv">script_runner</span> <span class="o">=</span> <span class="s2">&#34;python&#34;</span>
+<span class="nv">script_extension</span> <span class="o">=</span> <span class="s2">&#34;py&#34;</span>
+<span class="nv">script</span> <span class="o">=</span> <span class="o">[</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">print(&#34;Hello, World!&#34;)
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="o">]</span>
+</code></pre></div><p>ただし、shebangでも動くので以下のほうがシンプルに書ける。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>tasks.shebang-py<span class="o">]</span>
+<span class="nv">script</span> <span class="o">=</span> <span class="o">[</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">#!/usr/bin/env python3
+</span><span class="s1">print(&#34;Hello, World!&#34;)
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="o">]</span>
+</code></pre></div><p>同様にして任意のスクリプト言語を埋め込める。</p>
 <h3 id="コマンドライン引数の読み取り">コマンドライン引数の読み取り</h3>
-
 <p>実行時に引数を渡したいケースはよくある。</p>
-
-<p>これも、スクリプト実行時に普通に渡されてくるので、シェルスクリプトなら<code>$@</code>や<code>$1</code>とかで取ればいい。</p>
-
-<pre><code class="language-toml">[tasks.BUILD]
-description = &quot;Build hoge&quot;
-script = ['''
-#!/usr/bin/env bash
-echo &quot;build ${@}...&quot;
-''']
-</code></pre>
-
-<p>ただし実行時は注意。<code>--option</code> のようなdashではじまるオプションはcargo-make自体のオプションだと解釈されてしまうので、<code>--</code>を挟む。</p>
-
-<pre><code class="language-diff">- cargo make BUILD --option-a  # NG
-+ cargo make BUILD -- --option-a  # OK
-</code></pre>
-
-<h3 id="extend">Extend</h3>
-
+<p>これも、スクリプト実行時に普通に渡されてくるので、シェルスクリプトなら$@や$1とかで取ればいい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>tasks.BUILD<span class="o">]</span>
+<span class="nv">description</span> <span class="o">=</span> <span class="s2">&#34;Build hoge&#34;</span>
+<span class="nv">script</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">#!/usr/bin/env bash
+</span><span class="s1">echo &#34;build ${@}...&#34;
+</span><span class="s1">&#39;&#39;&#39;</span><span class="o">]</span>
+</code></pre></div><p>ただし実行時は注意。&ndash;option のようなdashではじまるオプションはcargo-make自体のオプションだと解釈されてしまうので、&ndash;を挟む。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">- cargo make BUILD --option-a  # NG
+</span><span class="gd"></span><span class="gi">+ cargo make BUILD -- --option-a  # OK
+</span></code></pre></div><h3 id="extend">Extend</h3>
 <p><a href="https://github.com/sagiegurari/cargo-make#default-tasks-and-extending">https://github.com/sagiegurari/cargo-make#default-tasks-and-extending</a></p>
-
-<p>複数のリポジトリやディレクトリからなるプロジェクトの場合、
-プロジェクト全体で共通のタスクをデフォルトのMakefile.tomlに切り出し、各リポジトリ独自の部分は差分として書くようにしておくとメンテナンスが楽。</p>
-
+<p>複数のリポジトリやディレクトリからなるプロジェクトの場合、 プロジェクト全体で共通のタスクをデフォルトのMakefile.tomlに切り出し、各リポジトリ独自の部分は差分として書くようにしておくとメンテナンスが楽。</p>
 <p>こんなイメージ。</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">extend</span> <span class="p">=</span> <span class="s2">&#34;../../Makefile.default.toml&#34;</span>
 
-<pre><code class="language-toml">extend = &quot;../../Makefile.default.toml&quot;
-
-[tasks.repository-specific]
-...
-</code></pre>
-
-<p>同じ名前のタスクを定義すると、 <strong>定義した属性(script, command, args, …)のみ</strong> 上書き/新規追加する。
-上書き対象を一旦初期化したい場合は <code>clear = true</code> する。</p>
-
-<p>たとえば、<code>tasks.build</code> を継承する場合、<code>clear = true</code> せずに <code>script</code> を定義すると、<code>script</code> と <code>command</code> が両方定義された情報になり実行時エラーになるので<code>clear</code>は必要。
-こうしたときのデバッグ手段として <code>cargo make --print-steps</code> とすると、タスクの詳細をダンプできるので、期待するtomlがかけているかを確認できる。ただしエラーメッセージを見ればそこまでしなくてもわかる。</p>
-
-<pre><code class="language-toml">[tasks.sometask]
-clear = true
-command = &quot;echo&quot;
-args = [
-    &quot;extended task&quot;
-]
-
-</code></pre>
-
-<p>特にRustのプロジェクトでworkspaceを使う場合、workspace内のすべてのcrateのtomlに前記の<code>extend</code> を書かなくてもworkspace共通のtomlに<code>CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = “true”</code>を書いとけば自動でextendされる<a href="https://github.com/sagiegurari/cargo-make#automatically-extend-workspace-makefile">機能</a>があるみたい。他にも、Rust開発向けの特有の機能は色々あった。</p>
-
-<p>また、<code>extend</code>で指定できるのはローカルのtomlのみだが、リモートからのダウンロードもサポート。例えば、共通のコンフィグレーションをまとめたGitHubのリポジトリから、最新のtomlをダウンロードして使いたいケースは、<code>extend</code>より先にダウンロードするために<code>load_script</code>が使える。</p>
-
-<pre><code class="language-toml">[config]
-load_script = [&quot;git clone git@mygitserver:user/project.git /home/myuser/common&quot;]
-</code></pre>
-
-<p>ちなみに、cargo-cmakeのビルトインのデフォルトタスクはの定義は<a href="https://github.com/sagiegurari/cargo-make/blob/master/src/lib/Makefile.stable.toml">ここ</a>。
-何も書いてなくても <code>cargo make build-release</code> などが動くのはこのため。
-他にも、カバレッジやlintなど、CIで実行する想定のタスクがいくつかあるので参考になる。</p>
-
+<span class="p">[</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">repository</span><span class="err">-</span><span class="nx">specific</span><span class="p">]</span>
+<span class="p">...</span>
+</code></pre></div><p>同じ名前のタスクを定義すると、 定義した属性(script, command, args, …)のみ 上書き/新規追加する。 上書き対象を一旦初期化したい場合は clear = true する。</p>
+<p>たとえば、tasks.build を継承する場合、clear = true せずに script を定義すると、script と command が両方定義された情報になり実行時エラーになるのでclearは必要。 こうしたときのデバッグ手段として cargo make &ndash;print-steps とすると、タスクの詳細をダンプできるので、期待するtomlがかけているかを確認できる。ただしエラーメッセージを見ればそこまでしなくてもわかる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">sometask</span><span class="p">]</span>
+<span class="nx">clear</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;echo&#34;</span>
+<span class="nx">args</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s2">&#34;extended task&#34;</span>
+<span class="p">]</span>
+</code></pre></div><p>特にRustのプロジェクトでworkspaceを使う場合、workspace内のすべてのcrateのtomlに前記のextend を書かなくてもworkspace共通のtomlにCARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = “true”を書いとけば自動でextendされる機能があるみたい。他にも、Rust開発向けの特有の機能は色々あった。</p>
+<p>また、extendで指定できるのはローカルのtomlのみだが、リモートからのダウンロードもサポート。例えば、共通のコンフィグレーションをまとめたGitHubのリポジトリから、最新のtomlをダウンロードして使いたいケースは、extendより先にダウンロードするためにload_scriptが使える。</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">config</span><span class="p">]</span>
+<span class="nx">load_script</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;git clone git@mygitserver:user/project.git /home/myuser/common&#34;</span><span class="p">]</span>
+</code></pre></div><p>ちなみに、cargo-cmakeのビルトインのデフォルトタスクはの定義はここ。 何も書いてなくても cargo make build-release などが動くのはこのため。 他にも、カバレッジやlintなど、CIで実行する想定のタスクがいくつかあるので参考になる。</p>
 <h3 id="その他の機能">その他の機能</h3>
-
 <p>その他、こんなこともできるよ集。書ききれないくらい機能がある。</p>
-
 <ul>
 <li>コマンド一覧をみたい
-
 <ul>
-<li><code>makers --list-all-steps</code> でカテゴリ毎に説明がでる</li>
+<li>makers &ndash;list-all-steps でカテゴリ毎に説明がでる</li>
 <li>これそのままREADMEに貼れば、リポジトリの使い方がわかっていいかも</li>
 <li>ただcargo-cmakeのデフォルトのタスクもすべてダンプされるのでなあ</li>
-</ul></li>
+</ul>
+</li>
 <li>toml間じゃなくて、タスク間でもextendできる
-
 <ul>
 <li><a href="https://github.com/sagiegurari/cargo-make#extend-attribute">https://github.com/sagiegurari/cargo-make#extend-attribute</a></li>
-</ul></li>
+</ul>
+</li>
 <li>CI実行時はstdoutをカラーでなくする
-
 <ul>
-<li><code>makers --no-color xxx</code></li>
-</ul></li>
+<li>makers &ndash;no-color xxx</li>
+</ul>
+</li>
 <li>同じコマンドでもOS毎に実行内容を切り替える機能
-
 <ul>
-<li><code>linux_alias</code> や <code>mac_alias</code></li>
-<li>あるいはこっち <a href="https://github.com/sagiegurari/cargo-make#platform-override">GitHub - sagiegurari/cargo-make: Rust task runner and build tool.</a></li>
-</ul></li>
+<li>linux_alias や mac_alias</li>
+<li>あるいはこっち <a href="https://github.com/sagiegurari/cargo-make#platform-override">https://github.com/sagiegurari/cargo-make#platform-override</a></li>
+</ul>
+</li>
 <li>環境変数やOSなどで、タスクの実行可否を指定する
-
 <ul>
 <li>Condition</li>
-<li><a href="https://github.com/sagiegurari/cargo-make#conditions">GitHub - sagiegurari/cargo-make: Rust task runner and build tool.</a></li>
+<li><a href="https://github.com/sagiegurari/cargo-make#conditions">https://github.com/sagiegurari/cargo-make#conditions</a></li>
 <li>うまくやれば、コンテナor ホストでのみ動くタスクとかをいい感じにできるのでは</li>
-</ul></li>
+</ul>
+</li>
 <li>あるコマンドの後に他のコマンドを実行したい
-
 <ul>
-<li><code>run_task</code> をつかう。逆に、あるコマンドの前に実行してほしいのはdependenciesに書く</li>
-</ul></li>
+<li>run_task をつかう。逆に、あるコマンドの前に実行してほしいのはdependenciesに書く</li>
+</ul>
+</li>
 <li>Rustのスクリプトをtomlの中に書きたい
-
 <ul>
-<li><a href="https://github.com/sagiegurari/cargo-make#usage-task-command-script-task-examplerust">GitHub - sagiegurari/cargo-make: Rust task runner and build tool.</a></li>
-</ul></li>
+<li><a href="https://github.com/sagiegurari/cargo-make#usage-task-command-script-task-examplerust">https://github.com/sagiegurari/cargo-make#usage-task-command-script-task-examplerust</a></li>
+</ul>
+</li>
 <li>devとprodで環境変数のファイルをわけたい
-
 <ul>
-<li><code>makers --env-file xxx.env</code></li>
+<li>makers &ndash;env-file xxx.env</li>
 <li>tomlに書いた環境変数をprofileで分ける機能もある
-
 <ul>
-<li><code>[env.development]</code> <code>[env.production]</code> をそれぞれ書いて、<code>makers --profile production</code> みたいな</li>
-</ul></li>
-</ul></li>
+<li>[env.development] [env.production] をそれぞれ書いて、makers &ndash;profile production みたいな</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>実行時に環境変数をわたしたい
-
 <ul>
-<li><code>makers --env A=xxx</code></li>
-</ul></li>
+<li>makers &ndash;env A=xxx</li>
+</ul>
+</li>
 <li>rustのworkspaceの扱い
-
 <ul>
 <li>デフォルトだと、workspace以下のすべてのcrateに対して指定したタスクを実行してしまう</li>
-<li><code>makers --no-workspace xxx</code> にすれば解決</li>
-</ul></li>
-<li><code>makers task-a task-b task-c</code> のように複数指定はできないみたい
-
+<li>makers &ndash;no-workspace xxx にすれば解決</li>
+</ul>
+</li>
+<li>makers task-a task-b task-c のように複数指定はできないみたい
 <ul>
 <li>これはmakeと違うので注意。task-a以降は引数として処理される</li>
-<li>dependenciesでtask-c -&gt; task-b, task-a として、 <code>makers task-c</code> とすればいい話</li>
-</ul></li>
+<li>dependenciesでtask-c -&gt; task-b, task-a として、 makers task-c とすればいい話</li>
 </ul>
-
+</li>
+</ul>
 <h2 id="感想">感想</h2>
-
 <p>自分はPython, C/C++, Rustなどを書くプロジェクトをやることが多いのだけど、それらのタスクランナーとしてcargo-makeは使えると思った。</p>
-
 <p>これでタスクを定義しておくと、自分自身書きやすいし、他の人が書いたのもわかりやすいなあと思う。</p>
-
 <p>例えば、MLで言えばモデルの学習とかも、個人でやる分にはいいんじゃないだろうか。複数のpythonスクリプトの組み合わせをタスクとして定義すると楽になりそう。例えば、</p>
-
-<pre><code class="language-bash"># 学習→デプロイ
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 学習→デプロイ</span>
 $ makers train-deploy -- --config 001.yaml
-# 評価単体
-$ makers evaluate -- --config 001.yaml --threshold 1 
-# traing-loopのデバッグ
-$ makers run-test -- --config 001.yaml --data-slice 10
-</code></pre>
-
-<p>すくなくとも開発時に使うコマンドはエイリアスとしてtomlに書いちゃって、各種CIの設定ファイルからも<code>makers ci-build</code>とかさせるように、cargo-makeを中心に設計しちゃうのがわかりやすくていいんじゃないかと思ってる。とはいえ、dockerのビルドは<code>docker-compose build hoge</code>で十分なので、わざわざcargo-makeにタスク化しなくてもいいよな、みたいな気持ちもある。</p>
-
+<span class="c1"># 評価単体</span>
+$ makers evaluate -- --config 001.yaml --threshold <span class="m">1</span> 
+<span class="c1"># traing-loopのデバッグ</span>
+$ makers run-test -- --config 001.yaml --data-slice <span class="m">10</span>
+</code></pre></div><p>すくなくとも開発時に使うコマンドはエイリアスとしてtomlに書いちゃって、各種CIの設定ファイルからもmakers ci-buildとかさせるように、cargo-makeを中心に設計しちゃうのがわかりやすくていいんじゃないかと思ってる。とはいえ、dockerのビルドはdocker-compose build hogeで十分なので、わざわざcargo-makeにタスク化しなくてもいいよな、みたいな気持ちもある。</p>
 <p>ただ、dockerわからないユーザーに対して処理を隠蔽するために、cookiecutter-docker-scienceのようにするのはありかも。</p>
-
-<pre><code class="language-bash">$ makers init-docker
-</code></pre>
-
-<p>作者の方のブログを読むと、使い所がわかってくる。
-<a href="https://github.com/sagiegurari/cargo-make#articles">GitHub - sagiegurari/cargo-make: Rust task runner and build tool.</a></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ makers init-docker
+</code></pre></div><p>作者の方のブログを読むと、使い所がわかってくる。 GitHub - sagiegurari/cargo-make: Rust task runner and build tool.</p>
 <p>Rust開発時に便利な機能は、また別途。</p>
-
 <p>また、以下は対応指定なさそう。ちゃんと調べていないけど。間違ってたら追記します。</p>
-
 <ul>
 <li>タスクの時間計測は？</li>
 <li>コマンドラインのオートコンプリートは？</li>
 <li>タスクの依存関係をグラフで可視化できる？</li>
 </ul>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:digdag">ちなみに私は <a href="https://twitter.com/toyama0919">@toyama0919</a> さんに教えてもらって以来、ワークフローエンジンはdigdagを好んで使ってる。
- <a class="footnote-return" href="#fnref:digdag"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>ちなみに私は @toyama0919 さんに教えてもらって以来、ワークフローエンジンはdigdagを好んで使ってる。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
                 </section>
             </article>
 
@@ -456,11 +353,7 @@ $ makers run-test -- --config 001.yaml --data-slice 10
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -468,7 +361,7 @@ $ makers run-test -- --config 001.yaml --data-slice 10
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
@@ -476,7 +369,7 @@ $ makers run-test -- --config 001.yaml --data-slice 10
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
@@ -485,6 +378,10 @@ $ makers run-test -- --config 001.yaml --data-slice 10
     
         <li>
             <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi 3 B&#43;買ったよ<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -512,7 +409,7 @@ $ makers run-test -- --config 001.yaml --data-slice 10
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

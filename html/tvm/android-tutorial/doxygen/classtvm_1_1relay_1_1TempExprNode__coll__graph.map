@@ -1,6 +1,0 @@
-<map id="tvm::relay::TempExprNode" name="tvm::relay::TempExprNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1ExprNode.html" title="Base type of the Relay expression hiearchy. " alt="" coords="140,520,404,627"/>
-<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,393,269,471"/>
-<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="147,132,280,253"/>
-<area shape="rect" id="node7" href="$classtvm_1_1relay_1_1Type.html" title="Type is the base type of relay type hiearchy. " alt="" coords="257,277,378,369"/>
-</map>

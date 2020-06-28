@@ -1,4 +1,0 @@
-<map id="tvm::relay::SoftmaxAttrs" name="tvm::relay::SoftmaxAttrs">
-<area shape="rect" id="node2" href="$classtvm_1_1AttrsNode.html" title="{tvm::AttrsNode\&lt; SoftmaxAttrs \&gt;\n||+ VisitAttrs()\l+ VisitNonDefaultAttrs()\l+ InitByPackedArgs()\l+ ListFieldInfo()\l+ ContentEqual()\l+ ContentHash()\l}" alt="" coords="20,359,255,509"/>
-<area shape="rect" id="node3" href="$classtvm_1_1BaseAttrsNode.html" title="Base class of all attribute class. " alt="" coords="5,131,269,311"/>
-</map>

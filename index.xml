@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tkat0.github.io</title>
@@ -6,7 +6,7 @@
     <description>Recent content on tkat0.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 07 Jul 2019 15:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jul 2019 06:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tkat0.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>[1907.01989] On-Device Neural Net Inference with Mobile GPUs</title>
       <link>https://tkat0.github.io/posts/1907.01989/</link>
-      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
+      <pubDate>Sun, 07 Jul 2019 06:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/1907.01989/</guid>
       <description>&lt;p&gt;Google Researchより、TFLite GPUのアーキテクチャ設計についての論文。&lt;/p&gt;</description>
@@ -26,8 +26,7 @@
       <pubDate>Sun, 30 Jun 2019 18:00:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/cargo-make-1/</guid>
-      <description>&lt;p&gt;cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。
-今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。&lt;/p&gt;</description>
+      <description>&lt;p&gt;cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。 今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,28 +35,16 @@
       <pubDate>Wed, 19 Jun 2019 06:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/mediapipe/</guid>
-      <description>&lt;p&gt;GoogleがMediaPipeを公開。
-エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。&lt;/p&gt;</description>
+      <description>&lt;p&gt;GoogleがMediaPipeを公開。 エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ONNXRuntime調査</title>
       <link>https://tkat0.github.io/posts/read-onnxruntime/</link>
-      <pubDate>Fri, 22 Mar 2019 09:00:00 +0900</pubDate>
+      <pubDate>Wed, 22 May 2019 09:00:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/read-onnxruntime/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/Microsoft/onnxruntime&#34;&gt;https://github.com/Microsoft/onnxruntime&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Raspberry Pi買ったよ</title>
-      <link>https://tkat0.github.io/posts/setup-raspi/</link>
-      <pubDate>Wed, 06 Mar 2019 11:10:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/posts/setup-raspi/</guid>
-      <description>&lt;p&gt;Raspberry Pi 3 B+を買ったので初期設定のメモ&lt;/p&gt;</description>
+      <description>&lt;p&gt;ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -70,31 +57,30 @@
     </item>
     
     <item>
-      <title>chainer-compiler調査（2）</title>
+      <title>Chainer-compiler調査（2）</title>
       <link>https://tkat0.github.io/posts/learn-chainer-compiler-2/</link>
-      <pubDate>Wed, 06 Feb 2019 09:30:01 +0900</pubDate>
+      <pubDate>Wed, 06 Feb 2019 09:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/learn-chainer-compiler-2/</guid>
-      <description>&lt;p&gt;コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Chainer-compilerの調査その2&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>PyTorchのModule#named_modules</title>
       <link>https://tkat0.github.io/posts/pytorch-named_modules/</link>
-      <pubDate>Wed, 06 Feb 2019 08:30:01 +0900</pubDate>
+      <pubDate>Wed, 06 Feb 2019 08:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/pytorch-named_modules/</guid>
-      <description>&lt;p&gt;PyTorchの&lt;code&gt;Module#named_modules&lt;/code&gt;でモデル内のすべてのOperatorにアクセスするときにはまったメモ。&lt;/p&gt;</description>
+      <description>&lt;p&gt;PyTorchのModule#named_modulesでモデル内のすべてのOperatorにアクセスするときにはまったメモ。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>chainer-compiler調査（1）</title>
+      <title>Chainer-compiler調査（1）</title>
       <link>https://tkat0.github.io/posts/learn-chainer-compiler-1/</link>
-      <pubDate>Mon, 04 Feb 2019 09:30:01 +0900</pubDate>
+      <pubDate>Mon, 04 Feb 2019 09:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/learn-chainer-compiler-1/</guid>
-      <description>&lt;p&gt;今日からchainer-compilerについて調べてみよう。
-DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.com/event/115446/&#34;&gt;FPGAX&lt;/a&gt;でも話題になってましたね（リモートでちょっと見てました）&lt;/p&gt;</description>
+      <description>&lt;p&gt;今日からChainer-compilerについて調べてみよう。 DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.com/event/115446/&#34;&gt;FPGAX&lt;/a&gt;でも話題になってましたね（リモートでちょっと見てました）&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -112,8 +98,17 @@ DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.co
       <pubDate>Sat, 02 Feb 2019 12:00:01 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/distiller-thinning/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/NervanaSystems/distiller&#34;&gt;Distiller&lt;/a&gt;はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&amp;rdquo;thinning&amp;rdquo;ができる。
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/NervanaSystems/distiller&#34;&gt;Distiller&lt;/a&gt;はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&amp;quot;thinning&amp;quot;ができる。
 今回はそのソースを読んで気がついたことのまとめ。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi 3 B&#43;買ったよ</title>
+      <link>https://tkat0.github.io/posts/setup-raspi/</link>
+      <pubDate>Sat, 02 Feb 2019 12:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/posts/setup-raspi/</guid>
+      <description>&lt;p&gt;Raspberry Pi 3 B+を買ったので初期設定のメモ&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -141,7 +136,6 @@ DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.co
       
       <guid>https://tkat0.github.io/posts/writing-blog-with-hugo/</guid>
       <description>&lt;p&gt;はてなブログから&lt;code&gt;Hugo&lt;/code&gt;を使ってGitHub Pagesに移行したときのメモです&lt;/p&gt;
-
 &lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt;はgolang製の静的サイトジェネレータで、カスタマイズが柔軟にできて、ビルドも速い&lt;/p&gt;</description>
     </item>
     

@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classtvm_1_1runtime_1_1TVMPODValue__.html" title="Internal base class to handle conversion to POD values. " alt="" coords="5,31,216,57"/>
-<area shape="rect" id="node2" href="$classtvm_1_1runtime_1_1TVMArgValue.html" title="A single argument value to PackedFunc. Containing both type_code and TVMValue. " alt="" coords="264,5,461,32"/>
-<area shape="rect" id="node3" href="$classtvm_1_1runtime_1_1TVMRetValue.html" title="Return Value container, Unlike TVMArgValue, which only holds reference and do not delete the underlyi..." alt="" coords="265,56,460,83"/>
-</map>

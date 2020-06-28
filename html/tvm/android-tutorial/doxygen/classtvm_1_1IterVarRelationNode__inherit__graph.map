@@ -1,6 +1,0 @@
-<map id="tvm::IterVarRelationNode" name="tvm::IterVarRelationNode">
-<area shape="rect" id="node3" href="$classtvm_1_1FuseNode.html" title="Fuse two domains into one domain. " alt="" coords="5,271,264,421"/>
-<area shape="rect" id="node4" href="$classtvm_1_1RebaseNode.html" title="Rebase the iteration to make min to be 0. This is useful to normalize the Schedule to make every leaf..." alt="" coords="288,278,547,414"/>
-<area shape="rect" id="node5" href="$classtvm_1_1SingletonNode.html" title="Singleton iterator [0, 1) " alt="" coords="571,285,829,407"/>
-<area shape="rect" id="node6" href="$classtvm_1_1SplitNode.html" title="Split the parent domain into product of outer and iter. " alt="" coords="853,256,1112,436"/>
-</map>

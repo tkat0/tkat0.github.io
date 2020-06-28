@@ -1,6 +1,0 @@
-<map id="include/tvm/data_layout.h" name="include/tvm/data_layout.h">
-<area shape="rect" id="node2" href="$topi_2include_2topi_2transform_8h.html" title="Transform op constructors. " alt="" coords="85,80,287,107"/>
-<area shape="rect" id="node3" href="$reduction_8h.html" title="Reduction op constructors. " alt="" coords="19,155,217,181"/>
-<area shape="rect" id="node5" href="$reorg_8h.html" title="Reorg op constructions. " alt="" coords="173,229,335,271"/>
-<area shape="rect" id="node4" href="$nn_2softmax_8h.html" title="Softmax op constructions. " alt="" coords="5,229,148,271"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="tvm::relay::ValueNode" name="tvm::relay::ValueNode">
-<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1ClosureNode.html" title="The container type of Closures. " alt="" coords="5,396,264,547"/>
-<area shape="rect" id="node5" href="$structtvm_1_1relay_1_1ConstructorValueNode.html" title="{tvm::relay::ConstructorValueNode\n|+ constructor\l+ fields\l+ _type_key\l|+ VisitAttrs()\l+ TVM_DECLARE_NODE_TYPE_INFO()\l+ make()\l}" alt="" coords="288,403,547,539"/>
-<area shape="rect" id="node6" href="$structtvm_1_1relay_1_1RefValueNode.html" title="{tvm::relay::RefValueNode\n|+ value\l+ _type_key\l|+ RefValueNode()\l+ VisitAttrs()\l+ TVM_DECLARE_NODE_TYPE_INFO()\l+ make()\l}" alt="" coords="571,403,829,539"/>
-<area shape="rect" id="node7" href="$structtvm_1_1relay_1_1TensorValueNode.html" title="The tensor value container, wrapping an NDArray. " alt="" coords="853,403,1112,539"/>
-<area shape="rect" id="node8" href="$structtvm_1_1relay_1_1TupleValueNode.html" title="Tuple (x, ... y). " alt="" coords="1136,403,1395,539"/>
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="568,131,832,223"/>
-</map>

@@ -29,7 +29,7 @@
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>PyTorchのModule#named_modules &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
@@ -41,8 +41,6 @@
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -74,6 +72,7 @@
                     </h1>
                     <h2 class="headline">
                     Feb 6, 2019 08:30
+                    · 44 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -92,35 +91,25 @@
                   
                 
                 <section id="post-body">
-                    <p>PyTorchの<code>Module#named_modules</code>でモデル内のすべてのOperatorにアクセスするときにはまったメモ。</p>
-
-<p>PyTorchはChainerでいうLinkもFunctionもModuleなのでグラフのトレースは楽かと思ったけど意外とはまった。
-<code>model.named_modules()</code>ではnn.Sequentialもその中身のModuleもすべてが得られてしまうので、
-<code>Module#modules</code>でコンテナ内のモジュール数をチェックした上でトレースしていくことで、<code>nn.Conv2d</code>などプリミティブなOPのみ得られる。</p>
-
+                    <p>PyTorchのModule#named_modulesでモデル内のすべてのOperatorにアクセスするときにはまったメモ。</p>
+<p>PyTorchはChainerでいうLinkもFunctionもModuleなのでグラフのトレースは楽かと思ったけど意外とはまった。 model.named_modules()ではnn.Sequentialもその中身のModuleもすべてが得られてしまうので、 Module#modulesでコンテナ内のモジュール数をチェックした上でトレースしていくことで、nn.Conv2dなどプリミティブなOPのみ得られる。</p>
 <p>以下がコード例</p>
-
-<pre><code class="language-python">for name, module in model.named_modules():
-    # nn.Sequentialやユーザー定義の複数のmoduleをもつmoduleではなく、
-    # Conv2dなどの単一のmoduleのみ取得
-    n_modules = len(list(module.modules()))
-    if n_modules == 1:
-        print(name)
-</code></pre>
-
-<p>Moduleのドキュメントを読むと良かった。</p>
-
-<p>torch.nn — PyTorch master documentation <br />
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span>
+    <span class="c1"># nn.Sequentialやユーザー定義の複数のmoduleをもつmoduleではなく、</span>
+    <span class="c1"># Conv2dなどの単一のmoduleのみ取得</span>
+    <span class="n">n_modules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">modules</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="n">n_modules</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div><p>Moduleのドキュメントを読むと良かった。</p>
+<p>torch.nn — PyTorch master documentation
 <a href="https://pytorch.org/docs/stable/nn.html#module">https://pytorch.org/docs/stable/nn.html#module</a></p>
-
 <p>PyTorchの内部構造については以下のような記事があるようだ。</p>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">公式でも書いてるのね<a href="https://t.co/5ieoAXNw2j">https://t.co/5ieoAXNw2j</a></p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1092762049602441216?ref_src=twsrc%5Etfw">February 5, 2019</a></blockquote>
+<p><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">公式でも書いてるのね<a href="https://t.co/5ieoAXNw2j">https://t.co/5ieoAXNw2j</a></p>&mdash; _tkato_ (@_tkato_) <a href="https://twitter.com/_tkato_/status/1092762049602441216?ref_src=twsrc%5Etfw">February 5, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おーこれおもしろい<a href="https://t.co/tAZ93V93Qv">https://t.co/tAZ93V93Qv</a></p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/1092761728956264448?ref_src=twsrc%5Etfw">February 5, 2019</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おーこれおもしろい<a href="https://t.co/tAZ93V93Qv">https://t.co/tAZ93V93Qv</a></p>&mdash; _tkato_ (@_tkato_) <a href="https://twitter.com/_tkato_/status/1092761728956264448?ref_src=twsrc%5Etfw">February 5, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
                 </section>
             </article>
 
@@ -151,11 +140,7 @@
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -163,11 +148,11 @@
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
@@ -176,6 +161,10 @@
     
         <li>
             <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi 3 B&#43;買ったよ<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -203,7 +192,7 @@
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

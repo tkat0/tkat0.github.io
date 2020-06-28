@@ -1,8 +1,0 @@
-<map id="topi/include/topi/detail/ravel_unravel.h" name="topi/include/topi/detail/ravel_unravel.h">
-<area shape="rect" id="node2" href="$resize_8h.html" title="image resize constructors " alt="" coords="11,95,177,136"/>
-<area shape="rect" id="node4" href="$reduction_8h.html" title="Reduction op constructors. " alt="" coords="172,191,371,218"/>
-<area shape="rect" id="node7" href="$topi_2include_2topi_2transform_8h.html" title="Transform op constructors. " alt="" coords="287,102,490,129"/>
-<area shape="rect" id="node3" href="$upsampling_8h.html" title="upsampling op constructors " alt="" coords="5,184,148,225"/>
-<area shape="rect" id="node5" href="$nn_2softmax_8h.html" title="Softmax op constructions. " alt="" coords="159,273,301,315"/>
-<area shape="rect" id="node6" href="$reorg_8h.html" title="Reorg op constructions. " alt="" coords="326,273,489,315"/>
-</map>

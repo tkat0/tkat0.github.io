@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on tkat0.github.io</title>
@@ -6,148 +6,40 @@
     <description>Recent content in Tags on tkat0.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 06 Feb 2019 09:30:01 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jul 2019 06:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tkat0.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Chainer</title>
-      <link>https://tkat0.github.io/tags/chainer/</link>
-      <pubDate>Wed, 06 Feb 2019 09:30:01 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/chainer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Chainer Compiler</title>
-      <link>https://tkat0.github.io/tags/chainer-compiler/</link>
-      <pubDate>Wed, 06 Feb 2019 09:30:01 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/chainer-compiler/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deeplearning</title>
+      <title>deeplearning</title>
       <link>https://tkat0.github.io/tags/deeplearning/</link>
-      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      <pubDate>Sun, 07 Jul 2019 06:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/tags/deeplearning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Deepleraning</title>
-      <link>https://tkat0.github.io/tags/deepleraning/</link>
-      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/deepleraning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Distiller</title>
-      <link>https://tkat0.github.io/tags/distiller/</link>
-      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/distiller/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://tkat0.github.io/tags/docker/</link>
-      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://tkat0.github.io/tags/hugo/</link>
-      <pubDate>Fri, 01 Feb 2019 10:00:01 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Keyboard</title>
-      <link>https://tkat0.github.io/tags/keyboard/</link>
-      <pubDate>Fri, 01 Feb 2019 22:36:10 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/keyboard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mediapipe</title>
-      <link>https://tkat0.github.io/tags/mediapipe/</link>
-      <pubDate>Wed, 19 Jun 2019 06:30:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/mediapipe/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Onnx</title>
-      <link>https://tkat0.github.io/tags/onnx/</link>
-      <pubDate>Fri, 22 Mar 2019 09:00:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/onnx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Onnxruntime</title>
-      <link>https://tkat0.github.io/tags/onnxruntime/</link>
-      <pubDate>Fri, 22 Mar 2019 09:00:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/onnxruntime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Paper</title>
+      <title>paper</title>
       <link>https://tkat0.github.io/tags/paper/</link>
-      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
+      <pubDate>Sun, 07 Jul 2019 06:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/tags/paper/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Pruning</title>
-      <link>https://tkat0.github.io/tags/pruning/</link>
-      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      <title>tflite</title>
+      <link>https://tkat0.github.io/tags/tflite/</link>
+      <pubDate>Sun, 07 Jul 2019 06:30:00 +0900</pubDate>
       
-      <guid>https://tkat0.github.io/tags/pruning/</guid>
+      <guid>https://tkat0.github.io/tags/tflite/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Pytorch</title>
-      <link>https://tkat0.github.io/tags/pytorch/</link>
-      <pubDate>Wed, 06 Feb 2019 08:30:01 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/pytorch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Raspberry Pi</title>
-      <link>https://tkat0.github.io/tags/raspberry-pi/</link>
-      <pubDate>Wed, 06 Mar 2019 11:10:00 +0900</pubDate>
-      
-      <guid>https://tkat0.github.io/tags/raspberry-pi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rust</title>
+      <title>rust</title>
       <link>https://tkat0.github.io/tags/rust/</link>
       <pubDate>Sun, 30 Jun 2019 18:00:00 +0900</pubDate>
       
@@ -156,20 +48,119 @@
     </item>
     
     <item>
-      <title>Tflite</title>
-      <link>https://tkat0.github.io/tags/tflite/</link>
-      <pubDate>Sun, 07 Jul 2019 15:30:00 +0900</pubDate>
+      <title>mediapipe</title>
+      <link>https://tkat0.github.io/tags/mediapipe/</link>
+      <pubDate>Wed, 19 Jun 2019 06:30:00 +0900</pubDate>
       
-      <guid>https://tkat0.github.io/tags/tflite/</guid>
+      <guid>https://tkat0.github.io/tags/mediapipe/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Tvm</title>
+      <title>onnx</title>
+      <link>https://tkat0.github.io/tags/onnx/</link>
+      <pubDate>Wed, 22 May 2019 09:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/onnx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>onnxruntime</title>
+      <link>https://tkat0.github.io/tags/onnxruntime/</link>
+      <pubDate>Wed, 22 May 2019 09:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/onnxruntime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvm</title>
       <link>https://tkat0.github.io/tags/tvm/</link>
-      <pubDate>Fri, 22 Mar 2019 09:00:00 +0900</pubDate>
+      <pubDate>Wed, 22 May 2019 09:00:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/tags/tvm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>distiller</title>
+      <link>https://tkat0.github.io/tags/distiller/</link>
+      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/distiller/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://tkat0.github.io/tags/docker/</link>
+      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pruning</title>
+      <link>https://tkat0.github.io/tags/pruning/</link>
+      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/pruning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pytorch</title>
+      <link>https://tkat0.github.io/tags/pytorch/</link>
+      <pubDate>Fri, 22 Feb 2019 11:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/pytorch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chainer</title>
+      <link>https://tkat0.github.io/tags/chainer/</link>
+      <pubDate>Wed, 06 Feb 2019 09:30:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/chainer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chainer-compiler</title>
+      <link>https://tkat0.github.io/tags/chainer-compiler/</link>
+      <pubDate>Wed, 06 Feb 2019 09:30:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/chainer-compiler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry-pi</title>
+      <link>https://tkat0.github.io/tags/raspberry-pi/</link>
+      <pubDate>Sat, 02 Feb 2019 12:00:00 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>keyboard</title>
+      <link>https://tkat0.github.io/tags/keyboard/</link>
+      <pubDate>Fri, 01 Feb 2019 22:36:10 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/keyboard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://tkat0.github.io/tags/hugo/</link>
+      <pubDate>Fri, 01 Feb 2019 10:00:01 +0900</pubDate>
+      
+      <guid>https://tkat0.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     

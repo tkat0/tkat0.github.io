@@ -14,7 +14,7 @@
   
   
   <meta name="twitter:title" content="Distillerのthinningの仕様"/>
-  <meta name="twitter:description" content="DistillerはPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&rdquo;thinning&rdquo;ができる。
+  <meta name="twitter:description" content="DistillerはPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&quot;thinning&quot;ができる。
 今回はそのソースを読んで気がついたことのまとめ。"/>
   
     <meta name="twitter:site" content="@_tkato_"/>
@@ -30,7 +30,7 @@
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>Distillerのthinningの仕様 &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
@@ -42,8 +42,6 @@
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -75,6 +73,7 @@
                     </h1>
                     <h2 class="headline">
                     Feb 2, 2019 12:00
+                    · 69 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -95,14 +94,11 @@
                   
                 
                 <section id="post-body">
-                    <p><a href="https://github.com/NervanaSystems/distiller">Distiller</a>はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&rdquo;thinning&rdquo;ができる。
+                    <p><a href="https://github.com/NervanaSystems/distiller">Distiller</a>はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&quot;thinning&quot;ができる。
 今回はそのソースを読んで気がついたことのまとめ。</p>
-
 <p>これは昔書いた記事</p>
-
 <p>DistillerでDeepLearningのモデルを軽量化: Gradual Pruning編 - tkato’s blog
 <a href="http://tkat0.hateblo.jp/entry/2018/05/22/082911">http://tkat0.hateblo.jp/entry/2018/05/22/082911</a></p>
-
 <pre><code>Distillerとは
 PyTorch向けのモデル圧縮ライブラリです。以下のような特徴があります。
 
@@ -111,56 +107,40 @@ PyTorch向けのモデル圧縮ライブラリです。以下のような特徴�
  - 設定はYAML。モデルのレイヤー単位でpruningのパラメータを変えるなど柔軟な設定。
  - TensorBoardと連携した、モデルのweightや精度の可視化
 </code></pre>
-
 <p>今回見るthinningだが、以下で説明しているrebuildと同じもの。</p>
-
-<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/a58SYy6uHsI9Ri?startSlide=14" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/tkatojp/chainerchannel-pruning-125938007" title="Chainer向けChannel Pruningフレームワークの設計と実装" target="_blank">Chainer向けChannel Pruningフレームワークの設計と実装</a> </strong> from <strong><a href="//www.slideshare.net/tkatojp" target="_blank">tomohiro kato</a></strong> </div></p>
-
+<!-- raw HTML omitted -->
 <p>対象とするソースは以下。</p>
-
 <p><a href="https://github.com/NervanaSystems/distiller/blob/e564a05f47a9e15e8575615d1ba92358b9184b67/distiller/thinning.py#L223-L227">https://github.com/NervanaSystems/distiller/blob/e564a05f47a9e15e8575615d1ba92358b9184b67/distiller/thinning.py#L223-L227</a></p>
-
 <p>このAPIで、modelから値がゼロのfilterを除外してコンパクトなweightを作る。</p>
-
-<pre><code class="language-python">def remove_filters(model, zeros_mask_dict, arch, dataset, optimizer):
-    sgraph = create_graph(dataset, arch)
-    thinning_recipe = create_thinning_recipe_filters(sgraph, model, zeros_mask_dict)
-    apply_and_save_recipe(model, zeros_mask_dict, thinning_recipe, optimizer)
-    return model
-</code></pre>
-
-<p>archやdatasetを指定する時点でお察しだけど、cifarやimagenet向け特定のモデルしか対応していない。
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">remove_filters</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">zeros_mask_dict</span><span class="p">,</span> <span class="n">arch</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+    <span class="n">sgraph</span> <span class="o">=</span> <span class="n">create_graph</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">arch</span><span class="p">)</span>
+    <span class="n">thinning_recipe</span> <span class="o">=</span> <span class="n">create_thinning_recipe_filters</span><span class="p">(</span><span class="n">sgraph</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">zeros_mask_dict</span><span class="p">)</span>
+    <span class="n">apply_and_save_recipe</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">zeros_mask_dict</span><span class="p">,</span> <span class="n">thinning_recipe</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+</code></pre></div><p>archやdatasetを指定する時点でお察しだけど、cifarやimagenet向け特定のモデルしか対応していない。
 もちろん、内部で呼んでる関数をダイレクトにつなげれば任意のモデルをthinningできる（はずだった）。</p>
-
 <p>中で何をやっているかを簡単に説明すると</p>
-
 <ol>
 <li>PyTorchのモデルを<code>SummaryGraph</code>クラスのオブジェクトへ変換する (<code>create_graph</code>)
-
 <ul>
 <li>指定したレイヤーの後続するレイヤーを取得したり（<code>successors_f()</code>）できるクラス</li>
 <li><code>torch.jit.get_trace_graph</code> で計算グラフをトレースし、その後 <code>self.ops</code>や<code>self.edges</code>といったデータ構造に入れる</li>
 <li>層ごとの計算量（MACs）もここで計算</li>
-</ul></li>
+</ul>
+</li>
 <li>値がゼロになるフィルターを除外し、その層に後続するConv/FC/BNの入力も合わせて調整する（<code>create_thinning_recipe_filters</code>, <code>apply_and_save_recipe</code>）</li>
 </ol>
-
 <p><strong>2が微妙で、各層に対する実装がハードコーディングされている。</strong></p>
-
 <ul>
 <li>例えば後続する層がGroupConv(depth-wiseとか)の場合は対応していないので変換できない</li>
 <li>現在の層の直後1つしか考慮していない
-
 <ul>
-<li><code>conv-bn-conv-bn-fc</code> という構造前提のアルゴリズム。大体のモデルはそうだろうけど。。。
-<br /></li>
-</ul></li>
+<li><code>conv-bn-conv-bn-fc</code> という構造前提のアルゴリズム。大体のモデルはそうだろうけど。。。</li>
 </ul>
-
+</li>
+</ul>
 <p>なので、例えばMobileNetとかはthinningできないということ。ああ〜。</p>
-
 <p>それで作ったわけですが（忙しくてメンテできてない）。</p>
-
 <p><a href="https://github.com/DeNA/ChainerPruner">https://github.com/DeNA/ChainerPruner</a></p>
                 </section>
             </article>
@@ -192,11 +172,7 @@ PyTorch向けのモデル圧縮ライブラリです。以下のような特徴�
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -204,7 +180,7 @@ PyTorch向けのモデル圧縮ライブラリです。以下のような特徴�
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
@@ -212,11 +188,15 @@ PyTorch向けのモデル圧縮ライブラリです。以下のような特徴�
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
             <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi 3 B&#43;買ったよ<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -244,7 +224,7 @@ PyTorch向けのモデル圧縮ライブラリです。以下のような特徴�
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

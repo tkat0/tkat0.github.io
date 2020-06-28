@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Onnx on tkat0.github.io</title>
+    <title>onnx on tkat0.github.io</title>
     <link>https://tkat0.github.io/tags/onnx/</link>
-    <description>Recent content in Onnx on tkat0.github.io</description>
+    <description>Recent content in onnx on tkat0.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 22 Mar 2019 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 22 May 2019 09:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tkat0.github.io/tags/onnx/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,12 +14,10 @@
     <item>
       <title>ONNXRuntime調査</title>
       <link>https://tkat0.github.io/posts/read-onnxruntime/</link>
-      <pubDate>Fri, 22 Mar 2019 09:00:00 +0900</pubDate>
+      <pubDate>Wed, 22 May 2019 09:00:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/read-onnxruntime/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/Microsoft/onnxruntime&#34;&gt;https://github.com/Microsoft/onnxruntime&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。&lt;/p&gt;</description>
+      <description>&lt;p&gt;ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。&lt;/p&gt;</description>
     </item>
     
     <item>

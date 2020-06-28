@@ -1,6 +1,0 @@
-<map id="topi/include/topi/detail/broadcast.h" name="topi/include/topi/detail/broadcast.h">
-<area shape="rect" id="node2" href="$broadcast_8h.html" title="Broadcast op constructions. " alt="" coords="63,95,266,121"/>
-<area shape="rect" id="node3" href="$reduction_8h.html" title="Reduction op constructors. " alt="" coords="65,169,264,196"/>
-<area shape="rect" id="node4" href="$nn_2softmax_8h.html" title="Softmax op constructions. " alt="" coords="5,244,148,285"/>
-<area shape="rect" id="node5" href="$reorg_8h.html" title="Reorg op constructions. " alt="" coords="173,244,335,285"/>
-</map>

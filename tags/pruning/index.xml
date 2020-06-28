@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pruning on tkat0.github.io</title>
+    <title>pruning on tkat0.github.io</title>
     <link>https://tkat0.github.io/tags/pruning/</link>
-    <description>Recent content in Pruning on tkat0.github.io</description>
+    <description>Recent content in pruning on tkat0.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 22 Feb 2019 11:00:00 +0900</lastBuildDate>
@@ -26,7 +26,7 @@
       <pubDate>Sat, 02 Feb 2019 12:00:01 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/distiller-thinning/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/NervanaSystems/distiller&#34;&gt;Distiller&lt;/a&gt;はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&amp;rdquo;thinning&amp;rdquo;ができる。
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/NervanaSystems/distiller&#34;&gt;Distiller&lt;/a&gt;はPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&amp;quot;thinning&amp;quot;ができる。
 今回はそのソースを読んで気がついたことのまとめ。&lt;/p&gt;</description>
     </item>
     

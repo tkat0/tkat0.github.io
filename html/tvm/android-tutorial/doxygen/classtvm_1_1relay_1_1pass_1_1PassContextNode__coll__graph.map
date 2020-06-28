@@ -1,5 +1,0 @@
-<map id="tvm::relay::pass::PassContextNode" name="tvm::relay::pass::PassContextNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,353,269,430"/>
-<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="168,132,301,253"/>
-<area shape="rect" id="node6" href="$classtvm_1_1relay_1_1ErrorReporter.html" title="An abstraction around how errors are stored and reported. Designed to be opaque to users..." alt="" coords="293,316,472,467"/>
-</map>

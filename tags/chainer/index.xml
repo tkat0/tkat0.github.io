@@ -1,33 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Chainer on tkat0.github.io</title>
+    <title>chainer on tkat0.github.io</title>
     <link>https://tkat0.github.io/tags/chainer/</link>
-    <description>Recent content in Chainer on tkat0.github.io</description>
+    <description>Recent content in chainer on tkat0.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 06 Feb 2019 09:30:01 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 06 Feb 2019 09:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tkat0.github.io/tags/chainer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>chainer-compiler調査（2）</title>
+      <title>Chainer-compiler調査（2）</title>
       <link>https://tkat0.github.io/posts/learn-chainer-compiler-2/</link>
-      <pubDate>Wed, 06 Feb 2019 09:30:01 +0900</pubDate>
+      <pubDate>Wed, 06 Feb 2019 09:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/learn-chainer-compiler-2/</guid>
-      <description>&lt;p&gt;コンパイル済みのモデルは、ChainやFunctionNodeとして振る舞うように実装しており、既存のtraining-loopに組み込めるようになっている。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Chainer-compilerの調査その2&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>chainer-compiler調査（1）</title>
+      <title>Chainer-compiler調査（1）</title>
       <link>https://tkat0.github.io/posts/learn-chainer-compiler-1/</link>
-      <pubDate>Mon, 04 Feb 2019 09:30:01 +0900</pubDate>
+      <pubDate>Mon, 04 Feb 2019 09:30:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/learn-chainer-compiler-1/</guid>
-      <description>&lt;p&gt;今日からchainer-compilerについて調べてみよう。
-DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.com/event/115446/&#34;&gt;FPGAX&lt;/a&gt;でも話題になってましたね（リモートでちょっと見てました）&lt;/p&gt;</description>
+      <description>&lt;p&gt;今日からChainer-compilerについて調べてみよう。 DeepLearningコンパイラ、先日の&lt;a href=&#34;https://fpgax.connpass.com/event/115446/&#34;&gt;FPGAX&lt;/a&gt;でも話題になってましたね（リモートでちょっと見てました）&lt;/p&gt;</description>
     </item>
     
   </channel>

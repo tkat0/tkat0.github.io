@@ -1,5 +1,0 @@
-<map id="nnvm/include/nnvm/node.h" name="nnvm/include/nnvm/node.h">
-<area shape="rect" id="node7" href="$nnvm_2include_2nnvm_2base_8h.html" title="Configuration of nnvm as well as basic data structure. " alt="" coords="424,155,489,181"/>
-<area shape="rect" id="node15" href="$nnvm_2include_2nnvm_2op_8h.html" title="Operator information structor. " alt="" coords="477,80,527,107"/>
-<area shape="rect" id="node20" href="$c__api_8h.html" title="C API of NNVM symbolic construction and pass. Enables construction and transformation of Graph in any..." alt="" coords="961,155,1027,181"/>
-</map>

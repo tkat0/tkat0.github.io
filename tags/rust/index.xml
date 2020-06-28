@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rust on tkat0.github.io</title>
+    <title>rust on tkat0.github.io</title>
     <link>https://tkat0.github.io/tags/rust/</link>
-    <description>Recent content in Rust on tkat0.github.io</description>
+    <description>Recent content in rust on tkat0.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 30 Jun 2019 18:00:00 +0900</lastBuildDate>
@@ -17,8 +17,7 @@
       <pubDate>Sun, 30 Jun 2019 18:00:00 +0900</pubDate>
       
       <guid>https://tkat0.github.io/posts/cargo-make-1/</guid>
-      <description>&lt;p&gt;cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。
-今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。&lt;/p&gt;</description>
+      <description>&lt;p&gt;cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。 今までMakefileや各種スクリプト言語で書いていたようなタスクをこれに移行している。&lt;/p&gt;</description>
     </item>
     
   </channel>

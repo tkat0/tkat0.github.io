@@ -1,5 +1,0 @@
-<map id="tvm::relay::RepeatAttrs" name="tvm::relay::RepeatAttrs">
-<area shape="rect" id="node2" href="$classtvm_1_1AttrsNode.html" title="{tvm::AttrsNode\&lt; RepeatAttrs \&gt;\n||+ VisitAttrs()\l+ VisitNonDefaultAttrs()\l+ InitByPackedArgs()\l+ ListFieldInfo()\l+ ContentEqual()\l+ ContentHash()\l}" alt="" coords="25,361,250,512"/>
-<area shape="rect" id="node3" href="$classtvm_1_1BaseAttrsNode.html" title="Base class of all attribute class. " alt="" coords="5,132,269,312"/>
-<area shape="rect" id="node5" href="$classtvm_1_1Integer.html" title="Container of constant integer (IntImm). " alt="" coords="274,361,425,512"/>
-</map>

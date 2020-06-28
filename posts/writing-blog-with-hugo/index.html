@@ -15,7 +15,6 @@
   
   <meta name="twitter:title" content="Hugoでブログ作成"/>
   <meta name="twitter:description" content="はてなブログからHugoを使ってGitHub Pagesに移行したときのメモです
-
 Hugoはgolang製の静的サイトジェネレータで、カスタマイズが柔軟にできて、ビルドも速い"/>
   
     <meta name="twitter:site" content="@_tkato_"/>
@@ -31,7 +30,7 @@ Hugoはgolang製の静的サイトジェネレータで、カスタマイズが�
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>Hugoでブログ作成 &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
@@ -43,8 +42,6 @@ Hugoはgolang製の静的サイトジェネレータで、カスタマイズが�
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -76,6 +73,7 @@ Hugoはgolang製の静的サイトジェネレータで、カスタマイズが�
                     </h1>
                     <h2 class="headline">
                     Aug 15, 2017 00:00
+                    · 208 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -92,61 +90,48 @@ Hugoはgolang製の静的サイトジェネレータで、カスタマイズが�
                   
                     <div id="toc">
                       <nav id="TableOfContents">
-<ul>
-<li><a href="#背景">背景</a></li>
-<li><a href="#hugoのインストールとtutorial">HugoのインストールとTutorial</a>
-<ul>
-<li><a href="#hugoの設定">Hugoの設定</a>
-<ul>
-<li><a href="#config-toml">config.toml</a></li>
-<li><a href="#archetypes">archetypes</a></li>
-<li><a href="#shortcode">Shortcode</a></li>
-</ul></li>
-<li><a href="#テーマ">テーマ</a></li>
-<li><a href="#ブログを書く上での運用など">ブログを書く上での運用など</a></li>
-<li><a href="#記事のurl-permalink">記事のURL（Permalink）</a></li>
-<li><a href="#github-pagesへのデプロイ">GitHub Pagesへのデプロイ</a></li>
-<li><a href="#ブログのコーディング環境">ブログのコーディング環境</a>
-<ul>
-<li><a href="#atom">ATOM</a></li>
-<li><a href="#chrome">Chrome</a></li>
-</ul></li>
-<li><a href="#はてなブログからの移行">はてなブログからの移行</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#hugoの設定">Hugoの設定</a>
+      <ul>
+        <li><a href="#configtoml">config.toml</a></li>
+        <li><a href="#archetypes">archetypes</a></li>
+        <li><a href="#shortcode">Shortcode</a></li>
+      </ul>
+    </li>
+    <li><a href="#テーマ">テーマ</a></li>
+    <li><a href="#ブログを書く上での運用など">ブログを書く上での運用など</a></li>
+    <li><a href="#記事のurlpermalink">記事のURL（Permalink）</a></li>
+    <li><a href="#github-pagesへのデプロイ">GitHub Pagesへのデプロイ</a></li>
+    <li><a href="#ブログのコーディング環境">ブログのコーディング環境</a>
+      <ul>
+        <li><a href="#atom">ATOM</a></li>
+        <li><a href="#chrome">Chrome</a></li>
+      </ul>
+    </li>
+    <li><a href="#はてなブログからの移行">はてなブログからの移行</a></li>
+  </ul>
 </nav>
                     </div>
                   
                 
                 <section id="post-body">
                     <p>はてなブログから<code>Hugo</code>を使ってGitHub Pagesに移行したときのメモです</p>
-
 <p><code>Hugo</code>はgolang製の静的サイトジェネレータで、カスタマイズが柔軟にできて、ビルドも速い</p>
-
 <h1 id="背景">背景</h1>
-
 <p>はてぶでブログを書いていたが、以下のような点で書きづらさを感じていた</p>
-
 <ul>
 <li>好きなエディタを使ってMarkdownで記事を書きたい</li>
 <li>履歴の管理をしたい</li>
 <li>オフライン環境でもプレビューしたい</li>
 </ul>
-
 <p>調べてみると、静的サイトジェネレータ（static site generator）を使えば解決できそう。
 これは、Markdownなどで記事を書いてHTMLへビルドするもので、GitHub Pagesなどで公開する。</p>
-
 <p>有名所では、Jeklly、Hexo、Sphinxなどがあるが、中でもHugoというものが使いやすそうなので使ってみた。</p>
-
 <p>Go製でビルドが速い点がHugoの売りらしい。自分の環境では、数記事で1回のビルドは数十ミリ秒。
 以前使ったことのあるSphinxとくらべても速い印象。記事が増えてきてもこの速さは維持できるのかな。</p>
-
 <h1 id="hugoのインストールとtutorial">HugoのインストールとTutorial</h1>
-
 <p>macOSで確認。</p>
-
 <p>公式のTutorialを参照したが、基本的には以下の手順</p>
-
 <pre><code># macOSにHugoをインストール
 brew install hugo
 
@@ -163,250 +148,186 @@ hugo init posts/20170813_hugo.md
 # プロジェクトのビルド
 hugo
 </code></pre>
-
 <p>以上で、<code>./tkato-blog/public/index.html</code>で閲覧できる</p>
-
 <p>Markdownで記事が書ける</p>
-
 <p><code>hugo server -D</code>でリアルタイムにビルドしながらドキュメントを確認できる</p>
-
 <p><code>hugo new</code>で作成した記事は、あとからファイル名を変えても問題ないようだ。</p>
-
 <h2 id="hugoの設定">Hugoの設定</h2>
-
 <p>ブログを書く上で、修正が必要なファイルや知っていると便利な機能を記載する。</p>
-
-<h3 id="config-toml">config.toml</h3>
-
+<h3 id="configtoml">config.toml</h3>
 <p>設定を記載。後述するテーマから参照する情報もある</p>
-
 <p>尚、この設定ファイルはTOML形式だけでなく、JSONやYAMLでも書ける</p>
-
 <h3 id="archetypes">archetypes</h3>
-
 <p>archetypes/default.md</p>
-
 <p>記事を新規作成した時のテンプレートとなる</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> GitHubのissue templateみたいに、必要な章立てなどを記載するとよさそう</label></li>
+<ul>
+<li><input disabled="" type="checkbox"> GitHubのissue templateみたいに、必要な章立てなどを記載するとよさそう</li>
 </ul>
-
 <h3 id="shortcode">Shortcode</h3>
-
 <p>Markdownで書く記事内で使える関数のようなもの。
 予めHTMLでテンプレートを書いておき、Hugoのビルド時に展開される仕組み。</p>
-
 <p>はてなブログで言うところのXXですね。</p>
-
 <p>例えば、記事中に{{&lt; tweet 886120562761752576 &gt;}}と書くと生成されたHTMLは以下のようになる。</p>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ポン酒館きたよ <a href="https://t.co/0AjsLVr8RY">pic.twitter.com/0AjsLVr8RY</a></p>&mdash; tkato (@_tkato_) <a href="https://twitter.com/_tkato_/status/886120562761752576?ref_src=twsrc%5Etfw">July 15, 2017</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ポン酒館きたよ <a href="https://t.co/0AjsLVr8RY">pic.twitter.com/0AjsLVr8RY</a></p>&mdash; _tkato_ (@_tkato_) <a href="https://twitter.com/_tkato_/status/886120562761752576?ref_src=twsrc%5Etfw">July 15, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>Shortcodeには以下のようなメリットがある</p>
-
 <ul>
 <li>Markdownの記述が簡潔になる
-
 <ul>
 <li>リッチなことをする場合でも、MarkdownにHTMLを直接埋め込まなくてよくなる</li>
-</ul></li>
+</ul>
+</li>
 <li>メンテナンスが楽になる
-
 <ul>
 <li>Shortcode側の修正だけで、それを使う全ての記事が修正できる</li>
 <li>例えば「画像埋め込み時のキャプション位置を修正したい」ときなど</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>デフォルトでいくつかのShortcodeが<a href="https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes">ビルドイン</a>されていて、すぐ使うことができる</p>
-
 <ul>
 <li><a href="https://gohugo.io/templates/shortcode-templates/">ユーザー定義の仕方</a></li>
 <li><a href="https://gohugo.io/templates/shortcode-templates/#more-shortcode-examples">サンプルコード</a></li>
 </ul>
-
 <p>todo</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> URLを貼るとはてぶ風の表示(linkcardという？)をするShortcode {{&lt; url &gt;}}を作りたい</label></li>
+<ul>
+<li><input disabled="" type="checkbox"> URLを貼るとはてぶ風の表示(linkcardという？)をするShortcode {{&lt; url &gt;}}を作りたい</li>
 </ul>
-
 <h2 id="テーマ">テーマ</h2>
-
 <p>テーマは自作もできるが、公開テーマがたくさんある。
 例えば、OSSのプロジェクトの公式サイト風や、APIドキュメント風など様々なテーマがある</p>
-
 <p><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a></p>
-
 <p>テーマにはタグが登録されているので、今回は<code>blog</code>タグで検索し、<a href="https://github.com/Vimux/Mainroad">mainroad</a>を使わせてもらうことにした。</p>
-
 <p>Gitのサブモジュールとしてプロジェクトに登録する</p>
-
 <p><code>themes</code>ディレクトリの各設定よりもユーザー環境のほうが優先されるようで、以下のようにしてCSSを上書きできた</p>
-
 <pre><code>$ mkdir static/css
 $ cp themes/static/css/style.css static/css/
 $ vim static/css/style.css # 好みのデザインに上書き
-</code></pre>
-
-<p>いずれは、以下のような機能を含む自分でテーマを作ってみたい</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> TwitterやPocketのリンクをフッターに表示するようにテンプレート化</label></li>
-<li><label><input type="checkbox" disabled class="task-list-item"> 作成日時と更新日時、ファイルのGitHub履歴へのリンクを追加
-
+</code></pre><p>いずれは、以下のような機能を含む自分でテーマを作ってみたい</p>
+<ul>
+<li><input disabled="" type="checkbox"> TwitterやPocketのリンクをフッターに表示するようにテンプレート化</li>
+<li><input disabled="" type="checkbox"> 作成日時と更新日時、ファイルのGitHub履歴へのリンクを追加
 <ul>
 <li>Hugoの公式ドキュメントのフッターを参考</li>
-</ul></label></li>
-<li><label><input type="checkbox" disabled class="task-list-item"> Qitia風のスクロールするtoc
-
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Qitia風のスクロールするtoc
 <ul>
 <li><a href="https://gohugo.io/content-management/toc/">Hugo | Table of Contents</a></li>
-</ul></label></li>
-<li><label><input type="checkbox" disabled class="task-list-item"> コメントの投稿機能をフッターに追加</label></li>
 </ul>
-
+</li>
+<li><input disabled="" type="checkbox"> コメントの投稿機能をフッターに追加</li>
+</ul>
 <h2 id="ブログを書く上での運用など">ブログを書く上での運用など</h2>
-
 <p>記事の新規作成、更新について、以下のようにやっていこうと考えている。</p>
-
-<ul class="task-list">
+<ul>
 <li>記事の新規作成
-
-<ul class="task-list">
+<ul>
 <li><code>hugo new posts/xxxx</code></li>
 <li>記事のPermalinkは、Markdownのファイル名にする
-
 <ul>
 <li>後述</li>
-</ul></li>
+</ul>
+</li>
 <li>画像など、記事に関するファイルの保存場所
-
-<ul class="task-list">
+<ul>
 <li>static/imgなどに適当な名前で保存している</li>
-<li><label><input type="checkbox" disabled class="task-list-item"> ファイルが増えて整理が大変になった、命名規則など考えよう</label></li>
-</ul></li>
-</ul></li>
+<li><input disabled="" type="checkbox"> ファイルが増えて整理が大変になった、命名規則など考えよう</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>記事の投稿
-
-<ul class="task-list">
+<ul>
 <li>後述のGitHub Pagesの機能を利用。GitHubへpushすることで記事が公開される</li>
-<li><label><input type="checkbox" disabled class="task-list-item"> CIでTwitterへのポスト
-
+<li><input disabled="" type="checkbox"> CIでTwitterへのポスト
 <ul>
 <li><code>master</code>ブランチへのコミットは記事の更新として、Tweet</li>
 <li>特定のコミットメッセージを含む場合は、Tweetしないようにする</li>
-</ul></label></li>
-</ul></li>
-<li>記事の追記
-
-<ul class="task-list">
-<li>修正して、GitHubへpush</li>
-<li><label><input type="checkbox" disabled class="task-list-item"> 更新日時や、記事の修正履歴へのリンクは更新時に自動で埋め込まれるようにテンプレートに記載するようにする</label></li>
-</ul></li>
 </ul>
-
-<h2 id="記事のurl-permalink">記事のURL（Permalink）</h2>
-
+</li>
+</ul>
+</li>
+<li>記事の追記
+<ul>
+<li>修正して、GitHubへpush</li>
+<li><input disabled="" type="checkbox"> 更新日時や、記事の修正履歴へのリンクは更新時に自動で埋め込まれるようにテンプレートに記載するようにする</li>
+</ul>
+</li>
+</ul>
+<h2 id="記事のurlpermalink">記事のURL（Permalink）</h2>
 <p>投稿後に記事のタイトルやMarkdownの保存ディレクトリは変えるかもしれないため、それに依存してURLが変わらないようにする</p>
-
 <p>デフォルトでは、<code>content</code>ディレクトリ以下のMarkdownへのパスとなる。
 例えば、<code>content/posts/2017/08/writing-blog-with-hugo-1.md</code>のURLは<code>https://xxx/posts/2017/08/writing-blog-with-hugo-1/</code>となる</p>
-
 <p>Markdownのファイル名はそうそう変えないと思ったので、ファイル名をPermalinkにするように設定。
 例えば、上記の場合は<code>https://xxx/posts/writing-blog-with-hugo-1/</code>となるようにしたい。</p>
-
 <p>Permalinkを変えるには、config.tomlに設定を書く。</p>
-
 <p>設定方法の詳細は<a href="https://gohugo.io/content-management/urls/">Hugo | URL Management</a>参照</p>
-
 <p>以下のようにする。</p>
-
 <pre><code>[permalinks]
   posts = &quot;/:filename&quot; # content/posts以下のパーマリンク
-</code></pre>
-
-<h2 id="github-pagesへのデプロイ">GitHub Pagesへのデプロイ</h2>
-
+</code></pre><h2 id="github-pagesへのデプロイ">GitHub Pagesへのデプロイ</h2>
 <p>Hugoの公式ドキュメントでは以下のページで解説がある</p>
-
 <p><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
-
 <p>いくつかやり方があるが、Markdownで書いたソースとビルドされたHTMLを同じリポジトリで管理したかったので、私は以下の方法とした</p>
-
 <p><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-via-docs-folder-on-master-branch">https://gohugo.io/hosting-and-deployment/hosting-on-github/#deployment-via-docs-folder-on-master-branch</a></p>
-
 <p>簡単な手順は、以下。</p>
-
 <ul>
 <li>リポジトリ作成
-
 <ul>
 <li><a href="https://github.com/tkat0/blog">https://github.com/tkat0/blog</a>
-
 <ul>
 <li>ブログのURLは <a href="https://tkat0.github.io/blog">https://tkat0.github.io/blog</a> となる</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>config.tomlに<code>publishDir = &quot;docs&quot;</code>を記載</li>
 <li><code>hugo</code>実行で、docsディレクトリが作成され、HTMLが生成される</li>
 <li>git commit &amp;&amp; git push</li>
 </ul>
-
 <h2 id="ブログのコーディング環境">ブログのコーディング環境</h2>
-
 <h3 id="atom">ATOM</h3>
-
 <p>現在は、ATOMでこの記事を書いている。</p>
-
 <p>特に記事を書く上で役立っているプラグインは以下のもの。</p>
-
 <ul>
 <li>markdown-preview-enhanced
-
 <ul>
 <li>MarkdownをATOMでリアルタイムプレビュー</li>
 <li>このプラグインではHugoのプロジェクトの画像が表示できないので、今はブラウザでのプレビューをメインで使っている</li>
-</ul></li>
+</ul>
+</li>
 <li>document-outline
-
 <ul>
 <li>Markdownのアウトラインの可視化</li>
-</ul></li>
+</ul>
+</li>
 <li>platformio-ide-terminal
-
 <ul>
 <li>ターミナル</li>
 <li><code>hugo server -D</code>を実行しておき、ブラウザでリアルタイムプレビューできるようにする</li>
-</ul></li>
+</ul>
+</li>
 <li>vim-mode-plus
-
 <ul>
 <li>ATOMでVimキーバインドを使う</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="chrome">Chrome</h3>
-
 <ul>
 <li><a href="https://chrome.google.com/webstore/detail/copy-as-markdown/fkeaekngjflipcockcnpobkpbbfbhmdn">Copy as Markdown - Chrome ウェブストア</a>
-
 <ul>
 <li>WebサイトのリンクをMarkdown形式にしてクリップボードにコピーしてくれる</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="はてなブログからの移行">はてなブログからの移行</h2>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> いまいま良い案はなさそう。記事も少ないので手動で頑張るか。</label></li>
+<ul>
+<li><input disabled="" type="checkbox"> いまいま良い案はなさそう。記事も少ないので手動で頑張るか。</li>
 </ul>
-
 <p>はてなブログは記事をエクスポートできるが、以下の制限がある</p>
-
 <ul>
 <li>MT（MovableType）形式</li>
 <li>画像のエクスポートはできない</li>
@@ -441,11 +362,7 @@ $ vim static/css/style.css # 好みのデザインに上書き
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -453,7 +370,7 @@ $ vim static/css/style.css # 好みのデザインに上書き
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
@@ -461,11 +378,15 @@ $ vim static/css/style.css # 好みのデザインに上書き
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
             <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -493,7 +414,7 @@ $ vim static/css/style.css # 好みのデザインに上書き
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

@@ -1,7 +1,0 @@
-<map id="tvm::relay::TypeDataNode" name="tvm::relay::TypeDataNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1TypeNode.html" title="Base type of the Relay type hiearchy. " alt="" coords="5,563,269,640"/>
-<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,316,269,393"/>
-<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="99,132,232,253"/>
-<area shape="rect" id="node8" href="$classtvm_1_1relay_1_1Type.html" title="Type is the base type of relay type hiearchy. " alt="" coords="257,147,378,239"/>
-<area shape="rect" id="node7" href="$classtvm_1_1relay_1_1GlobalTypeVar.html" title="{tvm::relay::GlobalTypeVar\n||+ GlobalTypeVar()\l+ GlobalTypeVar()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="226,417,409,539"/>
-</map>

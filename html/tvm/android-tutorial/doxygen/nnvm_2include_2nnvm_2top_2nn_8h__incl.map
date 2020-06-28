@@ -1,6 +1,0 @@
-<map id="nnvm/include/nnvm/top/nn.h" name="nnvm/include/nnvm/top/nn.h">
-<area shape="rect" id="node4" href="$tuple_8h.html" title="Data structure Tuple and TShape to store dynamic sized shapes. " alt="" coords="521,155,627,181"/>
-<area shape="rect" id="node18" href="$layout_8h.html" title="Layout expression. The layout is composed of upper cases, lower cases and numbers, where upper case indicates a (super&#45;)dimension and the corresponding lower case with factor size indicates the split (sub&#45;)dimension. For example, NCHW16c can describe a 5&#45;D tensor of [batch_size, channel, height, width, channel_block]. Here sub&#45;dimension channel_block=16 is the split of super&#45;dimension C (channel). " alt="" coords="327,155,440,181"/>
-<area shape="rect" id="node20" href="$nnvm_2include_2nnvm_2top_2tensor_8h.html" title="Auxiliary param for tensor primitive. " alt="" coords="142,80,217,107"/>
-<area shape="rect" id="node11" href="$nnvm_2include_2nnvm_2base_8h.html" title="Configuration of nnvm as well as basic data structure. " alt="" coords="625,229,691,256"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="nnvm/include/nnvm/graph.h" name="nnvm/include/nnvm/graph.h">
-<area shape="rect" id="node9" href="$nnvm_2include_2nnvm_2base_8h.html" title="Configuration of nnvm as well as basic data structure. " alt="" coords="424,304,489,331"/>
-<area shape="rect" id="node17" href="$node_8h.html" title="Graph node data structure. " alt="" coords="910,155,977,181"/>
-<area shape="rect" id="node24" href="$symbolic_8h.html" title="Symbolic graph construction API. " alt="" coords="1170,80,1261,107"/>
-<area shape="rect" id="node18" href="$nnvm_2include_2nnvm_2op_8h.html" title="Operator information structor. " alt="" coords="855,229,906,256"/>
-<area shape="rect" id="node23" href="$c__api_8h.html" title="C API of NNVM symbolic construction and pass. Enables construction and transformation of Graph in any..." alt="" coords="1045,304,1111,331"/>
-</map>

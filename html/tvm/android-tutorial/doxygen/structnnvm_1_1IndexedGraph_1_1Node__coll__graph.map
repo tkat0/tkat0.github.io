@@ -1,5 +1,0 @@
-<map id="nnvm::IndexedGraph::Node" name="nnvm::IndexedGraph::Node">
-<area shape="rect" id="node3" href="$classnnvm_1_1Node.html" title="Node represents an operation in a computation graph. " alt="" coords="228,623,360,817"/>
-<area shape="rect" id="node4" href="$structnnvm_1_1NodeAttrs.html" title="The attributes of the current operation node. Usually are additional parameters like axis..." alt="" coords="149,453,279,560"/>
-<area shape="rect" id="node5" href="$classnnvm_1_1Op.html" title="Operator structure. " alt="" coords="105,5,264,391"/>
-</map>

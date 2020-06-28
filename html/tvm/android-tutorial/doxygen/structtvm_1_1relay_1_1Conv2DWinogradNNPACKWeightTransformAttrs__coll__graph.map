@@ -1,4 +1,0 @@
-<map id="tvm::relay::Conv2DWinogradNNPACKWeightTransformAttrs" name="tvm::relay::Conv2DWinogradNNPACKWeightTransformAttrs">
-<area shape="rect" id="node2" href="$classtvm_1_1AttrsNode.html" title="{tvm::AttrsNode\&lt; Conv2DWinograd\lNNPACKWeightTransformAttrs \&gt;\n||+ VisitAttrs()\l+ VisitNonDefaultAttrs()\l+ InitByPackedArgs()\l+ ListFieldInfo()\l+ ContentEqual()\l+ ContentHash()\l}" alt="" coords="15,361,259,527"/>
-<area shape="rect" id="node3" href="$classtvm_1_1BaseAttrsNode.html" title="Base class of all attribute class. " alt="" coords="5,132,269,312"/>
-</map>

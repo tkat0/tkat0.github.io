@@ -1,4 +1,0 @@
-<map id="tvm::relay::ClauseNode" name="tvm::relay::ClauseNode">
-<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1Pattern.html" title="Pattern is the base type for an ADT match pattern in Relay. " alt="" coords="85,147,224,239"/>
-<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1Expr.html" title="{tvm::relay::Expr\n||+ Expr()\l+ Expr()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="248,132,381,253"/>
-</map>

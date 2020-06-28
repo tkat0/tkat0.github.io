@@ -1,8 +1,0 @@
-<map id="tvm::relay::ConstantNode" name="tvm::relay::ConstantNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1ExprNode.html" title="Base type of the Relay expression hiearchy. " alt="" coords="175,731,439,838"/>
-<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,452,269,529"/>
-<area shape="rect" id="node5" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="147,132,280,253"/>
-<area shape="rect" id="node7" href="$classtvm_1_1relay_1_1Type.html" title="Type is the base type of relay type hiearchy. " alt="" coords="257,277,378,369"/>
-<area shape="rect" id="node8" href="$classtvm_1_1runtime_1_1NDArray.html" title="Managed NDArray. The array is backed by reference counted blocks. " alt="" coords="463,651,630,919"/>
-<area shape="rect" id="node9" href="$classtvm_1_1runtime_1_1NDArray_1_1Container.html" title="Reference counted Container object used to back NDArray. " alt="" coords="463,393,630,588"/>
-</map>

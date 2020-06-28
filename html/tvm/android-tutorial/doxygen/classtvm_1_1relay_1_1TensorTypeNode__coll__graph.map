@@ -1,6 +1,0 @@
-<map id="tvm::relay::TensorTypeNode" name="tvm::relay::TensorTypeNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1BaseTensorTypeNode.html" title="Base of all Tensor types This container can hold TensorType or GenericTensorType. ..." alt="" coords="5,569,269,647"/>
-<area shape="rect" id="node3" href="$classtvm_1_1relay_1_1TypeNode.html" title="Base type of the Relay type hiearchy. " alt="" coords="5,443,269,520"/>
-<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,316,269,393"/>
-<area shape="rect" id="node6" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="168,132,301,253"/>
-</map>

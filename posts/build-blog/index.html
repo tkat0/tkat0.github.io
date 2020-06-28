@@ -29,7 +29,7 @@
 		
 		<meta name="author" content="tomohiro.kato">
 		<meta name="description" content="tkat0.github.io">
-		<meta name="generator" content="Hugo 0.53" />
+		<meta name="generator" content="Hugo 0.72.0" />
 		<title>再びblogを &middot; tkat0.github.io</title>
 		<link rel="shortcut icon" href="https://tkat0.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tkat0.github.io/css/style.css">
@@ -41,8 +41,6 @@
 
 		
 		<link href="https://tkat0.github.io/index.xml" rel="alternate" type="application/rss+xml" title="tkat0.github.io" />
-		
-
 		
 
 		
@@ -74,6 +72,7 @@
                     </h1>
                     <h2 class="headline">
                     Feb 1, 2019 10:00
+                    · 45 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -91,44 +90,30 @@
                 
                 <section id="post-body">
                     <p>GitHubを整理していたら、何年か前に<a href="https://tkat0.github.io/posts/writing-blog-with-hugo/">はてなブログからhugo@github.ioへ移行しようとした残骸</a>を見つけたので復活させた。</p>
-
 <p>エンジニアブログ書くならmediumとかnotesとかqiitaどれが良いんじゃろと数分考えて、以下を満たすのがhugoだった。
 多分同じことを前にも考えてやろうとしていたのだと思う。</p>
-
 <ul>
 <li>markdownでgit管理しながら書きたい</li>
 <li>好きなエディタでローカルで作業したい</li>
 <li>codeのsyntax highlight</li>
 <li>日々の雑記だけでなく、まとめ記事も作成したい</li>
 </ul>
-
 <p>syntax highlightの例。いいねー。</p>
-
-<pre><code class="language-python">import tvm
-print(tvm.__version__)
-</code></pre>
-
-<pre><code class="language-bash">$ ls
-</code></pre>
-
-<pre><code class="language-cpp">std::cout &lt;&lt; &quot;hello world&quot; &lt;&lt; std::endl;
-</code></pre>
-
-<p>普段も調べたことはEvernoteに全部書いているけど、せっかくだしpublicにしたい。publicにすることで、
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tvm</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tvm</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;hello world&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div><p>普段も調べたことはEvernoteに全部書いているけど、せっかくだしpublicにしたい。publicにすることで、
 多少は読みやすく書くだろうし、後々自分にとっても良いだろうということ。
 以下の通り、書いて忘れるのは大事だなと思った。最近色々手を伸ばしすぎて頭が整理できていないのでなお。</p>
-
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">私は忘却力が高くて20代の頃からこんな感じでメモを書いては忘れて脳内メモリ空けてました。最近は検索できて良いですよね。 <a href="https://t.co/Uyb9Tp51oi">https://t.co/Uyb9Tp51oi</a></p>&mdash; そのっつ (Naotoshi Seo) (@sonots) <a href="https://twitter.com/sonots/status/1090636769014407168?ref_src=twsrc%5Etfw">January 30, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>過去のブログ。おせわになりました。</p>
-
 <ul>
 <li><a href="http://tkat0.hateblo.jp/">http://tkat0.hateblo.jp/</a></li>
 <li><a href="https://tkat0.github.io/study-BNN-PYNQ/">https://tkat0.github.io/study-BNN-PYNQ/</a></li>
 </ul>
-
 <p>ちなみに、buildしたHTML自体は <a href="https://github.com/tkat0/tkat0.github.io">https://github.com/tkat0/tkat0.github.io</a> へpushしてますが、
 ソースは <a href="https://github.com/tkat0/tkat0.github.io.dev">https://github.com/tkat0/tkat0.github.io.dev</a> (privateだよ) で管理してます。
 みんなどうやってるんだろう。</p>
@@ -162,11 +147,7 @@ print(tvm.__version__)
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">Mar 22 2019</aside></a>
-        </li>
-    
-        <li>
-            <a href="https://tkat0.github.io/posts/setup-raspi/">Raspberry Pi買ったよ<aside class="dates">Mar 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/read-onnxruntime/">ONNXRuntime調査<aside class="dates">May 22 2019</aside></a>
         </li>
     
         <li>
@@ -174,7 +155,7 @@ print(tvm.__version__)
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-2/">Chainer-compiler調査（2）<aside class="dates">Feb 6 2019</aside></a>
         </li>
     
         <li>
@@ -182,11 +163,15 @@ print(tvm.__version__)
         </li>
     
         <li>
-            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
+            <a href="https://tkat0.github.io/posts/learn-chainer-compiler-1/">Chainer-compiler調査（1）<aside class="dates">Feb 4 2019</aside></a>
         </li>
     
         <li>
             <a href="https://tkat0.github.io/posts/learn-onnx/">いまさらONNXを調べた(v1.4.1)<aside class="dates">Feb 2 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="https://tkat0.github.io/posts/distiller-thinning/">Distillerのthinningの仕様<aside class="dates">Feb 2 2019</aside></a>
         </li>
     
 </ul>
@@ -214,7 +199,7 @@ print(tvm.__version__)
     
     <p class="small">
     
-       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> tomohiro.kato
     
     </p>
     <p class="small">

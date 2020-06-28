@@ -1,5 +1,0 @@
-<map id="tvm::BaseComputeOpNode" name="tvm::BaseComputeOpNode">
-<area shape="rect" id="node4" href="$classtvm_1_1ComputeOpNode.html" title="A Compute op that compute a tensor on certain domain. " alt="" coords="5,697,264,935"/>
-<area shape="rect" id="node5" href="$classtvm_1_1TensorComputeOpNode.html" title="A TenorCompute op that compute a tensor with an tensor intrinsic. " alt="" coords="288,675,547,957"/>
-<area shape="rect" id="node2" href="$classtvm_1_1OperationNode.html" title="Base class of all operation nodes. " alt="" coords="144,131,408,399"/>
-</map>

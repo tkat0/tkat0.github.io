@@ -1,7 +1,0 @@
-<map id="include/tvm/relay/module.h" name="include/tvm/relay/module.h">
-<area shape="rect" id="node2" href="$error_8h.html" title="The set of errors raised by Relay. " alt="" coords="234,80,411,107"/>
-<area shape="rect" id="node4" href="$include_2tvm_2relay_2pass_8h.html" title="The set of Relay passes written in C++. " alt="" coords="399,162,577,189"/>
-<area shape="rect" id="node6" href="$interpreter_8h.html" title="An interpreter for Relay. " alt="" coords="487,80,702,107"/>
-<area shape="rect" id="node3" href="$expr__functor_8h.html" title="A more powerful visitor which enables defining arbitrary function signatures with type based dispatch..." alt="" coords="5,155,168,196"/>
-<area shape="rect" id="node5" href="$pattern__functor_8h.html" title="A more powerful visitor on ADT patterns that enables defining arbitrary function signatures with type..." alt="" coords="193,155,375,196"/>
-</map>

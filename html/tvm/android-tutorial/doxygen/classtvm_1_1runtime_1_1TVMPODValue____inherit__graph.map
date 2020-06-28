@@ -1,4 +1,0 @@
-<map id="tvm::runtime::TVMPODValue_" name="tvm::runtime::TVMPODValue_">
-<area shape="rect" id="node2" href="$classtvm_1_1runtime_1_1TVMArgValue.html" title="A single argument value to PackedFunc. Containing both type_code and TVMValue. " alt="" coords="5,351,212,633"/>
-<area shape="rect" id="node3" href="$classtvm_1_1runtime_1_1TVMRetValue.html" title="Return Value container, Unlike TVMArgValue, which only holds reference and do not delete the underlyi..." alt="" coords="236,373,443,611"/>
-</map>

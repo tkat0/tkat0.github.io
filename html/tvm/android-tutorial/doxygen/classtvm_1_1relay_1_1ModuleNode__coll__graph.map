@@ -1,6 +1,0 @@
-<map id="tvm::relay::ModuleNode" name="tvm::relay::ModuleNode">
-<area shape="rect" id="node2" href="$classtvm_1_1relay_1_1RelayNode.html" title="This is the base node container of all relay structures. " alt="" coords="5,338,269,415"/>
-<area shape="rect" id="node4" href="$classtvm_1_1relay_1_1Span.html" title="{tvm::relay::Span\n||+ Span()\l+ Span()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="147,132,280,253"/>
-<area shape="rect" id="node7" href="$classtvm_1_1relay_1_1Expr.html" title="{tvm::relay::Expr\n||+ Expr()\l+ Expr()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="304,132,437,253"/>
-<area shape="rect" id="node6" href="$classtvm_1_1relay_1_1GlobalVar.html" title="{tvm::relay::GlobalVar\n||+ GlobalVar()\l+ GlobalVar()\l+ operator&#45;\&gt;()\l+ operator bool()\l}" alt="" coords="293,316,448,437"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="nnvm/include/nnvm/layout.h" name="nnvm/include/nnvm/layout.h">
-<area shape="rect" id="node2" href="$graph__attr__types_8h.html" title="Data structures that can appear in graph attributes. " alt="" coords="216,80,404,121"/>
-<area shape="rect" id="node5" href="$nnvm_2include_2nnvm_2op__attr__types_8h.html" title="Data structures that can appear in operator attributes. " alt="" coords="25,80,192,121"/>
-<area shape="rect" id="node6" href="$nnvm_2include_2nnvm_2top_2nn_8h.html" title="Auxiliary param for tensor primitive. " alt="" coords="428,87,632,114"/>
-<area shape="rect" id="node3" href="$nnvm_2include_2nnvm_2compiler_2op__attr__types_8h.html" title="The Expr and related elements in DataFlow construction. " alt="" coords="5,169,212,211"/>
-<area shape="rect" id="node4" href="$pass__functions_8h.html" title="Pass functions that simply redirect the calls to ApplyPass. " alt="" coords="237,169,418,211"/>
-</map>
