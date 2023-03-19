@@ -1,0 +1,116 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Sat, 06 Jul 2019 21:30:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/deeplearning/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/1907.01989</guid>
+    <title>[1907.01989] On-Device Neural Net Inference with Mobile GPUs</title>
+    <link>https://tkat0.dev//blog/1907.01989</link>
+    <description>Google Researchより、TFLite GPUのアーキテクチャ設計についての論文。</description>
+    <pubDate>Sat, 06 Jul 2019 21:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>tflite</category><category>deeplearning</category><category>paper</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/mediapipe</guid>
+    <title>GoogleのMediaPipeでMLアプリ開発が楽になる</title>
+    <link>https://tkat0.dev//blog/mediapipe</link>
+    <description>GoogleがMediaPipeを公開。 エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。</description>
+    <pubDate>Tue, 18 Jun 2019 21:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>mediapipe</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/distiller-thinning</guid>
+    <title>Distillerのthinningの仕様</title>
+    <link>https://tkat0.dev//blog/distiller-thinning</link>
+    <description>DistillerはPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&quot;thinning&quot;ができる。
+今回はそのソースを読んで気がついたことのまとめ。</description>
+    <pubDate>Sat, 02 Feb 2019 03:00:01 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/learn-chainer-compiler-1</guid>
+    <title>Chainer-compiler調査（1）</title>
+    <link>https://tkat0.dev//blog/learn-chainer-compiler-1</link>
+    <description>今日からChainer-compilerについて調べてみよう。</description>
+    <pubDate>Mon, 04 Feb 2019 00:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chainer-compiler</category><category>deeplearning</category><category>chainer</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/learn-chainer-compiler-2</guid>
+    <title>Chainer-compiler調査（2）</title>
+    <link>https://tkat0.dev//blog/learn-chainer-compiler-2</link>
+    <description>Chainer-compilerの調査その2</description>
+    <pubDate>Wed, 06 Feb 2019 00:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chainer-compiler</category><category>deeplearning</category><category>chainer</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/learn-onnx</guid>
+    <title>いまさらONNXを調べた(v1.4.1)</title>
+    <link>https://tkat0.dev//blog/learn-onnx</link>
+    <description>ONNXは1年以上前から使ってるもののちゃんと仕様しらないな〜、だったので調べた。</description>
+    <pubDate>Sat, 02 Feb 2019 04:00:01 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>onnx</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/pytorch-named_modules</guid>
+    <title>PyTorchのModule#named_modules</title>
+    <link>https://tkat0.dev//blog/pytorch-named_modules</link>
+    <description>PyTorchのModule#named_modulesでモデル内のすべてのOperatorにアクセスするときにはまったメモ。</description>
+    <pubDate>Tue, 05 Feb 2019 23:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>pytorch</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/read-onnxruntime</guid>
+    <title>ONNXRuntime調査</title>
+    <link>https://tkat0.dev//blog/read-onnxruntime</link>
+    <description>ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。</description>
+    <pubDate>Wed, 22 May 2019 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>onnxruntime</category><category>deeplearning</category><category>onnx</category><category>tvm</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/docker-env-for-distiller</guid>
+    <title>Distillerの検証環境をDockerで作った</title>
+    <link>https://tkat0.dev//blog/docker-env-for-distiller</link>
+    <description>PyTorch向けの軽量化ライブラリであるDistillerを触る環境をDockerで作っただけの話</description>
+    <pubDate>Fri, 22 Feb 2019 02:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>pytorch</category><category>docker</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/deploy-ml-as-wasm</guid>
+    <title>WebAssemblyでの機械学習モデルデプロイの動向</title>
+    <link>https://tkat0.dev//blog/deploy-ml-as-wasm</link>
+    <description>本記事はMLOps Advent Calendar 2020の2日目の記事です。
+この記事では、機械学習モデル（特にDeep Learning）をWasmでデプロイする周辺技術の動向や内部の仕組みをざっくりと説明します。</description>
+    <pubDate>Wed, 02 Dec 2020 10:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>rust</category><category>wasm</category><category>deeplearning</category><category>mlops</category>
+  </item>
+
+    </channel>
+  </rss>

@@ -1,0 +1,690 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev/posts</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Tue, 15 Aug 2017 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev/posts/writing-blog-with-hugo</guid>
+    <title>Hugoでブログ作成</title>
+    <link>https://tkat0.dev/posts/writing-blog-with-hugo</link>
+    <description>はてなブログからHugoを使ってGitHub Pagesに移行したときのメモです</description>
+    <pubDate>Tue, 15 Aug 2017 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>hugo</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/1907.01989</guid>
+    <title>[1907.01989] On-Device Neural Net Inference with Mobile GPUs</title>
+    <link>https://tkat0.dev/posts/1907.01989</link>
+    <description>Google Researchより、TFLite GPUのアーキテクチャ設計についての論文。</description>
+    <pubDate>Sat, 06 Jul 2019 21:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>tflite</category><category>deeplearning</category><category>paper</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/cargo-make-1</guid>
+    <title>タスクランナーをmakeからcargo-makeへ移行</title>
+    <link>https://tkat0.dev/posts/cargo-make-1</link>
+    <description>cargo-makeはRustで書かれたタスクランナー。makeをよりリッチにしたようで使い勝手が良かった。</description>
+    <pubDate>Sun, 30 Jun 2019 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>rust</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/mediapipe</guid>
+    <title>GoogleのMediaPipeでMLアプリ開発が楽になる</title>
+    <link>https://tkat0.dev/posts/mediapipe</link>
+    <description>GoogleがMediaPipeを公開。 エッジもサーバーも、MLを組み込んだアプリケーションを作るのが楽になりそうだ。</description>
+    <pubDate>Tue, 18 Jun 2019 21:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>mediapipe</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/build-blog</guid>
+    <title>再びblogを</title>
+    <link>https://tkat0.dev/posts/build-blog</link>
+    <description>GitHubを整理していたら、何年か前にはてなブログからhugo@github.ioへ移行しようとした残骸を見つけたので復活させた。</description>
+    <pubDate>Fri, 01 Feb 2019 01:00:01 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>hugo</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/build-ergodash</guid>
+    <title>自作キーボード作った ErgoDash</title>
+    <link>https://tkat0.dev/posts/build-ergodash</link>
+    <description>遊舎工房の実店舗でErgoDashを買ってそのまま作ってきた記録。</description>
+    <pubDate>Fri, 01 Feb 2019 13:36:10 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>keyboard</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/distiller-thinning</guid>
+    <title>Distillerのthinningの仕様</title>
+    <link>https://tkat0.dev/posts/distiller-thinning</link>
+    <description>DistillerはPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&quot;thinning&quot;ができる。
+今回はそのソースを読んで気がついたことのまとめ。</description>
+    <pubDate>Sat, 02 Feb 2019 03:00:01 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/learn-chainer-compiler-1</guid>
+    <title>Chainer-compiler調査（1）</title>
+    <link>https://tkat0.dev/posts/learn-chainer-compiler-1</link>
+    <description>今日からChainer-compilerについて調べてみよう。</description>
+    <pubDate>Mon, 04 Feb 2019 00:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chainer-compiler</category><category>deeplearning</category><category>chainer</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/learn-chainer-compiler-2</guid>
+    <title>Chainer-compiler調査（2）</title>
+    <link>https://tkat0.dev/posts/learn-chainer-compiler-2</link>
+    <description>Chainer-compilerの調査その2</description>
+    <pubDate>Wed, 06 Feb 2019 00:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chainer-compiler</category><category>deeplearning</category><category>chainer</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/learn-onnx</guid>
+    <title>いまさらONNXを調べた(v1.4.1)</title>
+    <link>https://tkat0.dev/posts/learn-onnx</link>
+    <description>ONNXは1年以上前から使ってるもののちゃんと仕様しらないな〜、だったので調べた。</description>
+    <pubDate>Sat, 02 Feb 2019 04:00:01 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>onnx</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/pytorch-named_modules</guid>
+    <title>PyTorchのModule#named_modules</title>
+    <link>https://tkat0.dev/posts/pytorch-named_modules</link>
+    <description>PyTorchのModule#named_modulesでモデル内のすべてのOperatorにアクセスするときにはまったメモ。</description>
+    <pubDate>Tue, 05 Feb 2019 23:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>pytorch</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/read-onnxruntime</guid>
+    <title>ONNXRuntime調査</title>
+    <link>https://tkat0.dev/posts/read-onnxruntime</link>
+    <description>ONNXモデルの推論エンジン。TensorRTのpreviewが出ると。この機会にちょっと調べる。</description>
+    <pubDate>Wed, 22 May 2019 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>onnxruntime</category><category>deeplearning</category><category>onnx</category><category>tvm</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/setup-raspi</guid>
+    <title>Raspberry Pi 3 B+買ったよ</title>
+    <link>https://tkat0.dev/posts/setup-raspi</link>
+    <description>Raspberry Pi 3 B+を買ったので初期設定のメモ</description>
+    <pubDate>Sat, 02 Feb 2019 03:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>raspberry-pi</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/2020-kpt</guid>
+    <title>2020年の振り返り</title>
+    <link>https://tkat0.dev/posts/2020-kpt</link>
+    <description>皆さん、今年もお世話になりました。
+KPTで2020年を振り返ってみました。</description>
+    <pubDate>Thu, 31 Dec 2020 08:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210104</guid>
+    <title>Weekly Report 2021/01/04-01/10</title>
+    <link>https://tkat0.dev/posts/weekly-20210104</link>
+    <description>「毎週ブログ書く」を今年の目標の1つにしたので、毎週、今週の振り返りを書いていこうと思う。基本は自身が定期的に振り返り、アウトプットする習慣をつける目的だが、なにかが参考になれば幸いです。
+今週の余暇はほとんど英語学習でした。</description>
+    <pubDate>Sun, 10 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210111</guid>
+    <title>Weekly Report 2021/01/11-01/17</title>
+    <link>https://tkat0.dev/posts/weekly-20210111</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 17 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210118</guid>
+    <title>Weekly Report 2021/01/18-01/24</title>
+    <link>https://tkat0.dev/posts/weekly-20210118</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 24 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210125</guid>
+    <title>Weekly Report 2021/01/25-01/31</title>
+    <link>https://tkat0.dev/posts/weekly-20210125</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 31 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210201</guid>
+    <title>Weekly Report 2021/02/01-02/07</title>
+    <link>https://tkat0.dev/posts/weekly-20210201</link>
+    <description>今週の振り返り。英語学習の成果が見え始めて嬉しい。</description>
+    <pubDate>Sun, 07 Feb 2021 03:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210214</guid>
+    <title>Weekly Report 2021/02/08-02/14</title>
+    <link>https://tkat0.dev/posts/weekly-20210214</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 14 Feb 2021 03:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210215</guid>
+    <title>Weekly Report 2021/02/15-02/21</title>
+    <link>https://tkat0.dev/posts/weekly-20210215</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 22 Feb 2021 12:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210222</guid>
+    <title>Weekly Report 2021/02/22-02/28</title>
+    <link>https://tkat0.dev/posts/weekly-20210222</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 28 Feb 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210301</guid>
+    <title>Weekly Report 2021/03/01-03/07</title>
+    <link>https://tkat0.dev/posts/weekly-20210301</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 07 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210308</guid>
+    <title>Weekly Report 2021/03/08-03/14</title>
+    <link>https://tkat0.dev/posts/weekly-20210308</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 14 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210315</guid>
+    <title>Weekly Report 2021/03/15-03/21</title>
+    <link>https://tkat0.dev/posts/weekly-20210315</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 21 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210322</guid>
+    <title>Weekly Report 2021/03/22-03/28</title>
+    <link>https://tkat0.dev/posts/weekly-20210322</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 28 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210329</guid>
+    <title>Weekly Report 2021/03/29-04/04</title>
+    <link>https://tkat0.dev/posts/weekly-20210329</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 04 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210405</guid>
+    <title>Weekly Report 2021/04/05-04/11</title>
+    <link>https://tkat0.dev/posts/weekly-20210405</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 12 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210412</guid>
+    <title>Weekly Report 2021/04/12-04/18</title>
+    <link>https://tkat0.dev/posts/weekly-20210412</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 18 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210419</guid>
+    <title>Weekly Report 2021/04/19-04/25</title>
+    <link>https://tkat0.dev/posts/weekly-20210419</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 25 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210426</guid>
+    <title>Weekly Report 2021/04/26-05/02</title>
+    <link>https://tkat0.dev/posts/weekly-20210426</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 02 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210606</guid>
+    <title>Weekly Report 2021/05/31-06/06</title>
+    <link>https://tkat0.dev/posts/weekly-20210606</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 06 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210613</guid>
+    <title>Weekly Report 2021/06/07-06/13</title>
+    <link>https://tkat0.dev/posts/weekly-20210613</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 13 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210620</guid>
+    <title>Weekly Report 2021/06/13-06/20</title>
+    <link>https://tkat0.dev/posts/weekly-20210620</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 20 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210627</guid>
+    <title>Weekly Report 2021/06/20-06/27</title>
+    <link>https://tkat0.dev/posts/weekly-20210627</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 27 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210510</guid>
+    <title>Weekly Report 2021/05/10-05/16</title>
+    <link>https://tkat0.dev/posts/weekly-20210510</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 16 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210517</guid>
+    <title>Weekly Report 2021/05/17-05/23</title>
+    <link>https://tkat0.dev/posts/weekly-20210517</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 23 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210530</guid>
+    <title>Weekly Report 2021/05/24-05/30</title>
+    <link>https://tkat0.dev/posts/weekly-20210530</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 30 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210906</guid>
+    <title>Weekly Report 2021/09/01-09/06</title>
+    <link>https://tkat0.dev/posts/weekly-20210906</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 06 Sep 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210914</guid>
+    <title>Weekly Report 2021/09/07-09/14</title>
+    <link>https://tkat0.dev/posts/weekly-20210914</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Tue, 14 Sep 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210927</guid>
+    <title>Weekly Report 2021/09/15-09/27</title>
+    <link>https://tkat0.dev/posts/weekly-20210927</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 27 Sep 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20211005</guid>
+    <title>Weekly Report 2021/09/28-10/05</title>
+    <link>https://tkat0.dev/posts/weekly-20211005</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Tue, 05 Oct 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210801</guid>
+    <title>Weekly Report 2021/07/26-08/01</title>
+    <link>https://tkat0.dev/posts/weekly-20210801</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210809</guid>
+    <title>Weekly Report 2021/08/02-08/09</title>
+    <link>https://tkat0.dev/posts/weekly-20210809</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 09 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210816</guid>
+    <title>Weekly Report 2021/08/10-08/16</title>
+    <link>https://tkat0.dev/posts/weekly-20210816</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210823</guid>
+    <title>Weekly Report 2021/08/17-08/23</title>
+    <link>https://tkat0.dev/posts/weekly-20210823</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210831</guid>
+    <title>Weekly Report 2021/08/24-08/31</title>
+    <link>https://tkat0.dev/posts/weekly-20210831</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Tue, 31 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210704</guid>
+    <title>Weekly Report 2021/06/28-07/04</title>
+    <link>https://tkat0.dev/posts/weekly-20210704</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210711</guid>
+    <title>Weekly Report 2021/07/05-07/11</title>
+    <link>https://tkat0.dev/posts/weekly-20210711</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 11 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210718</guid>
+    <title>Weekly Report 2021/07/12-07/18</title>
+    <link>https://tkat0.dev/posts/weekly-20210718</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 18 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210725</guid>
+    <title>Weekly Report 2021/07/19-07/25</title>
+    <link>https://tkat0.dev/posts/weekly-20210725</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 25 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20211018</guid>
+    <title>Weekly Report 2021/10/06-10/18</title>
+    <link>https://tkat0.dev/posts/weekly-20211018</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 18 Oct 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20211031</guid>
+    <title>Weekly Report 2021/10/19-10/31</title>
+    <link>https://tkat0.dev/posts/weekly-20211031</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 31 Oct 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/monthly-20211130</guid>
+    <title>Monthly Report 2021/11/01-11/30</title>
+    <link>https://tkat0.dev/posts/monthly-20211130</link>
+    <description>今月の振り返り。</description>
+    <pubDate>Mon, 29 Nov 2021 15:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20211212</guid>
+    <title>Weekly Report 2021/12/01-12/12</title>
+    <link>https://tkat0.dev/posts/weekly-20211212</link>
+    <description>今月の振り返り。</description>
+    <pubDate>Sat, 11 Dec 2021 15:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20211226</guid>
+    <title>Weekly Report 2021/12/13-12/26</title>
+    <link>https://tkat0.dev/posts/weekly-20211226</link>
+    <description>今月の振り返り。</description>
+    <pubDate>Sat, 25 Dec 2021 15:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/2022-review</guid>
+    <title>Looking back on 2022</title>
+    <link>https://tkat0.dev/posts/2022-review</link>
+    <description>Looking back on 2022.</description>
+    <pubDate>Thu, 29 Dec 2022 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>yearly-review</category><category>translated</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/2022-review</guid>
+    <title>2022年の振り返り</title>
+    <link>https://tkat0.dev/posts/2022-review</link>
+    <description>2022年の振り返り。</description>
+    <pubDate>Thu, 29 Dec 2022 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>yearly-review</category><category>translated</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/docker-env-for-distiller</guid>
+    <title>Distillerの検証環境をDockerで作った</title>
+    <link>https://tkat0.dev/posts/docker-env-for-distiller</link>
+    <description>PyTorch向けの軽量化ライブラリであるDistillerを触る環境をDockerで作っただけの話</description>
+    <pubDate>Fri, 22 Feb 2019 02:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>pytorch</category><category>docker</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/deploy-ml-as-wasm</guid>
+    <title>WebAssemblyでの機械学習モデルデプロイの動向</title>
+    <link>https://tkat0.dev/posts/deploy-ml-as-wasm</link>
+    <description>本記事はMLOps Advent Calendar 2020の2日目の記事です。
+この記事では、機械学習モデル（特にDeep Learning）をWasmでデプロイする周辺技術の動向や内部の仕組みをざっくりと説明します。</description>
+    <pubDate>Wed, 02 Dec 2020 10:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>rust</category><category>wasm</category><category>deeplearning</category><category>mlops</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/weekly-20210503</guid>
+    <title>Weekly Report 2021/05/03-05/09</title>
+    <link>https://tkat0.dev/posts/weekly-20210503</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 09 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/2021-review</guid>
+    <title>2021年の振り返り</title>
+    <link>https://tkat0.dev/posts/2021-review</link>
+    <description>2021年の振り返り。</description>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>yearly-review</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/how-to-create-a-react-app-with-rust-and-wasm</guid>
+    <title>How to create a React app with Rust and WebAssembly</title>
+    <link>https://tkat0.dev/posts/how-to-create-a-react-app-with-rust-and-wasm</link>
+    <description>In this article, I&#39;ll introduce followings through creating simple demo application.</description>
+    <pubDate>Thu, 06 Jan 2022 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>wasm</category><category>rust</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/how-to-enable-buld-cache-for-rust-in-tekton</guid>
+    <title>TektonでRustのコンテナビルドする際のmount=type=cacheを有効にする</title>
+    <link>https://tkat0.dev/posts/how-to-enable-buld-cache-for-rust-in-tekton</link>
+    <description>TektonでRustのDockerfileのビルドを高速化する方法</description>
+    <pubDate>Thu, 29 Dec 2022 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>rust</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/issue-of-argocd-image-updater-with-local-registry</guid>
+    <title>argocd-image-updater didn&#39;t work with Local Docker Registry</title>
+    <link>https://tkat0.dev/posts/issue-of-argocd-image-updater-with-local-registry</link>
+    <description>There is a issue that argocd-image-updater cannot update images in Application that has multiple images of Local Docker Registry (e.g. 192.168.0.100:32000).
+In conclusion, don&#39;t use registry names containing colon `:`.</description>
+    <pubDate>Fri, 06 Jan 2023 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>kubernetes</category><category>argocd</category><category>docker</category><category>translated</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/issue-of-argocd-image-updater-with-local-registry</guid>
+    <title>argocd-image-updaterがLocal Docker Registryで動かなかった</title>
+    <link>https://tkat0.dev/posts/issue-of-argocd-image-updater-with-local-registry</link>
+    <description>argocd-image-updaterは特定の条件下でLocal Docker Registry（e.g. 192.168.0.100:32000）の複数のイメージを持つApplicationを更新できない問題があります。
+結論としては、`:`を含むレジストリ名を使ってはいけません。</description>
+    <pubDate>Fri, 06 Jan 2023 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>kubernetes</category><category>argocd</category><category>docker</category><category>translated</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev/posts/chatgpt</guid>
+    <title>ChatGPTについて調べた</title>
+    <link>https://tkat0.dev/posts/chatgpt</link>
+    <description>ChatGPTについて調べたことを随時更新するページです。</description>
+    <pubDate>Sun, 12 Mar 2023 13:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chatgpt</category>
+  </item>
+
+    </channel>
+  </rss>

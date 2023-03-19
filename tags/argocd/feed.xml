@@ -1,0 +1,36 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Fri, 06 Jan 2023 09:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/argocd/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/issue-of-argocd-image-updater-with-local-registry</guid>
+    <title>argocd-image-updater didn&#39;t work with Local Docker Registry</title>
+    <link>https://tkat0.dev//blog/issue-of-argocd-image-updater-with-local-registry</link>
+    <description>There is a issue that argocd-image-updater cannot update images in Application that has multiple images of Local Docker Registry (e.g. 192.168.0.100:32000).
+In conclusion, don&#39;t use registry names containing colon `:`.</description>
+    <pubDate>Fri, 06 Jan 2023 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>kubernetes</category><category>argocd</category><category>docker</category><category>translated</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/issue-of-argocd-image-updater-with-local-registry</guid>
+    <title>argocd-image-updaterがLocal Docker Registryで動かなかった</title>
+    <link>https://tkat0.dev//blog/issue-of-argocd-image-updater-with-local-registry</link>
+    <description>argocd-image-updaterは特定の条件下でLocal Docker Registry（e.g. 192.168.0.100:32000）の複数のイメージを持つApplicationを更新できない問題があります。
+結論としては、`:`を含むレジストリ名を使ってはいけません。</description>
+    <pubDate>Fri, 06 Jan 2023 09:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>kubernetes</category><category>argocd</category><category>docker</category><category>translated</category>
+  </item>
+
+    </channel>
+  </rss>

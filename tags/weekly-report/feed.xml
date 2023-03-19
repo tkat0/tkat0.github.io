@@ -1,0 +1,445 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Sun, 10 Jan 2021 06:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/weekly-report/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210104</guid>
+    <title>Weekly Report 2021/01/04-01/10</title>
+    <link>https://tkat0.dev//blog/weekly-20210104</link>
+    <description>「毎週ブログ書く」を今年の目標の1つにしたので、毎週、今週の振り返りを書いていこうと思う。基本は自身が定期的に振り返り、アウトプットする習慣をつける目的だが、なにかが参考になれば幸いです。
+今週の余暇はほとんど英語学習でした。</description>
+    <pubDate>Sun, 10 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210111</guid>
+    <title>Weekly Report 2021/01/11-01/17</title>
+    <link>https://tkat0.dev//blog/weekly-20210111</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 17 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210118</guid>
+    <title>Weekly Report 2021/01/18-01/24</title>
+    <link>https://tkat0.dev//blog/weekly-20210118</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 24 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210125</guid>
+    <title>Weekly Report 2021/01/25-01/31</title>
+    <link>https://tkat0.dev//blog/weekly-20210125</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 31 Jan 2021 06:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210201</guid>
+    <title>Weekly Report 2021/02/01-02/07</title>
+    <link>https://tkat0.dev//blog/weekly-20210201</link>
+    <description>今週の振り返り。英語学習の成果が見え始めて嬉しい。</description>
+    <pubDate>Sun, 07 Feb 2021 03:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210214</guid>
+    <title>Weekly Report 2021/02/08-02/14</title>
+    <link>https://tkat0.dev//blog/weekly-20210214</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 14 Feb 2021 03:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210215</guid>
+    <title>Weekly Report 2021/02/15-02/21</title>
+    <link>https://tkat0.dev//blog/weekly-20210215</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 22 Feb 2021 12:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210222</guid>
+    <title>Weekly Report 2021/02/22-02/28</title>
+    <link>https://tkat0.dev//blog/weekly-20210222</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 28 Feb 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210301</guid>
+    <title>Weekly Report 2021/03/01-03/07</title>
+    <link>https://tkat0.dev//blog/weekly-20210301</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 07 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210308</guid>
+    <title>Weekly Report 2021/03/08-03/14</title>
+    <link>https://tkat0.dev//blog/weekly-20210308</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 14 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210315</guid>
+    <title>Weekly Report 2021/03/15-03/21</title>
+    <link>https://tkat0.dev//blog/weekly-20210315</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 21 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210322</guid>
+    <title>Weekly Report 2021/03/22-03/28</title>
+    <link>https://tkat0.dev//blog/weekly-20210322</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 28 Mar 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210329</guid>
+    <title>Weekly Report 2021/03/29-04/04</title>
+    <link>https://tkat0.dev//blog/weekly-20210329</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 04 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210405</guid>
+    <title>Weekly Report 2021/04/05-04/11</title>
+    <link>https://tkat0.dev//blog/weekly-20210405</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 12 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210412</guid>
+    <title>Weekly Report 2021/04/12-04/18</title>
+    <link>https://tkat0.dev//blog/weekly-20210412</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 18 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210419</guid>
+    <title>Weekly Report 2021/04/19-04/25</title>
+    <link>https://tkat0.dev//blog/weekly-20210419</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 25 Apr 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210426</guid>
+    <title>Weekly Report 2021/04/26-05/02</title>
+    <link>https://tkat0.dev//blog/weekly-20210426</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 02 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210606</guid>
+    <title>Weekly Report 2021/05/31-06/06</title>
+    <link>https://tkat0.dev//blog/weekly-20210606</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 06 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210613</guid>
+    <title>Weekly Report 2021/06/07-06/13</title>
+    <link>https://tkat0.dev//blog/weekly-20210613</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 13 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210620</guid>
+    <title>Weekly Report 2021/06/13-06/20</title>
+    <link>https://tkat0.dev//blog/weekly-20210620</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 20 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210627</guid>
+    <title>Weekly Report 2021/06/20-06/27</title>
+    <link>https://tkat0.dev//blog/weekly-20210627</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 27 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210510</guid>
+    <title>Weekly Report 2021/05/10-05/16</title>
+    <link>https://tkat0.dev//blog/weekly-20210510</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 16 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210517</guid>
+    <title>Weekly Report 2021/05/17-05/23</title>
+    <link>https://tkat0.dev//blog/weekly-20210517</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 23 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210530</guid>
+    <title>Weekly Report 2021/05/24-05/30</title>
+    <link>https://tkat0.dev//blog/weekly-20210530</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 30 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210906</guid>
+    <title>Weekly Report 2021/09/01-09/06</title>
+    <link>https://tkat0.dev//blog/weekly-20210906</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 06 Sep 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210914</guid>
+    <title>Weekly Report 2021/09/07-09/14</title>
+    <link>https://tkat0.dev//blog/weekly-20210914</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Tue, 14 Sep 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210927</guid>
+    <title>Weekly Report 2021/09/15-09/27</title>
+    <link>https://tkat0.dev//blog/weekly-20210927</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 27 Sep 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20211005</guid>
+    <title>Weekly Report 2021/09/28-10/05</title>
+    <link>https://tkat0.dev//blog/weekly-20211005</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Tue, 05 Oct 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210801</guid>
+    <title>Weekly Report 2021/07/26-08/01</title>
+    <link>https://tkat0.dev//blog/weekly-20210801</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210809</guid>
+    <title>Weekly Report 2021/08/02-08/09</title>
+    <link>https://tkat0.dev//blog/weekly-20210809</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 09 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210816</guid>
+    <title>Weekly Report 2021/08/10-08/16</title>
+    <link>https://tkat0.dev//blog/weekly-20210816</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210823</guid>
+    <title>Weekly Report 2021/08/17-08/23</title>
+    <link>https://tkat0.dev//blog/weekly-20210823</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210831</guid>
+    <title>Weekly Report 2021/08/24-08/31</title>
+    <link>https://tkat0.dev//blog/weekly-20210831</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Tue, 31 Aug 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210704</guid>
+    <title>Weekly Report 2021/06/28-07/04</title>
+    <link>https://tkat0.dev//blog/weekly-20210704</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 04 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210711</guid>
+    <title>Weekly Report 2021/07/05-07/11</title>
+    <link>https://tkat0.dev//blog/weekly-20210711</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 11 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210718</guid>
+    <title>Weekly Report 2021/07/12-07/18</title>
+    <link>https://tkat0.dev//blog/weekly-20210718</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 18 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210725</guid>
+    <title>Weekly Report 2021/07/19-07/25</title>
+    <link>https://tkat0.dev//blog/weekly-20210725</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 25 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20211018</guid>
+    <title>Weekly Report 2021/10/06-10/18</title>
+    <link>https://tkat0.dev//blog/weekly-20211018</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Mon, 18 Oct 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20211031</guid>
+    <title>Weekly Report 2021/10/19-10/31</title>
+    <link>https://tkat0.dev//blog/weekly-20211031</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 31 Oct 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/monthly-20211130</guid>
+    <title>Monthly Report 2021/11/01-11/30</title>
+    <link>https://tkat0.dev//blog/monthly-20211130</link>
+    <description>今月の振り返り。</description>
+    <pubDate>Mon, 29 Nov 2021 15:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20211212</guid>
+    <title>Weekly Report 2021/12/01-12/12</title>
+    <link>https://tkat0.dev//blog/weekly-20211212</link>
+    <description>今月の振り返り。</description>
+    <pubDate>Sat, 11 Dec 2021 15:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20211226</guid>
+    <title>Weekly Report 2021/12/13-12/26</title>
+    <link>https://tkat0.dev//blog/weekly-20211226</link>
+    <description>今月の振り返り。</description>
+    <pubDate>Sat, 25 Dec 2021 15:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/weekly-20210503</guid>
+    <title>Weekly Report 2021/05/03-05/09</title>
+    <link>https://tkat0.dev//blog/weekly-20210503</link>
+    <description>今週の振り返り。</description>
+    <pubDate>Sun, 09 May 2021 00:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>weekly-report</category>
+  </item>
+
+    </channel>
+  </rss>

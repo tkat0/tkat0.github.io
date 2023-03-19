@@ -1,0 +1,34 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Tue, 05 Feb 2019 23:30:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/pytorch/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/pytorch-named_modules</guid>
+    <title>PyTorchのModule#named_modules</title>
+    <link>https://tkat0.dev//blog/pytorch-named_modules</link>
+    <description>PyTorchのModule#named_modulesでモデル内のすべてのOperatorにアクセスするときにはまったメモ。</description>
+    <pubDate>Tue, 05 Feb 2019 23:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>pytorch</category><category>deeplearning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/docker-env-for-distiller</guid>
+    <title>Distillerの検証環境をDockerで作った</title>
+    <link>https://tkat0.dev//blog/docker-env-for-distiller</link>
+    <description>PyTorch向けの軽量化ライブラリであるDistillerを触る環境をDockerで作っただけの話</description>
+    <pubDate>Fri, 22 Feb 2019 02:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>pytorch</category><category>docker</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+    </channel>
+  </rss>

@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Sat, 06 Jul 2019 21:30:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/paper/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/1907.01989</guid>
+    <title>[1907.01989] On-Device Neural Net Inference with Mobile GPUs</title>
+    <link>https://tkat0.dev//blog/1907.01989</link>
+    <description>Google Researchより、TFLite GPUのアーキテクチャ設計についての論文。</description>
+    <pubDate>Sat, 06 Jul 2019 21:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>tflite</category><category>deeplearning</category><category>paper</category>
+  </item>
+
+    </channel>
+  </rss>

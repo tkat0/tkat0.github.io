@@ -1,0 +1,34 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Mon, 04 Feb 2019 00:30:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/chainer-compiler/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/learn-chainer-compiler-1</guid>
+    <title>Chainer-compiler調査（1）</title>
+    <link>https://tkat0.dev//blog/learn-chainer-compiler-1</link>
+    <description>今日からChainer-compilerについて調べてみよう。</description>
+    <pubDate>Mon, 04 Feb 2019 00:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chainer-compiler</category><category>deeplearning</category><category>chainer</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/learn-chainer-compiler-2</guid>
+    <title>Chainer-compiler調査（2）</title>
+    <link>https://tkat0.dev//blog/learn-chainer-compiler-2</link>
+    <description>Chainer-compilerの調査その2</description>
+    <pubDate>Wed, 06 Feb 2019 00:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chainer-compiler</category><category>deeplearning</category><category>chainer</category>
+  </item>
+
+    </channel>
+  </rss>

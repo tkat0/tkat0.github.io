@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tkat0.dev//about</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev/</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/argocd</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/chainer-compiler</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/chatgpt</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/deeplearning</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/chainer</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/distiller</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/docker</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/hugo</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/keyboard</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/kubernetes</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/mediapipe</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/mlops</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/onnxruntime</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/paper</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/pruning</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/raspberry-pi</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/onnx</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/rust</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/translated</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/tvm</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/wasm</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/pytorch</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/tflite</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/weekly-report</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//tags/yearly-review</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201708/writing-blog-with-hugo</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201906/1907.01989</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201906/cargo-make-1</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201906/mediapipe</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/build-blog</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/build-ergodash</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/distiller-thinning</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/learn-chainer-compiler-1</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/learn-chainer-compiler-2</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/learn-onnx</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/pytorch-named_modules</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201903/read-onnxruntime</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201903/setup-raspi</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202012/2020-kpt</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202101/weekly-20210104</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202101/weekly-20210111</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202101/weekly-20210118</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202101/weekly-20210125</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202102/weekly-20210201</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202102/weekly-20210208</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202102/weekly-20210215</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202102/weekly-20210222</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202103/weekly-20210301</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202103/weekly-20210308</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202103/weekly-20210315</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202103/weekly-20210322</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202103/weekly-20210329</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202104/weekly-20210405</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202104/weekly-20210412</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202104/weekly-20210419</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202104/weekly-20210426</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202106/weekly-20210606</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202106/weekly-20210613</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202106/weekly-20210620</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202106/weekly-20210627</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202105/weekly-20210510</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202105/weekly-20210517</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202105/weekly-20210530</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202109/weekly-20210906</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202109/weekly-20210914</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202109/weekly-20210927</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202109/weekly-20211005</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202108/weekly-20210801</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202108/weekly-20210809</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202108/weekly-20210816</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202108/weekly-20210823</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202108/weekly-20210831</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202107/weekly-20210704</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202107/weekly-20210711</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202107/weekly-20210718</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202107/weekly-20210725</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202110/weekly-20211005</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202110/weekly-20211031</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202111/weekly-20211130</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202112/weekly-2021212</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202112/weekly-2021226</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202212/2022-review.en</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202212/2022-review</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/201902/docker-env-for-distiller</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202012/deploy-ml-as-wasm</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202105/weekly-20210503/weekly-20210503</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202112/2021-review/2021-review</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202201/how-to-create-a-react-app-with-rust-and-wasm</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202212/how-to-enable-buld-cache-for-rust-in-tekton</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://tkat0.dev//posts/202301/issue-of-argocd-image-updater-with-local-registry/index.en</loc
+    >
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202301/issue-of-argocd-image-updater-with-local-registry</loc>
+  </url>
+
+  <url>
+    <loc>https://tkat0.dev//posts/202303/chatgpt</loc>
+  </url>
+</urlset>

@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Sun, 12 Mar 2023 13:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/chatgpt/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/chatgpt</guid>
+    <title>ChatGPTについて調べた</title>
+    <link>https://tkat0.dev//blog/chatgpt</link>
+    <description>ChatGPTについて調べたことを随時更新するページです。</description>
+    <pubDate>Sun, 12 Mar 2023 13:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>chatgpt</category>
+  </item>
+
+    </channel>
+  </rss>

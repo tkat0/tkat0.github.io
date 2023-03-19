@@ -1,0 +1,25 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Wed, 02 Dec 2020 10:30:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/mlops/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/deploy-ml-as-wasm</guid>
+    <title>WebAssemblyでの機械学習モデルデプロイの動向</title>
+    <link>https://tkat0.dev//blog/deploy-ml-as-wasm</link>
+    <description>本記事はMLOps Advent Calendar 2020の2日目の記事です。
+この記事では、機械学習モデル（特にDeep Learning）をWasmでデプロイする周辺技術の動向や内部の仕組みをざっくりと説明します。</description>
+    <pubDate>Wed, 02 Dec 2020 10:30:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>rust</category><category>wasm</category><category>deeplearning</category><category>mlops</category>
+  </item>
+
+    </channel>
+  </rss>

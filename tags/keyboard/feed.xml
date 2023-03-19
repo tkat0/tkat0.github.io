@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Fri, 01 Feb 2019 13:36:10 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/keyboard/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/build-ergodash</guid>
+    <title>自作キーボード作った ErgoDash</title>
+    <link>https://tkat0.dev//blog/build-ergodash</link>
+    <description>遊舎工房の実店舗でErgoDashを買ってそのまま作ってきた記録。</description>
+    <pubDate>Fri, 01 Feb 2019 13:36:10 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>keyboard</category>
+  </item>
+
+    </channel>
+  </rss>

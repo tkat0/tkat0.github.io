@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Sat, 02 Feb 2019 03:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/raspberry-pi/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/setup-raspi</guid>
+    <title>Raspberry Pi 3 B+買ったよ</title>
+    <link>https://tkat0.dev//blog/setup-raspi</link>
+    <description>Raspberry Pi 3 B+を買ったので初期設定のメモ</description>
+    <pubDate>Sat, 02 Feb 2019 03:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>raspberry-pi</category>
+  </item>
+
+    </channel>
+  </rss>

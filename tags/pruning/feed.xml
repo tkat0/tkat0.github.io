@@ -1,0 +1,35 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>tkat0.dev</title>
+      <link>https://tkat0.dev//blog</link>
+      <description>tkat0&#39;s blog</description>
+      <language>ja-jp</language>
+      <managingEditor> (tkat0)</managingEditor>
+      <webMaster> (tkat0)</webMaster>
+      <lastBuildDate>Sat, 02 Feb 2019 03:00:01 GMT</lastBuildDate>
+      <atom:link href="https://tkat0.dev//tags/pruning/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tkat0.dev//blog/distiller-thinning</guid>
+    <title>Distillerのthinningの仕様</title>
+    <link>https://tkat0.dev//blog/distiller-thinning</link>
+    <description>DistillerはPytorch向けのpruningやquantizationを行うライブラリだが、Channel Pruning後にWeightをshrinkしてサイズを小さくする&quot;thinning&quot;ができる。
+今回はそのソースを読んで気がついたことのまとめ。</description>
+    <pubDate>Sat, 02 Feb 2019 03:00:01 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+  <item>
+    <guid>https://tkat0.dev//blog/docker-env-for-distiller</guid>
+    <title>Distillerの検証環境をDockerで作った</title>
+    <link>https://tkat0.dev//blog/docker-env-for-distiller</link>
+    <description>PyTorch向けの軽量化ライブラリであるDistillerを触る環境をDockerで作っただけの話</description>
+    <pubDate>Fri, 22 Feb 2019 02:00:00 GMT</pubDate>
+    <author> (tkat0)</author>
+    <category>distiller</category><category>pytorch</category><category>docker</category><category>deeplearning</category><category>pruning</category>
+  </item>
+
+    </channel>
+  </rss>
